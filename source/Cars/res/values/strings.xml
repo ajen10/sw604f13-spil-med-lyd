@@ -8,6 +8,6 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="start_game">Start Spil</string>
     <string name="display_settings">Indstillinger</string>
-    <string name="display_help">Hjælp</string>    
+    <string name="display_help">Hjalp</string>    
 
 </resources>
