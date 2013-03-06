@@ -14,8 +14,8 @@ public class GameActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
-		// TODO Context?
-		view = new GameView(this);
+		int[] bitmapIds = new int[0];
+		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 	}
 
