@@ -17,6 +17,8 @@ public class GameActivity extends Activity {
 		int[] bitmapIds = new int[0];
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
+		
+		
 	}
 
 	@Override
