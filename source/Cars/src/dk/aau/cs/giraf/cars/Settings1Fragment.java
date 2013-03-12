@@ -16,6 +16,8 @@ public class Settings1Fragment extends Fragment {
 		      View v = inflater.inflate(R.layout.fragment_settings1, container, false);
 		      return v;
 		   }
+		    
+		    
 		
 	
 }

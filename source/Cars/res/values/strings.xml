@@ -8,6 +8,10 @@
     <string name="title_activity_help">HelpActivity</string>
     <string name="start_game">Start Spil</string>
     <string name="display_settings">Indstillinger</string>
-    <string name="display_help">Hjælp</string>    
-
+    <string name="display_help">Hjælp</string>
+    <string name="settings_speed_slider">Bilens hastighed</string>
+    <string name="settings_obstacles">Antal forhindringer</string> 
+    <string name="settings_colors_onoff">Farver</string> 
+    <string name="settings_frequency">Frekvens</string> 
+    <string name="settings_frequency_button">Indstil tale frekvens</string>
 </resources>

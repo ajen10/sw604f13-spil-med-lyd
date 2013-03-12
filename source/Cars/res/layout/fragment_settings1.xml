@@ -1,13 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
+    <TextView
+        android:id="@+id/settings_speed_slider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name" />
+        android:text="@string/settings_speed_slider"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/settings_obstacles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/settings_speed_slider"
+        android:layout_marginTop="30dp"
+        android:text="@string/settings_obstacles"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/colors_onoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/settings_obstacles"
+        android:layout_marginTop="30dp"
+        android:text="@string/settings_colors_onoff"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/settings_frequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/colors_onoff"
+        android:layout_marginTop="30dp"
+        android:text="@string/settings_frequency"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <SeekBar
+        android:id="@+id/settings_carspeed"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/settings_seekbar_obstacles"
+         />
+
+    <SeekBar
+        android:id="@+id/settings_seekbar_obstacles"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/settings_obstacles"
+        android:layout_marginRight="209dp" />
+
+    <ToggleButton
+        android:id="@+id/settings_colors_onoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/settings_seekbar_obstacles"
+        android:layout_alignTop="@+id/colors_onoff" />
+
+    <Button
+        android:id="@+id/settings_frequency_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/settings_colors_onoff"
+        android:layout_alignTop="@+id/settings_frequency"
+        android:text="@string/settings_frequency_button" />
+
+    <TextView
+        android:id="@+id/seekBar1_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/settings_obstacles"
+        android:layout_marginLeft="60dp"
+        android:layout_toRightOf="@+id/settings_carspeed"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/seekBar2_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/seekBar1_value"
+        android:layout_alignTop="@+id/settings_seekbar_obstacles"
+        android:text="TextView" />
+
+</RelativeLayout>
