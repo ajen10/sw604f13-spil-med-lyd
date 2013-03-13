@@ -16,7 +16,10 @@ public class GameThread extends Thread {
 			}
 		}
 	}
-	public void run() {	gameLogic(); }
+	public void run() {
+		running = true;
+		gameLogic();
+	}
 	public void SetObjects(List<GameObject> gameObjects) {
 		workableObjects.clear();
 		
@@ -27,14 +30,14 @@ public class GameThread extends Thread {
 		}
 	}
 	
-	private void gameLogic() {
+	public void gameLogic() {
 		while(running){
 			for (IWorkable object : workableObjects) {
 				object.PerformWork();
 			}
 		
 			try {
-				Thread.sleep(1);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {}
 		}
 	}

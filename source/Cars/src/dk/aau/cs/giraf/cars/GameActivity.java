@@ -26,10 +26,10 @@ public class GameActivity extends Activity {
 		setContentView(view);
 		
 		gameThread = new GameThread(objectList);
-		//gameThread.start();
 		
-
 		SetObjects();
+		
+		gameThread.start();
 	}
 	
 	public void SetObjects() {
