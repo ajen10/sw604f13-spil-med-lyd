@@ -5,12 +5,8 @@ import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import dk.aau.cs.giraf.cars.R;
-import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
-
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Rect;
 import android.opengl.GLSurfaceView;
 
 // TODO Add touch screen registration
