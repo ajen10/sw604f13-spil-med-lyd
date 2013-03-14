@@ -2,8 +2,10 @@ package dk.aau.cs.giraf.cars.gamecode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.System;
 
 public class GameThread extends Thread {
+	final int millisecondsPerTick = 25;
 	List<IWorkable> workableObjects;
 	Boolean running;
 	
@@ -32,14 +34,25 @@ public class GameThread extends Thread {
 	
 	public void gameLogic() {
 		while(running){
+			long currentTime = System.nanoTime();
+			
 			for (IWorkable object : workableObjects) {
 				object.PerformWork();
 			}
 		
+			long newTime = System.nanoTime();
+			long difference = newTime - currentTime;
+			int sleepFor = (int) ((millisecondsPerTick * 1000000 - difference) / 1000000);
+			System.out.println("Total: " + sleepFor + ", Difference: " + difference + "\n currentTime: " + currentTime + ", newTime:" + newTime);
 			try {
-				Thread.sleep(50);
+				if (sleepFor > 0)
+				Thread.sleep(sleepFor);
 			} catch (InterruptedException e) {}
 		}
+	}
+	
+	public void stopRunning() {
+		running = false;
 	}
 	
 }
