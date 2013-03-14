@@ -2,6 +2,7 @@ package dk.aau.cs.giraf.cars;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.System;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -30,6 +31,13 @@ public class GameActivity extends Activity {
 		SetObjects();
 		
 		gameThread.start();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		System.out.println("DESTROYED");
+		gameThread.stopRunning();
 	}
 	
 	public void SetObjects() {
