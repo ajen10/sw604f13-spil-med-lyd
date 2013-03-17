@@ -18,6 +18,16 @@ public class GameThread extends Thread {
 			}
 		}
 	}
+	
+	public GameThread(GameObject gameObject) {
+		workableObjects = new ArrayList<IWorkable>();
+		
+		if (gameObject instanceof IWorkable) {
+			workableObjects.add((IWorkable) gameObject);
+		}
+		
+	}
+	
 	public void run() {
 		running = true;
 		gameLogic();
@@ -29,6 +39,15 @@ public class GameThread extends Thread {
 			if (object instanceof IWorkable) {
 				workableObjects.add((IWorkable) object);
 			}
+		}
+	}
+	
+	public void SetObjects(GameObject gameObject) {
+		workableObjects.clear();
+		
+			if (gameObject instanceof IWorkable) {
+				workableObjects.add((IWorkable) gameObject);
+		
 		}
 	}
 	

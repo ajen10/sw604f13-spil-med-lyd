@@ -15,4 +15,5 @@
     <string name="retry">Prøv igen</string>
     <string name="mic_test_low">Snak med en lav stemme</string>
     <string name="mic_test_high">Snak med en høj stemme</string>
+    <string name="none"></string>
 </resources>

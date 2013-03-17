@@ -16,17 +16,6 @@
         android:clickable="true" />
 
     <Button
-        android:id="@+id/next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cancel_button"
-        android:layout_alignBottom="@+id/cancel_button"
-        android:layout_marginLeft="48dp"
-        android:layout_toRightOf="@+id/retry_button"
-        android:text="@string/next" 
-        android:clickable="true" />
-
-    <Button
         android:id="@+id/retry_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,5 +25,15 @@
         android:layout_toRightOf="@+id/cancel_button"
         android:text="@string/retry" 
         android:clickable="true" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/cancel_button"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:text="@string/next" />
 
 </RelativeLayout>

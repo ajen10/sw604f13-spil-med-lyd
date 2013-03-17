@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.opengl.GLSurfaceView;
@@ -19,6 +18,8 @@ public class GameView extends GLSurfaceView implements Drawer {
 		drawableObjects = new ArrayList<IDrawable>();
 		setRenderer(new GameRenderer(resources, bitmapIds, this));
 	}
+	
+	
 	public void SetObjects(List<GameObject> gameObjects) {
 		drawableObjects.clear();
 		
@@ -27,6 +28,15 @@ public class GameView extends GLSurfaceView implements Drawer {
 				drawableObjects.add((IDrawable) object);
 			}
 		}
+	}
+	
+	public void SetObjects(GameObject gameObject) {
+		drawableObjects.clear();
+		
+			if (gameObject instanceof IDrawable) {
+				drawableObjects.add((IDrawable) gameObject);
+			}
+		
 	}
 
 	@Override
