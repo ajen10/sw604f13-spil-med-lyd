@@ -1,10 +1,11 @@
 package dk.aau.cs.giraf.cars;
 
-import dk.aau.cs.giraf.cars.MicTestDialogFragment.DialogListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import dk.aau.cs.giraf.cars.MicTestDialogFragment.DialogListener;
+
 
 public class SettingsActivity extends Activity implements DialogListener {
 
@@ -21,15 +22,15 @@ public class SettingsActivity extends Activity implements DialogListener {
 		return true;
 	}
 	
-	public void showMicTestFragment(View view) {
-		MicTestDialogFragment micTest = new MicTestDialogFragment(getString(R.string.mic_test_low));
-		
-		micTest.show(getFragmentManager(), "micTest");
-		
-	}
-	
-	public void pitchResult(int test) {
-		
+    public void showMicTestDialog(View v) {
+    	MicTestDialogFragment micTest = new MicTestDialogFragment(getString(R.string.mic_test_low));
+    	
+    	micTest.show(getFragmentManager(), "micTestDialog");
+    }
+
+	@Override
+	public void pitchResult(int pitch) {
+		// TODO Auto-generated method stub
 		
 	}
 }
