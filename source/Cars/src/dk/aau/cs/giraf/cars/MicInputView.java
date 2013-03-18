@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 public class MicInputView extends RelativeLayout{
 	public MicInputView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-        //View.inflate(context, R.layout.dialog_mic_input, this);
+        View.inflate(context, R.layout.dialog_mic_input, this);
 	}
 	public MicInputView(Context context, AttributeSet attrs) {
 		this(context, null, 0);

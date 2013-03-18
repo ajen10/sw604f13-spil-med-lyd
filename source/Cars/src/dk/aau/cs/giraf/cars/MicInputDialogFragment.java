@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import dk.aau.cs.giraf.cars.gamecode.*;
 import dk.aau.cs.giraf.cars.objects.Car;
 
 public class MicInputDialogFragment extends DialogFragment {
-	GameView view;
+	GameView gameView;
 	GameObject car;
 	GameThread gameThread;
 	//RelativeLayout viewGrp;
@@ -30,11 +29,12 @@ public class MicInputDialogFragment extends DialogFragment {
         
         car = new Car();
 		int[] bitmapIds = new int[] {R.drawable.ic_launcher};
-		view = new GameView(getActivity(), getResources(), bitmapIds);
+		gameView = new GameView(getActivity(), getResources(), bitmapIds);
 		
 		MicInputView micInputView = new MicInputView(this.getActivity());
-        micInputView.addView(layout);
-        micInputView.addView(view);
+        //micInputView.addView(layout);
+		
+        micInputView.addView(gameView,50,150);
         
 		
 		builder.setView(micInputView);
@@ -66,6 +66,6 @@ public class MicInputDialogFragment extends DialogFragment {
 
 	public void SetObjects(GameObject car) {
 		gameThread.SetObjects(car);
-		view.SetObjects(car);
+		gameView.SetObjects(car);
 	}
 }
