@@ -43,7 +43,7 @@ public class GameThread extends Thread {
 			long newTime = System.nanoTime();
 			long difference = newTime - currentTime;
 			int sleepFor = (int) ((millisecondsPerTick * 1000000 - difference) / 1000000);
-			System.out.println("Total: " + sleepFor + ", Difference: " + difference + "\n currentTime: " + currentTime + ", newTime:" + newTime);
+			
 			try {
 				if (sleepFor > 0)
 				Thread.sleep(sleepFor);
