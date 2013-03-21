@@ -22,7 +22,7 @@ public class GameActivity extends Activity {
 		objectList = new ArrayList<GameObject>();
 		objectList.add(new Car());
 		
-		int[] bitmapIds = new int[] {R.drawable.ic_launcher};
+		int[] bitmapIds = new int[] {R.drawable.red};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		

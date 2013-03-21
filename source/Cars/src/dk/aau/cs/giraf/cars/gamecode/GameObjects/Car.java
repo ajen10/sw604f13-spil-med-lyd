@@ -16,11 +16,12 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	public Car() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
 		// TODO Auto-generated method stub
-		spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(150 + offset, 150, 250 + offset, 250));
+		
+		spriteBatcher.draw(gl, R.drawable.red, new Rect(0, 0, 100, 100), new Rect(150 + offset, 150, 250 + offset, 250));
 	}
 
 	@Override

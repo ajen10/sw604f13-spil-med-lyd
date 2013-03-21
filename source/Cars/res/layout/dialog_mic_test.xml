@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-	
+    android:layout_height="match_parent" 
+    android:orientation="horizontal"
+    style="?android:attr/buttonBarStyle">	
+    
     
     <Button
+        style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/cancel_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="74dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:text="@string/cancel"
-        android:clickable="true" />
+        android:clickable="true" 
+        android:layout_weight="1"
+        android:background="#FFFF0000"/>
 
     <Button
+        style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/retry_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/next_button"
-        android:layout_alignBottom="@+id/next_button"
-        android:layout_marginLeft="43dp"
-        android:layout_toRightOf="@+id/cancel_button"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:text="@string/retry" 
-        android:clickable="true" />
-
-    <Button
+        android:clickable="true" 
+        android:layout_weight="1"
+        android:background="#FF0000FF"/>
+       
+ 	<Button
+ 	    style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/cancel_button"
-        android:layout_marginTop="32dp"
-        android:clickable="true"
-        android:text="@string/next" />
-
-</RelativeLayout>
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/next"
+        android:clickable="true" 
+        android:layout_weight="1"
+        android:background="#FF00FF00"/>
+</LinearLayout>

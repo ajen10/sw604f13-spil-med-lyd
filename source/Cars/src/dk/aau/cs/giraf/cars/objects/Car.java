@@ -10,17 +10,27 @@ import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
-	int offset = 0;
+	private int offset = 0;
+	private final int mViewWidth;
+	private final int mViewHeight;
+	private final int mImgWidth;
+	private final int mImgHeight;
 	
-	public Car() {
-		// TODO Auto-generated constructor stub
+	public Car(int viewWidth, int viewHeight, int carWidth, int carHeight) {
+		mViewWidth = viewWidth;
+		mViewHeight = viewHeight;
+		mImgWidth = carWidth;
+		mImgHeight = carHeight;
 	}
 
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
 		// TODO Auto-generated method stub
-		spriteBatcher.draw(gl, R.drawable.rectangle, new Rect(0, 0, 100, 100), new Rect(0, 0, 100, 100));
-		//spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(0 + offset, 0, 100 + offset, 100));
+		
+		int x = (mViewWidth / 2) - (mImgWidth / 2);
+		int y = (mViewHeight / 2) - (mImgHeight / 2);
+		
+		spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(x, y , x + (mImgWidth * 2) + offset, y + (mImgHeight * 2)));
 	}
 
 	@Override

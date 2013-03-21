@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFFFF"
-    android:orientation="vertical" >
-
-    
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="30dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:contentDescription="@string/none"
-        android:src="@drawable/rectangle" />
-
+    style="?android:attr/buttonBarStyle"
+    android:orientation="horizontal">
     <Button
+        style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/retry_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:clickable="true"
         android:text="@string/retry" 
-        android:layout_below="@+id/imageView1"
-        android:layout_toLeftOf="@+id/imageView1" />
+        android:layout_weight="1"
+        android:background="#FF0000FF"/>  
 
+        <!-- <ImageView
+        android:id="@+id/rectangle"
+        android:layout_width="80dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/none"
+        android:src="@drawable/rectangle" 
+		android:layout_gravity="center_horizontal"/>     -->
+    
     <Button
+        style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:clickable="true"
-        android:text="@string/next" 
-        android:layout_below="@+id/imageView1"
-        android:layout_toRightOf="@+id/imageView1" />
+        android:text="@string/next"
+        android:layout_weight="1"
+        android:background="#FF00FF00" />
     
 
-</RelativeLayout>
+</LinearLayout>

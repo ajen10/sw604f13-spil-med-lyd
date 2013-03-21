@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class MicTestDialogFragment extends DialogFragment {
 
-	String mMicText;
+	private String mMicText;
 	
 	public MicTestDialogFragment(String micText) { 
 		mMicText = micText;

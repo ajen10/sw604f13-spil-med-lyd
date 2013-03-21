@@ -20,6 +20,6 @@
         android:layout_weight=".75"
         class="dk.aau.cs.giraf.cars.Settings2Fragment"
         tools:layout="@layout/fragment_settings2" />
-
+    
 
 </LinearLayout>
