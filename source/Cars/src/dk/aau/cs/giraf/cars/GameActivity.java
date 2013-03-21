@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import dk.aau.cs.giraf.cars.gamecode.*;
-import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
+import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
 
 public class GameActivity extends Activity {
 	GameView view;
@@ -16,15 +16,18 @@ public class GameActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
 		objectList = new ArrayList<GameObject>();
-		objectList.add(new Car());
-		
-		int[] bitmapIds = new int[] {R.drawable.ic_launcher};
+
+		int[] bitmapIds = new int[] {R.drawable.ic_launcher, R.drawable.rock};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
+		
+		//	objectList.add(new Car());
+		//	objectList.add(new Rock());
 		
 		gameThread = new GameThread(objectList);
 		

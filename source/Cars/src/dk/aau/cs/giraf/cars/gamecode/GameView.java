@@ -37,4 +37,12 @@ public class GameView extends GLSurfaceView implements Drawer {
 			object.Draw(gl, spriteBatcher);
 		}
 	}
+	
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh){
+		super.onSizeChanged(w, h, oldw, oldh);
+		
+		MapDivider.CalculateConstants(this);
+	}
 }
