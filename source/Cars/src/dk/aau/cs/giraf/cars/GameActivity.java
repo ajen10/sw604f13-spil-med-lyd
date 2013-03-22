@@ -21,16 +21,23 @@ public class GameActivity extends Activity {
 		setContentView(R.layout.activity_game);
 		
 		objectList = new ArrayList<GameObject>();
-
-		int[] bitmapIds = new int[] {R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat, R.drawable.map};
+		
+		int[] bitmapIds = new int[] { R.drawable.map, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
-		
-			objectList.add(new Car());
-			objectList.add(new Rock());
-			objectList.add(new Bump());
-			objectList.add(new Cat());
-			objectList.add(new Barricade());
+
+		//objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace));
+		//objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight));
+		//objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight*2));
+		//objectList.add(new Car(300));
+		//objectList.add(new Car(400));
+		//objectList.add(new Car(500));
+		//objectList.add(new Car(600));
+		//objectList.add(new bump(600));
+			//
+			//objectList.add(new Bump());
+			//objectList.add(new Cat());
+			//objectList.add(new Barricade());
 		
 		gameThread = new GameThread(objectList);
 		
@@ -46,6 +53,13 @@ public class GameActivity extends Activity {
 		gameThread.stopRunning();
 	}
 	
+	public void AddObjects() {
+		objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight));
+		objectList.add(new Bump(1, 3));
+		objectList.add(new Cat(2, 1));
+		objectList.add(new Barricade(3, 5));
+		SetObjects();
+	}
 	public void SetObjects() {
 		gameThread.SetObjects(objectList);
 		view.SetObjects(objectList);
