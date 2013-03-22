@@ -14,10 +14,10 @@ public class Rock extends GameObject implements IDrawable, IWorkable {
 	int x;
 	int y;
 	
-	public Rock(int X, int Y) {
+	public Rock() {
 		// TODO Auto-generated constructor stub
-		x = X;
-		y = Y;
+		//x = X;
+		//y = Y;
 		
 	}
 

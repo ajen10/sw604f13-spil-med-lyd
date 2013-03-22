@@ -26,8 +26,11 @@ public class GameActivity extends Activity {
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
-		//	objectList.add(new Car());
-		//	objectList.add(new Rock());
+			objectList.add(new Car());
+			objectList.add(new Rock());
+			objectList.add(new Bump());
+			objectList.add(new Cat());
+			objectList.add(new Barricade());
 		
 		gameThread = new GameThread(objectList);
 		
