@@ -10,23 +10,23 @@ import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
 import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 
-public class Car extends GameObject implements IWorkable, IDrawable {
-	int offset = 0;
+public class Barricade extends GameObject implements IWorkable, IDrawable {
 	
-	public Car() {
+	
+	public Barricade() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
 		// TODO Auto-generated method stub
-		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 100, 100), new Rect(150 + offset, 150, 250 + offset, 250));
+		spriteBatcher.draw(gl, R.drawable.barricade, new Rect(0, 0, 100, 100), new Rect(150, 150, 250, 250));
 	}
 
 	@Override
 	public void PerformWork() {
 		// TODO Auto-generated method stub
-		offset++;
+		
 	}
 
 }
