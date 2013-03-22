@@ -53,7 +53,7 @@ public class GameActivity extends Activity {
 		gameThread.stopRunning();
 	}
 	
-	public void AddObjects() {
+	public void AddObjects() { 
 		objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight));
 		objectList.add(new Bump(1, 3));
 		objectList.add(new Cat(2, 1));
