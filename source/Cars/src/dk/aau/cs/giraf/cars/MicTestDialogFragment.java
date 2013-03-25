@@ -48,7 +48,7 @@ public class MicTestDialogFragment extends DialogFragment {
 	        		if(testState == TestStates.lowFreqStep) {
 	        			
 	        			text.setText(getString(R.string.mic_test_high));
-	        			img.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
+	        			img.setImageDrawable(getResources().getDrawable(R.drawable.mus));
 	        			
 	        			setLowFreq();
 	        			
