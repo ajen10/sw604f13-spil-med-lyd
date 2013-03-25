@@ -26,7 +26,7 @@ public class GameActivity extends Activity {
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
-		gameThread = new GameThread(objectList, 1, 2);
+		gameThread = new GameThread(objectList);
 		
 		SetObjects();
 		

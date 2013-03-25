@@ -1,10 +1,7 @@
 package dk.aau.cs.giraf.cars;
 
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +13,9 @@ import android.widget.TextView;
 
 public class MicTestDialogFragment extends DialogFragment {
 
-	//private RecorderThread mRecordThread = new RecorderThread();;
-	private double mLowFreq;
-	private double mHighFreq;
+	private RecorderThread mRecordThread = new RecorderThread();;
+	private int mLowFreq;
+	private int mHighFreq;
 	private enum TestStates { lowFreqStep, highFreqStep };
 	private TestStates testState = TestStates.lowFreqStep;
 	
@@ -85,32 +82,32 @@ public class MicTestDialogFragment extends DialogFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		//mRecordThread.start();
+		mRecordThread.start();
 	}
 	
 	public void setLowFreq() {
-		//mLowFreq = mRecordThread.getLowFrequency();
+		mLowFreq = mRecordThread.getLowFrequency();
 	}
 	
 	public void setHighFreq() {
-		//mHighFreq = mRecordThread.getHighFrequency();
+		mHighFreq = mRecordThread.getHighFrequency();
 	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		System.out.println("DESTROYED");
-		//mRecordThread.interrupt();
+		mRecordThread.interrupt();
 	}
 	    
     public interface DialogListener {
-    	void pitchResult(double lowFreq, double highFreq);
+    	void pitchResult(int lowFreq, int highFreq);
     }
     
     public void restartRecordThread() {
-    	//mRecordThread.interrupt;
+    	mRecordThread.interrupt();
     	
-    	//mRecordThread = new RecorderThread();
+    	mRecordThread = new RecorderThread();
     }
 	
 }

@@ -104,13 +104,13 @@ public class RecorderThread extends Thread {
 
 	}//run  
 
-	public double getHighFrequency() {
+	public int getHighFrequency() {
 		
-		return mCurrHighFreq * 0.85;
+		return (int)(mCurrHighFreq * 0.85);
 	}
 	
-	public double getLowFrequency() {
-		return mCurrLowFreq * 1.15;
+	public int getLowFrequency() {
+		return (int)(mCurrLowFreq * 1.15);
 	}
 	
 	

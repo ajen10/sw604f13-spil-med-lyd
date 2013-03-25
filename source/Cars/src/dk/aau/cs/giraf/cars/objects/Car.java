@@ -11,7 +11,6 @@ import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
 	private int mOffset = 0;
-	private int mStep = 3;
 	private final int mViewWidth;
 	private final int mViewHeight;
 	private final int mImgWidth;

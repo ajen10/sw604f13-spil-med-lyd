@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

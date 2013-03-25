@@ -3,8 +3,7 @@ package dk.aau.cs.giraf.cars;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.app.DialogFragment;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import dk.aau.cs.giraf.cars.MicTestDialogFragment.DialogListener;
 import dk.aau.cs.giraf.cars.gamecode.*;
 import dk.aau.cs.giraf.cars.objects.Car;
 
@@ -29,7 +26,7 @@ public class MicInputDialogFragment extends DialogFragment {
 	private static final float GAMEVIEW_HEIGHT = 300.0f;
 
 	
-	public MicInputDialogFragment() {
+	public MicInputDialogFragment(int lowFreq, int highFreq) {
 		
 	}
 	
@@ -83,7 +80,7 @@ public class MicInputDialogFragment extends DialogFragment {
 	        
 			gameObjects.add(mCar);
 	        
-			mGameThread = new GameThread(gameObjects, 1, 2);
+			mGameThread = new GameThread(gameObjects);
 						
 			setObjects();
 			

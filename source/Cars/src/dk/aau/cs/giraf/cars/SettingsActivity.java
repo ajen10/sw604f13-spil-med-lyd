@@ -3,7 +3,6 @@ package dk.aau.cs.giraf.cars;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
 import android.os.Bundle;
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.View;
 import dk.aau.cs.giraf.cars.MicTestDialogFragment.DialogListener;
@@ -45,9 +44,9 @@ public class SettingsActivity extends Activity implements DialogListener {
 
 
 	@Override
-	public void pitchResult(double lowFreq, double highFreq) {
+	public void pitchResult(int lowFreq, int highFreq) {
 		// TODO Auto-generated method stub
-		MicInputDialogFragment micInput = new MicInputDialogFragment();
+		MicInputDialogFragment micInput = new MicInputDialogFragment(lowFreq, highFreq);
 		
 		micInput.show(getFragmentManager(), "micInputDialog");
 		

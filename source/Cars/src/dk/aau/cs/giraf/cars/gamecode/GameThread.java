@@ -10,9 +10,8 @@ public class GameThread extends Thread {
 	final int millisecondsPerTick = 25;
 	List<IWorkable> workableObjects;
 	Boolean running;
-	//private RecorderThread mRecordThread;
 	
-	public GameThread(List<GameObject> gameObjects, int lowFreq, int highFreq) {
+	public GameThread(List<GameObject> gameObjects) {
 		workableObjects = new ArrayList<IWorkable>();
 		
 		for (GameObject object : gameObjects) {
@@ -24,7 +23,6 @@ public class GameThread extends Thread {
 	
 	public void run() {
 		running = true;
-		initializeSound();
 		gameLogic();
 	}
 	public void SetObjects(List<GameObject> gameObjects) {
@@ -37,16 +35,10 @@ public class GameThread extends Thread {
 		}
 	}
 	
-	public void initializeSound() {
-		/*mRecordThread = new RecorderThread();
-		
-		mRecordThread.start();*/
-	}
 	
 	public void gameLogic() {
 		while(running){
 			long currentTime = System.nanoTime();
-			//int freq = mRecordThread.getFrequency();
 			
 			for (IWorkable object : workableObjects) {
 				if(object.collisionDetection()) {
