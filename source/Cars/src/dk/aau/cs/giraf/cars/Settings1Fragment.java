@@ -32,8 +32,9 @@ public class Settings1Fragment extends Fragment {
    }
 	
 	@Override
-	public void onCreate(Bundle savedInstance) {
-		//fillData();
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		fillData();
 
 	}
 		    

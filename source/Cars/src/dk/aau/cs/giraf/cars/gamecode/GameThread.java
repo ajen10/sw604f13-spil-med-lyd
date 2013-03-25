@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.System;
 
+import dk.aau.cs.giraf.cars.sound.RecorderThread;
+
 public class GameThread extends Thread {
 	final int millisecondsPerTick = 25;
 	List<IWorkable> workableObjects;
 	Boolean running;
+	//private RecorderThread mRecordThread;
 	
-	public GameThread(List<GameObject> gameObjects) {
+	public GameThread(List<GameObject> gameObjects, int lowFreq, int highFreq) {
 		workableObjects = new ArrayList<IWorkable>();
 		
 		for (GameObject object : gameObjects) {
@@ -19,17 +22,9 @@ public class GameThread extends Thread {
 		}
 	}
 	
-	public GameThread(GameObject gameObject) {
-		workableObjects = new ArrayList<IWorkable>();
-		
-		if (gameObject instanceof IWorkable) {
-			workableObjects.add((IWorkable) gameObject);
-		}
-		
-	}
-	
 	public void run() {
 		running = true;
+		initializeSound();
 		gameLogic();
 	}
 	public void SetObjects(List<GameObject> gameObjects) {
@@ -42,21 +37,21 @@ public class GameThread extends Thread {
 		}
 	}
 	
-	public void SetObjects(GameObject gameObject) {
-		workableObjects.clear();
+	public void initializeSound() {
+		/*mRecordThread = new RecorderThread();
 		
-			if (gameObject instanceof IWorkable) {
-				workableObjects.add((IWorkable) gameObject);
-		
-		}
+		mRecordThread.start();*/
 	}
 	
 	public void gameLogic() {
 		while(running){
 			long currentTime = System.nanoTime();
+			//int freq = mRecordThread.getFrequency();
 			
 			for (IWorkable object : workableObjects) {
-				object.PerformWork();
+				if(object.collisionDetection()) {
+					object.PerformWork();
+				}
 			}
 		
 			long newTime = System.nanoTime();

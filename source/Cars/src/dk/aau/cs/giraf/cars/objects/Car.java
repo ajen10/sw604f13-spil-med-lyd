@@ -10,7 +10,8 @@ import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
-	private int offset = 0;
+	private int mOffset = 0;
+	private int mStep = 3;
 	private final int mViewWidth;
 	private final int mViewHeight;
 	private final int mImgWidth;
@@ -30,13 +31,25 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		int x = (mViewWidth / 2) - (mImgWidth / 2);
 		int y = (mViewHeight / 2) - (mImgHeight / 2);
 		
-		spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(x, y , x + (mImgWidth * 2) + offset, y + (mImgHeight * 2)));
+		spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(x, y + mOffset , x + (mImgWidth * 2), y + (mImgHeight * 2) + mOffset));
 	}
 
 	@Override
 	public void PerformWork() {
 		// TODO Auto-generated method stub
-		//offset++;
+		
 	}
+	
+	public boolean collisionDetection() {
+		int y = (mViewHeight / 2) + (mImgHeight / 2) + mOffset;
+		if (y > mViewHeight) {
+			return false;
+		} 
+		
+		
+		return true;
+	}
+
+	
 
 }

@@ -22,11 +22,11 @@ public class GameActivity extends Activity {
 		objectList = new ArrayList<GameObject>();
 		objectList.add(new Car());
 		
-		int[] bitmapIds = new int[] {R.drawable.red};
+		int[] bitmapIds = new int[] {R.drawable.ic_launcher};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
-		gameThread = new GameThread(objectList);
+		gameThread = new GameThread(objectList, 1, 2);
 		
 		SetObjects();
 		
