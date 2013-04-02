@@ -4,14 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
-<<<<<<< HEAD
-=======
-
 import dk.aau.cs.giraf.cars.GameActivity;
 import dk.aau.cs.giraf.cars.R;
-import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
-
->>>>>>> JAgamecode
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;

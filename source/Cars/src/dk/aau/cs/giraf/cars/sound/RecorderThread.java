@@ -9,22 +9,16 @@ public class RecorderThread extends Thread {
 	public boolean recording;  //variable to start or stop recording
 	public int frequency; //the public variable that contains the frequency value "heard", it is updated continually while the thread is running.
 	public int highestHumanPitch = 10000; //Determin the highst frequency a human can make to get rid of false data
-<<<<<<< HEAD
 	public int voiceSensetivity = 10000;  //Determin the "volume" that that has to be recorded before the input data is valid
 	private int currentFrequency = -1;
 	private int mCurrHighFreq = 0;
 	private int mCurrLowFreq = 0;
 	
-	public RecorderThread () {
+	public RecorderThread() {
 		
 	}
 	
-=======
-	public int voiceSensetivity = 5000;  //Determin the "volume" that that has to be recorded before the input data is valid
-	int currentFrequency = -1;
-	public RecorderThread () {
-	}
->>>>>>> JAgamecode
+
 	@Override
 	public void run() {
 		System.out.println("recorderThread started");
@@ -89,8 +83,7 @@ public class RecorderThread extends Thread {
 				double averageFreq = total/magnitudeTotal;
 				if (averageFreq<highestHumanPitch && magnitudeTotal>voiceSensetivity) {
 					currentFrequency = (int) averageFreq;
-<<<<<<< HEAD
-					System.out.println("average frequency = " + (int)averageFreq + " magnitude total = " + (int)magnitudeTotal);
+					//System.out.println("average frequency = " + (int)averageFreq + " magnitude total = " + (int)magnitudeTotal);
 				}
 				
 				if (mCurrHighFreq < currentFrequency) {
@@ -102,11 +95,6 @@ public class RecorderThread extends Thread {
 				}
 				
 				
-=======
-					//  System.out.println("average frequency = " + (int)averageFreq + " magnitude total = " + (int)magnitudeTotal);
-				}
-				
->>>>>>> JAgamecode
 			}//else recorder started 
 
 		} //while recording 
@@ -117,7 +105,6 @@ public class RecorderThread extends Thread {
 
 	}//run  
 
-<<<<<<< HEAD
 	public int getHighFrequency() {
 		
 		return (int)(mCurrHighFreq * 0.85);
@@ -132,12 +119,5 @@ public class RecorderThread extends Thread {
 		
 		return currentFrequency;
 	}
-	
-=======
-	public int getFrequency(){
-
-		return currentFrequency;
-	}
->>>>>>> JAgamecode
 
 }//recorderThread

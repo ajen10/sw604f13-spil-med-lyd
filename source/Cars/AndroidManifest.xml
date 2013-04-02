@@ -2,13 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dk.aau.cs.giraf.cars"
     android:versionCode="1"
-<<<<<<< HEAD
     android:versionName="1.0" 
     android:theme="@android:style/Theme.NoTitleBar" >            
- 
-=======
-    android:versionName="1.0" >
->>>>>>> JAgamecode
+
  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-sdk
         android:minSdkVersion="13"

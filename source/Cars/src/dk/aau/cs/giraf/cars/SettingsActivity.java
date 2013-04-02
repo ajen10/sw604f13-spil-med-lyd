@@ -7,16 +7,10 @@ import android.view.Menu;
 import android.view.View;
 import dk.aau.cs.giraf.cars.MicTestDialogFragment.DialogListener;
 
-<<<<<<< HEAD
 
 public class SettingsActivity extends Activity implements DialogListener {
-
 	RecorderThread recorderThread = new RecorderThread();
 
-=======
-public class SettingsActivity extends Activity {
-	RecorderThread recorderThread = new RecorderThread();
->>>>>>> JAgamecode
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,8 +30,6 @@ public class SettingsActivity extends Activity {
 		super.onStop();
 	//	recorderThread.recording = false;
 	}  
-
-<<<<<<< HEAD
 	
     public void showMicTestDialog(View v) {
     	MicTestDialogFragment micTest = new MicTestDialogFragment();
@@ -48,13 +40,6 @@ public class SettingsActivity extends Activity {
     }
 
 	@Override
-	public void onStop(){
-		super.onStop();
-	//	recorderThread.recording = false;
-	}  
-
-
-	@Override
 	public void pitchResult(int lowFreq, int highFreq) {
 		// TODO Auto-generated method stub
 		MicInputDialogFragment micInput = new MicInputDialogFragment(lowFreq, highFreq);
@@ -63,6 +48,3 @@ public class SettingsActivity extends Activity {
 		
 	}
 }
-=======
-}
->>>>>>> JAgamecode
