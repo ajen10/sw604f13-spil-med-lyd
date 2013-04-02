@@ -49,7 +49,10 @@ public class GameThread extends Thread {
 			long newTime = System.nanoTime();
 			long difference = newTime - currentTime;
 			int sleepFor = (int) ((millisecondsPerTick * 1000000 - difference) / 1000000);
+<<<<<<< HEAD
 
+=======
+>>>>>>> JAgamecode
 			try {
 				if (sleepFor > 0)
 				Thread.sleep(sleepFor);

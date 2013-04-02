@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import dk.aau.cs.giraf.cars.gamecode.*;
-import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
+import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
 
 public class GameActivity extends Activity {
 	GameView view;
@@ -16,13 +16,13 @@ public class GameActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game);
 		
-		objectList = new ArrayList<GameObject>();
-		objectList.add(new Car());
+		objectList = new ArrayList<GameObject>(); 
 		
-		int[] bitmapIds = new int[] {R.drawable.ic_launcher};
+		int[] bitmapIds = new int[] { R.drawable.map, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
@@ -40,6 +40,13 @@ public class GameActivity extends Activity {
 		gameThread.stopRunning();
 	}
 	
+	public void AddObjects() { 
+		objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight));
+		objectList.add(new Bump(1, 3));
+		objectList.add(new Cat(2, 1));
+		objectList.add(new Barricade(3, 5));
+		SetObjects();
+	}
 	public void SetObjects() {
 		gameThread.SetObjects(objectList);
 		view.SetObjects(objectList);
