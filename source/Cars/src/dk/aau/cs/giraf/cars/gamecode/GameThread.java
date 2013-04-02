@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.System;
 
+import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
+
 
 public class GameThread extends Thread {
 	final int millisecondsPerTick = 25;
 	List<IWorkable> workableObjects;
+	List<ICollidable> collidableObjects;
+	Car car;
 	Boolean running;
 	
 	public GameThread(List<GameObject> gameObjects) {
 		workableObjects = new ArrayList<IWorkable>();
+		collidableObjects = new ArrayList<ICollidable>();
 		
 		for (GameObject object : gameObjects) {
 			if (object instanceof IWorkable) {
 				workableObjects.add((IWorkable) object);
+			}
+			else if (object instanceof ICollidable) {
+				collidableObjects.add((ICollidable) object);
+			}
+			else if (object instanceof Car) {
+				car = (Car) object;
 			}
 		}
 	}
@@ -31,6 +42,12 @@ public class GameThread extends Thread {
 			if (object instanceof IWorkable) {
 				workableObjects.add((IWorkable) object);
 			}
+			else if (object instanceof ICollidable) {
+				collidableObjects.add((ICollidable) object);
+			}
+			else if (object instanceof Car) {
+				car = (Car) object;
+			}
 		}
 	}
 	
@@ -40,9 +57,10 @@ public class GameThread extends Thread {
 			long currentTime = System.nanoTime();
 			
 			for (IWorkable object : workableObjects) {
-				if(object.collisionDetection()) {
-					object.PerformWork();
-				}
+				object.PerformWork();
+			}
+			for (ICollidable object : collidableObjects) {
+				car.CalculateCollisions(object.calculateCollisionBox()); //ÆNDRE TIL PASSENDE FORM
 			}
 		
 			long newTime = System.nanoTime();

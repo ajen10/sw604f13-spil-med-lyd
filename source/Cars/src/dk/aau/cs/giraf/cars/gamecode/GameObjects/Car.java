@@ -32,11 +32,9 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		// TODO Auto-generated method stub
 		offset++;
 	}
-
-	@Override
-	public boolean collisionDetection() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	//ÆNDRE TIL PASSENDE FORM
+	public void CalculateCollisions(int form) {
+		
 	}
-
 }
