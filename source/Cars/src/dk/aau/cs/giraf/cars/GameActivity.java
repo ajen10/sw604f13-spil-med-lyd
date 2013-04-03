@@ -2,6 +2,7 @@ package dk.aau.cs.giraf.cars;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.lang.System;
 import android.os.Bundle;
 import android.app.Activity;
@@ -41,10 +42,30 @@ public class GameActivity extends Activity {
 	}
 	
 	public void AddObjects() { 
+		Random rand = new Random();
+		int i;
+		int numberOfObjects = 4;    //Indsæt nummer for objekter
+		int[][] roadObstacles;
+		roadObstacles = ObjectPlacement.objectPlacement(numberOfObjects);
+		for(i=0;i<numberOfObjects;i++){
+			int obstaclesNumber = rand.nextInt()%4;
+			if (obstaclesNumber==0){
+				objectList.add(new Bump(roadObstacles[i][0], roadObstacles[i][1]));
+			}
+			if (obstaclesNumber==1){
+				objectList.add(new Cat(roadObstacles[i][0], roadObstacles[i][1]));
+			}
+			if (obstaclesNumber==2){
+				objectList.add(new Barricade(roadObstacles[i][0], roadObstacles[i][1]));
+			}
+			if (obstaclesNumber==3){
+				objectList.add(new Rock(roadObstacles[i][0], roadObstacles[i][1]));
+			}
+		}
 		objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight));
-		objectList.add(new Bump(1, 3));
-		objectList.add(new Cat(2, 1));
-		objectList.add(new Barricade(3, 5));
+		//objectList.add(new Bump(1, 3));
+		//objectList.add(new Cat(2, 1));
+		//objectList.add(new Barricade(3, 5));
 		SetObjects();
 	}
 	public void SetObjects() {
