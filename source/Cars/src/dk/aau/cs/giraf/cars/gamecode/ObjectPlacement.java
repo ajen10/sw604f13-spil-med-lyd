@@ -15,76 +15,88 @@ public class ObjectPlacement {
 		int[][] ObstacleArray;
 		ObstacleArray = new int [numberOfObjects][2];
 
-		for (i=0;i<5;i++){
-			for (j=0;j<6;j++){
-				roadObstacles[i][j] = 0;
-			}
-		}
+
 		while (availablePathToEnd==false){
 			Random rand = new Random();
+			int randomRow = 0;
+			int randomColoum= 0;
+			for (i=0;i<5;i++){
+				for (j=0;j<6;j++){
+					roadObstacles[i][j] = 0;
+				}
+			}
+
+
 			for (i=0;i<numberOfObjects;i++){
-				int randomRow = Math.abs((rand.nextInt()%3)) + 1;
-				int randomColoum = Math.abs((rand.nextInt()%4)) + 1;
+
+				boolean collision = true;
+
+				while(collision == true){
+					collision = false;
+					randomRow = Math.abs((rand.nextInt()%3)) + 1;
+					randomColoum = Math.abs((rand.nextInt()%4)) + 1;
+					for (j=0;j<i;j++)
+						if (ObstacleArray[j][0] == randomRow && ObstacleArray[j][1] == randomColoum ){
+							collision = true;
+						}
+				}
+
 				ObstacleArray[i][0] = randomRow;
 				ObstacleArray[i][1] = randomColoum;
-
 				roadObstacles[randomRow][randomColoum] = 2;
 			}
 
 
 			//find dead ends
-			int k;
-			for (k=0;k<4;k++){  //Find flere dead ends
-				for (i=1;i<4;i++){
-					for (j=1;j<5;j++){
-						if (roadObstacles[i][j] != 0 && roadObstacles[i-1][j-1]!=0){
-							if (roadObstacles[i-1][j] == 0){
-								roadObstacles[i-1][j] = 1;
-							}
-						}
-						if (roadObstacles[i][j] != 0 && roadObstacles[i-1][j+1]!=0){
-							if (roadObstacles[i-1][j] == 0){
-								roadObstacles[i-1][j] = 1;
-							}
-						}
+			int numberOfGarage= 3;
+			numberOfGarage= numberOfGarage+1;
+			int[] garageBool = new int [numberOfGarage];
+			path(2, 0, 0, roadObstacles, garageBool);
 
-						if (roadObstacles[i][j] != 0 && roadObstacles[i+1][j-1]!=0){
-							if (roadObstacles[i+1][j] == 0){
-								roadObstacles[i+1][j] = 1;
-							}
-						}
-						if (roadObstacles[i][j] != 0 && roadObstacles[i+1][j+1]!=0){
-							if (roadObstacles[i+1][j] == 0){
-								roadObstacles[i+1][j] = 1;
-							}
-						}
+			int GarageGoal = 0;
 
-					} //end for loop
-				} //end for loop
-			} //end for loop
+			for (i=1;i<numberOfGarage;i++){
+				if(garageBool[i] == 1){
+					GarageGoal = GarageGoal + garageBool[i];
+				}
+			}
 
-			//Test om der er en route
-			int[] availablePath;
-			availablePath = new int [4];
-			availablePath[0]=0;
-			availablePath[1]=0;
-			availablePath[2]=0;
-			availablePath[3]=0;
-			for (i=1;i<4;i++){
-				for (j=1;j<4;j++){
-					if (roadObstacles[i][j] == 0){
-						availablePath[j-1]=1;
-					}
-
-				}//end for loop
-			}//end for loop
-			//Test om der er en samlet route
-
-			if (availablePath[0] <= 1 && availablePath[1] <= 1 && availablePath[2] <= 1 && availablePath[3] <= 1){
+			if(GarageGoal >= (numberOfGarage-1)){
 				availablePathToEnd = true;
 			}
 		}
 
 		return ObstacleArray;
+	}
+	public static void path(int row, int column, int depth , int[][] roadObstacles, int[] garagesReached){
+		//	System.out.println("Column = " + column);
+		if (column == 0 && depth <14) {
+			recursivePath(row, column, depth, roadObstacles, garagesReached);
+		} else if (column >= 6) {
+			garagesReached[row] = 1;
+		} else if(roadObstacles[row][column] == 2 || depth == 14) {
+		} else {
+
+			recursivePath(row, column, depth, roadObstacles, garagesReached);
+		}
+	}
+	private static void recursivePath(int row, int column, int depth, int[][] roadObstacles, int[] garagesReached) {
+		//	System.out.println("recursivePath");
+		depth++;
+		switch(row) {
+		case 1:
+			path(1, column + 1, depth, roadObstacles, garagesReached);
+			path(2, column, depth, roadObstacles, garagesReached);
+			break;
+		case 2:
+			path(1, column, depth, roadObstacles, garagesReached);
+			path(2, column + 1, depth, roadObstacles, garagesReached);
+			path(3, column, depth, roadObstacles, garagesReached);
+			break;
+		case 3:
+			path(2, column, depth, roadObstacles, garagesReached);
+			path(3, column + 1, depth, roadObstacles, garagesReached);
+			break;
+		}
 	}
 }
