@@ -1,8 +1,5 @@
 package dk.aau.cs.giraf.cars;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 import android.app.DialogFragment;
 import android.graphics.drawable.Drawable;
@@ -15,12 +12,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import dk.aau.cs.giraf.cars.gamecode.*;
-import dk.aau.cs.giraf.cars.objects.Car;
+import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
+import dk.aau.cs.giraf.cars.objects.MicCar;
 
 public class MicInputDialogFragment extends DialogFragment {
 	private GameView mGameView;
 	private GameObject mCar;
-	private List<GameObject> gameObjects = new ArrayList<GameObject>();
 	private GameThread mGameThread;
 	private static final float GAMEVIEW_WIDTH = 50.0f;
 	private static final float GAMEVIEW_HEIGHT = 300.0f;
@@ -38,7 +35,7 @@ public class MicInputDialogFragment extends DialogFragment {
 			
 			int[] bitmapIds = new int[] {R.drawable.ic_launcher};
 			
-			mGameView = new GameView(getActivity(), getResources(), bitmapIds);
+			mGameView = new GameView(getActivity(), getResources(), bitmapIds, true);
 			mGameView.setZOrderOnTop(true);
 			final float scale = getResources().getDisplayMetrics().density;
 
@@ -76,35 +73,23 @@ public class MicInputDialogFragment extends DialogFragment {
 			int carWidth = (int)(car.getIntrinsicWidth() * scale + 0.5f);
 			int carHeight = (int)(car.getIntrinsicHeight() * scale + 0.5f);
 	        
-	        mCar = new Car(gameViewWidth, gameViewHeight, carWidth, carHeight);
+	        mCar = new MicCar(gameViewWidth, gameViewHeight, carWidth, carHeight);
 	        
-			gameObjects.add(mCar);
-	        
-			mGameThread = new GameThread(gameObjects);
+			mGameThread = new GameThread((Car)mCar);
 						
-			setObjects();
+			mGameView.SetObjects(mCar);
 			
 			mGameThread.start();
-	        
-			
+	      
 			return micInputView; 
 	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		System.out.println("DESTROYED");
-		mGameThread.stopRunning();
-		mGameThread.interrupt();
-		
+		mGameThread.stopRunning();		
 	}
 	
-
-
-	public void setObjects() {
-		mGameThread.SetObjects(gameObjects);
-		mGameView.SetObjects(gameObjects);
-	}
 	
 
 }

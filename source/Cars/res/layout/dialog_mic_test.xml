@@ -14,8 +14,8 @@
     
     <ImageView 
         android:id="@+id/dialog_drawable_to_mimic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/none"/>
         

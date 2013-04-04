@@ -15,6 +15,7 @@ import android.opengl.GLSurfaceView;
 public class GameView extends GLSurfaceView implements Drawer {
 	List<IDrawable> drawableObjects;
 	GameActivity parent;
+	private boolean mSettingsView = false;
 	
 	public GameView(Context context, Resources resources, int[] bitmapIds) {
 		super(context);
@@ -23,6 +24,15 @@ public class GameView extends GLSurfaceView implements Drawer {
 		drawableObjects = new ArrayList<IDrawable>();
 		setRenderer(new GameRenderer(resources, bitmapIds, this));
 	}
+	
+	public GameView(Context context, Resources resources, int[] bitmapIds, boolean settingsView) {
+		super(context);
+		mSettingsView = settingsView;
+		
+		drawableObjects = new ArrayList<IDrawable>();
+		setRenderer(new GameRenderer(resources, bitmapIds, this));
+	}
+
 	
 	
 	public void SetObjects(List<GameObject> gameObjects) {
@@ -47,9 +57,11 @@ public class GameView extends GLSurfaceView implements Drawer {
 	@Override
 	public void onDrawFrame(GL10 gl, GameRenderer spriteBatcher) {
 		//spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(150, 150, 250, 250));
-		spriteBatcher.draw(gl, R.drawable.map, new Rect(0, 0, 2010, 1172), new Rect(0, MapDivider.mapYStart, spriteBatcher.getViewWidth(), MapDivider.mapYEnd));
-		
-		
+		if (!mSettingsView) {
+			spriteBatcher.draw(gl, R.drawable.map, new Rect(0, 0, 2010, 1172), new Rect(0, MapDivider.mapYStart, spriteBatcher.getViewWidth(), MapDivider.mapYEnd));
+		} else {
+			gl.glClearColor(255, 255, 255, 0);
+		}
 		
 		for (IDrawable object : drawableObjects) {
 			object.Draw(gl, spriteBatcher);
@@ -60,8 +72,11 @@ public class GameView extends GLSurfaceView implements Drawer {
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh){
 		super.onSizeChanged(w, h, oldw, oldh);
-		
-		MapDivider.CalculateConstants(this);
-		parent.AddObjects();
+		if(!mSettingsView) {
+			MapDivider.CalculateConstants(this);
+			parent.AddObjects();
+		}
 	}
+	
+
 }

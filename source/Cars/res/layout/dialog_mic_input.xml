@@ -10,9 +10,9 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:clickable="true"
-        android:text="@string/retry" 
-        android:layout_weight="1"
-        android:background="#FF0000FF"/>  
+        android:text="@string/retry"
+        android:background="#FF0000FF"
+        android:layout_weight="1"/>  
 
         <!-- <ImageView
         android:id="@+id/rectangle"
