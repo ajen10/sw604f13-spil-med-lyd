@@ -23,8 +23,7 @@ public class MicInputDialogFragment extends DialogFragment {
 	private static final float GAMEVIEW_HEIGHT = 300.0f;
 
 	
-	public MicInputDialogFragment(int lowFreq, int highFreq) {
-		
+	public MicInputDialogFragment() {
 	}
 	
 	@Override
@@ -41,14 +40,15 @@ public class MicInputDialogFragment extends DialogFragment {
 
 			
 			int gameViewWidth = (int)(GAMEVIEW_WIDTH * scale + 0.5f);
-			int gameViewHeight = (int)(GAMEVIEW_HEIGHT * scale + 0.5f);
+			//int gameViewHeight = (int)(GAMEVIEW_HEIGHT * scale + 0.5f);
 					
-			LinearLayout.LayoutParams gameViewParams = new LinearLayout.LayoutParams(gameViewWidth, gameViewHeight);
+			LinearLayout.LayoutParams gameViewParams = new LinearLayout.LayoutParams(gameViewWidth, 0);
 			
 	        MicInputView micInputView = new MicInputView(this.getActivity());
 	        
-	        gameViewParams.bottomMargin = (int) (10.0f * scale + 0.5f);
+	        //gameViewParams.bottomMargin = (int) (10.0f * scale + 0.5f);
 	        gameViewParams.gravity = Gravity.CENTER_HORIZONTAL;
+	        gameViewParams.weight = 1;
 	                
 	        micInputView.addView(mGameView, gameViewParams);
 	        micInputView.addView(buttonView);

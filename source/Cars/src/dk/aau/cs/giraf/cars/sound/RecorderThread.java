@@ -1,5 +1,6 @@
 package dk.aau.cs.giraf.cars.sound;
 
+import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import android.media.AudioRecord;
 import android.media.MediaRecorder.AudioSource;
 import android.media.AudioFormat;
@@ -11,9 +12,7 @@ public class RecorderThread extends Thread {
 	public int highestHumanPitch = 10000; //Determin the highst frequency a human can make to get rid of false data
 	public int voiceSensetivity = 10000;  //Determin the "volume" that that has to be recorded before the input data is valid
 	private int currentFrequency = -1;
-	private int mCurrHighFreq = 0;
-	private int mCurrLowFreq = 0;
-	
+	int count = 0;
 	public RecorderThread() {
 		
 	}
@@ -84,16 +83,13 @@ public class RecorderThread extends Thread {
 				if (averageFreq<highestHumanPitch && magnitudeTotal>voiceSensetivity) {
 					currentFrequency = (int) averageFreq;
 					//System.out.println("average frequency = " + (int)averageFreq + " magnitude total = " + (int)magnitudeTotal);
+				} else {
+					currentFrequency = 0;
 				}
 				
-				if (mCurrHighFreq < currentFrequency) {
-					mCurrHighFreq = currentFrequency;
-				}
+				System.out.println(count++);
 				
-				if(mCurrLowFreq > currentFrequency) {
-					mCurrLowFreq = currentFrequency;
-				}
-				
+				GameInfo.setCurrFreq(currentFrequency);
 				
 			}//else recorder started 
 
@@ -103,21 +99,6 @@ public class RecorderThread extends Thread {
 		recorder.release(); //release the recorders resources
 		recorder=null; //set the recorder to be garbage collected.    
 
-	}//run  
-
-	public int getHighFrequency() {
-		
-		return (int)(mCurrHighFreq * 0.85);
-	}
-	
-	public int getLowFrequency() {
-		return (int)(mCurrLowFreq * 1.15);
-	}
-	
-	
-	public int getFrequency(){
-		
-		return currentFrequency;
-	}
+	}//run 
 
 }//recorderThread

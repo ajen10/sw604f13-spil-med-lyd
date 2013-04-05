@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="?android:attr/buttonBarStyle"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingTop="50dp">
     <Button
         style="?android:attr/buttonBarButtonStyle"
         android:id="@+id/retry_button"

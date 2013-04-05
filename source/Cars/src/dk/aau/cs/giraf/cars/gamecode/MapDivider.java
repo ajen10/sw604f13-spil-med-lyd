@@ -16,6 +16,8 @@ public final class MapDivider {
 	public static int mapYStart;
 	public static int mapYEnd;
 	
+	private MapDivider() {}
+	
 	public static void CalculateConstants(GameView gameView) {
 		width = gameView.getWidth();
 		height = gameView.getHeight();

@@ -40,9 +40,9 @@ public class SettingsActivity extends Activity implements DialogListener {
     }
 
 	@Override
-	public void pitchResult(int lowFreq, int highFreq) {
+	public void pitchResult() {
 		// TODO Auto-generated method stub
-		MicInputDialogFragment micInput = new MicInputDialogFragment(lowFreq, highFreq);
+		MicInputDialogFragment micInput = new MicInputDialogFragment();
 		
 		micInput.show(getFragmentManager(), "micInputDialog");
 		
