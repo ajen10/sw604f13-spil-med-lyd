@@ -12,7 +12,7 @@ public class MicInputView extends LinearLayout {
 		int topPadding = (int) (10.0f * scale + 0.5f);
 	
 		this.setOrientation(LinearLayout.VERTICAL);
-		this.setPadding(0, topPadding, 0, 0);
+		//this.setPadding(0, topPadding, 0, 0);
 		
         //View.inflate(context, R.layout.dialog_mic_input, this);
 	}
@@ -28,7 +28,7 @@ public class MicInputView extends LinearLayout {
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		final float scale = getResources().getDisplayMetrics().density;
-		int height = (int) (500f * scale + 0.5f);
+		int height = (int) (350f * scale + 0.5f);
 		int width = (int) (500f * scale + 0.5f);
 
 	    setMeasuredDimension(width, height);

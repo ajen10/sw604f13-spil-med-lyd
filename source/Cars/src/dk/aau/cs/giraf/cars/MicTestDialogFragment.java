@@ -77,10 +77,10 @@ public class MicTestDialogFragment extends DialogFragment {
 	        	public void onClick(View v) {
 	        		switch(testState) {
 	        		case lowFreqStep:
-	        			MicThread.restartLowFreq();
+	        			mMicThread.restartLowFreq();
 	        			break;
 	        		case highFreqStep:
-	        			MicThread.restartHighFreq();
+	        			mMicThread.restartHighFreq();
 	        			break;
 	        		}
 	        	}
