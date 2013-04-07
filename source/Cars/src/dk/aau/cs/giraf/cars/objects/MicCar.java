@@ -55,9 +55,9 @@ public class MicCar extends Car {
 		System.out.println(currFreq + " ---- " + mHighFreq + " ------ " + mLowFreq);
 		
 		if (currFreq > 0) {
-			if (currFreq > mHighFreq) {
+			if (currFreq > mHighFreq && mStartY > 0) {
 				mOffset--;
-			} else if (currFreq < mLowFreq) {
+			} else if (currFreq < mLowFreq && (mStartY < (mViewHeight - mImgHeight))) {
 				mOffset++;
 			}
  		}
