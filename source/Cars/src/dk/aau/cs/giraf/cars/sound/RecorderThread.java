@@ -9,7 +9,7 @@ import android.media.AudioFormat;
 public class RecorderThread extends Thread {
 	public boolean recording;  //variable to start or stop recording
 	public int frequency; //the public variable that contains the frequency value "heard", it is updated continually while the thread is running.
-	public int highestHumanPitch = 10000; //Determin the highst frequency a human can make to get rid of false data
+	public int highestHumanPitch = 3400; //Determin the highst frequency a human can make to get rid of false data
 	public int voiceSensetivity = 10000;  //Determin the "volume" that that has to be recorded before the input data is valid
 	private int currentFrequency = -1;
 	int count = 0;
@@ -36,7 +36,6 @@ public class RecorderThread extends Thread {
 
 		recording=true; //variable to use start or stop recording
 		audioData = new short [bufferSize]; //short array that pcm data is put into.
-
 
 		while (recording) {  //loop while recording is needed
 
@@ -77,15 +76,15 @@ public class RecorderThread extends Thread {
 				
 				int start;
 				if (highestMagnitude > 2) {
-					start = highestMagnitude - 2;
+					start = -2;
 				} else {
 					start = 0;
 				}
 				int end;
 				if (highestMagnitude + 2 < frequency.length) {
-					end = highestMagnitude + 2;
+					end = 2;
 				} else {
-					end = frequency.length;
+					end = 0;
 				}
 				for (i=start ; i<end ; i++){
 					total += frequency[highestMagnitude+i]*magnitude[highestMagnitude+i];
@@ -93,7 +92,7 @@ public class RecorderThread extends Thread {
 				}
 
 				double averageFreq = total/magnitudeTotal;
-				if (averageFreq<highestHumanPitch && magnitudeTotal>voiceSensetivity) {
+				if (averageFreq<=highestHumanPitch && magnitudeTotal>voiceSensetivity) {
 					currentFrequency = (int) averageFreq;
 					//System.out.println("average frequency = " + (int)averageFreq + " magnitude total = " + (int)magnitudeTotal);
 				} else {

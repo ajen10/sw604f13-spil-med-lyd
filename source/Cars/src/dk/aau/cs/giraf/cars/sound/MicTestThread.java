@@ -8,6 +8,7 @@ public class MicTestThread extends Thread {
 	private int mTmpLowFreq = 0;
 	private int mTmpHighFreq = 0;
 	private TestTypes mTestType = TestTypes.Low;
+	private int arrayIntervals = 50;
 	
 	public MicTestThread() {
 		// TODO Auto-generated constructor stub
@@ -35,32 +36,78 @@ public class MicTestThread extends Thread {
 	}
 	
 	private void collectHighFreq() {
-		int tmpCurrFreq = (int) (GameInfo.getCurrFreq() * 0.75);
+		int firstDimension = (3400-50) / arrayIntervals + 1;
+		int secondDimension = 2;
+		int[][] soundArray = new int[firstDimension][secondDimension];
+		int tmpCurrFreq;
+		int frequencyRange;
 		
-		if(mTmpHighFreq <= 0) {
-			mTmpHighFreq = (int) (GameInfo.getCurrFreq() * 0.75);
+		while(mTestType == TestTypes.High) {
+			tmpCurrFreq = GameInfo.getCurrFreq();
+			
+			frequencyRange = tmpCurrFreq / 50;
+			
+			if (frequencyRange != 0) {
+				soundArray[frequencyRange][0]++;
+				soundArray[frequencyRange][1] += tmpCurrFreq;
+			}
+			
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+			}
 		}
-		if (tmpCurrFreq > mTmpHighFreq) {
-			mTmpHighFreq = tmpCurrFreq;
+		
+		int highestValue = 1;
+		for (int i = 2; i < firstDimension; i++) {
+			if (soundArray[i][0] > soundArray[highestValue][0]) {
+				highestValue = i;
+			}
 		}
+		mTmpHighFreq = (highestValue + 1) * 50 - 100;
+		
+		System.out.println(mTmpHighFreq);
+		
+		GameInfo.setHighFreq(mTmpHighFreq);
+		GameInfo.setLowFreq(mTmpLowFreq);
 	}
 
 	private void collectLowFreq() {
-		int tmpCurrFreq = (int) (GameInfo.getCurrFreq() * 1.25);
+		int firstDimension = (3400-50) / arrayIntervals + 1;
+		int secondDimension = 2;
+		int[][] soundArray = new int[firstDimension][secondDimension];
+		int tmpCurrFreq;
+		int frequencyRange;
 		
-		if (mTmpLowFreq <= 0) {
-			mTmpLowFreq = (int) (GameInfo.getCurrFreq() * 1.25);
+		while(mTestType == TestTypes.Low) {
+			tmpCurrFreq = GameInfo.getCurrFreq();
+			
+			frequencyRange = tmpCurrFreq / 50;
+			
+			if (frequencyRange != 0) {
+				soundArray[frequencyRange][0]++;
+				soundArray[frequencyRange][1] += tmpCurrFreq;
+			}
+			
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+			}
 		}
 		
-		if (tmpCurrFreq < mTmpLowFreq && tmpCurrFreq > 10) {
-			mTmpLowFreq = tmpCurrFreq;
+		int highestValue = 1;
+		for (int i = 2; i < firstDimension; i++) {
+			if (soundArray[i][0] > soundArray[highestValue][0]) {
+				highestValue = i;
+			}
 		}
+		mTmpLowFreq = (highestValue + 1) * 50 + 100;
 		
+		System.out.println(mTmpLowFreq);
 	}
 	
 	public void saveFrequencies() {
-		GameInfo.setHighFreq(mTmpHighFreq);
-		GameInfo.setLowFreq(mTmpLowFreq);
+		mTestType = TestTypes.Low;
 	}
 
 	public void stopThread() {

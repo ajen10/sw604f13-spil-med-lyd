@@ -15,7 +15,6 @@ import dk.aau.cs.giraf.cars.gamecode.*;
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
 import dk.aau.cs.giraf.cars.objects.MicCar;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
-import dk.aau.cs.giraf.cars.sound.TestTypes;
 
 public class MicInputDialogFragment extends DialogFragment {
 	private GameView mGameView;

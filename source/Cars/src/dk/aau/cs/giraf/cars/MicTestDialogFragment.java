@@ -18,8 +18,7 @@ public class MicTestDialogFragment extends DialogFragment {
 	private RecorderThread mRecordThread = new RecorderThread();
 	private MicTestThread mMicThread = new MicTestThread();
 
-	private enum TestStates { lowFreqStep, highFreqStep };
-	private TestStates testState = TestStates.lowFreqStep;
+	private TestTypes testState = TestTypes.Low;
 	
 	public MicTestDialogFragment() { 
 		
@@ -48,15 +47,14 @@ public class MicTestDialogFragment extends DialogFragment {
 	        		DialogListener activity = (DialogListener) getActivity();
 	        			        		
 	        		switch(testState) {
-	        		case lowFreqStep:
+	        		case Low:
 	        			text.setText(getString(R.string.mic_test_high));
 	        			img.setImageDrawable(getResources().getDrawable(R.drawable.mus));
 	        				        			
-	        			testState = TestStates.highFreqStep;
-	        			
-	        			mMicThread.setType(TestTypes.High);
+	        			testState = TestTypes.High;
+	        			mMicThread.setType(testState);
 	        			break;
-	        		case highFreqStep:
+	        		case High:
 	        			dismiss();
 	        			mMicThread.saveFrequencies();
 	        			mMicThread.stopThread();
@@ -76,10 +74,10 @@ public class MicTestDialogFragment extends DialogFragment {
 	        retryButton.setOnClickListener(new OnClickListener() {
 	        	public void onClick(View v) {
 	        		switch(testState) {
-	        		case lowFreqStep:
+	        		case Low:
 	        			mMicThread.restartLowFreq();
 	        			break;
-	        		case highFreqStep:
+	        		case High:
 	        			mMicThread.restartHighFreq();
 	        			break;
 	        		}
