@@ -37,8 +37,7 @@ public class MicTestThread extends Thread {
 	
 	private void collectHighFreq() {
 		int firstDimension = (3400-50) / arrayIntervals + 1;
-		int secondDimension = 2;
-		int[][] soundArray = new int[firstDimension][secondDimension];
+		int[] soundArray = new int[firstDimension];
 		int tmpCurrFreq;
 		int frequencyRange;
 		
@@ -48,8 +47,7 @@ public class MicTestThread extends Thread {
 			frequencyRange = tmpCurrFreq / 50;
 			
 			if (frequencyRange != 0) {
-				soundArray[frequencyRange][0]++;
-				soundArray[frequencyRange][1] += tmpCurrFreq;
+				soundArray[frequencyRange]++;
 			}
 			
 			try {
@@ -60,7 +58,7 @@ public class MicTestThread extends Thread {
 		
 		int highestValue = 1;
 		for (int i = 2; i < firstDimension; i++) {
-			if (soundArray[i][0] > soundArray[highestValue][0]) {
+			if (soundArray[i] > soundArray[highestValue]) {
 				highestValue = i;
 			}
 		}
@@ -75,7 +73,7 @@ public class MicTestThread extends Thread {
 	private void collectLowFreq() {
 		int firstDimension = (3400-50) / arrayIntervals + 1;
 		int secondDimension = 2;
-		int[][] soundArray = new int[firstDimension][secondDimension];
+		int[] soundArray = new int[firstDimension];
 		int tmpCurrFreq;
 		int frequencyRange;
 		
@@ -85,8 +83,7 @@ public class MicTestThread extends Thread {
 			frequencyRange = tmpCurrFreq / 50;
 			
 			if (frequencyRange != 0) {
-				soundArray[frequencyRange][0]++;
-				soundArray[frequencyRange][1] += tmpCurrFreq;
+				soundArray[frequencyRange]++;
 			}
 			
 			try {
@@ -97,7 +94,7 @@ public class MicTestThread extends Thread {
 		
 		int highestValue = 1;
 		for (int i = 2; i < firstDimension; i++) {
-			if (soundArray[i][0] > soundArray[highestValue][0]) {
+			if (soundArray[i] > soundArray[highestValue]) {
 				highestValue = i;
 			}
 		}
