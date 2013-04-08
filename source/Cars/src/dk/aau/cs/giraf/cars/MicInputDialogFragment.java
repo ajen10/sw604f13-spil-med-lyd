@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import dk.aau.cs.giraf.cars.gamecode.*;
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
 import dk.aau.cs.giraf.cars.objects.MicCar;
+import dk.aau.cs.giraf.cars.sound.RecorderThread;
+import dk.aau.cs.giraf.cars.sound.TestTypes;
 
 public class MicInputDialogFragment extends DialogFragment {
 	private GameView mGameView;
@@ -21,6 +23,7 @@ public class MicInputDialogFragment extends DialogFragment {
 	private GameThread mGameThread;
 	private static final float GAMEVIEW_WIDTH = 50.0f;
 	private static final float GAMEVIEW_HEIGHT = 300.0f;
+	private RecorderThread mRecordThread = new RecorderThread();
 
 	
 	public MicInputDialogFragment() {
@@ -86,7 +89,15 @@ public class MicInputDialogFragment extends DialogFragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		mGameThread.stopRunning();		
+		mGameThread.stopRunning();	
+		mRecordThread.recording = false;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		mRecordThread.start();
 	}
 	
 	

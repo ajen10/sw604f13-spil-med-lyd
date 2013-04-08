@@ -74,7 +74,20 @@ public class RecorderThread extends Thread {
 
 				double total = 0;
 				double magnitudeTotal = 0;
-				for (i=-2 ; i<2 ; i++){
+				
+				int start;
+				if (highestMagnitude > 2) {
+					start = highestMagnitude - 2;
+				} else {
+					start = 0;
+				}
+				int end;
+				if (highestMagnitude + 2 < frequency.length) {
+					end = highestMagnitude + 2;
+				} else {
+					end = frequency.length;
+				}
+				for (i=start ; i<end ; i++){
 					total += frequency[highestMagnitude+i]*magnitude[highestMagnitude+i];
 					magnitudeTotal += magnitude[highestMagnitude+i];
 				}
@@ -87,7 +100,6 @@ public class RecorderThread extends Thread {
 					currentFrequency = 0;
 				}
 				
-				System.out.println(count++);
 				
 				GameInfo.setCurrFreq(currentFrequency);
 				

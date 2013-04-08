@@ -24,10 +24,6 @@ public class MicTestThread extends Thread {
 	}
 	
 	private void collectFrequencies() {
-		mTmpHighFreq = (int) (GameInfo.getCurrFreq() * 0.85);
-
-		mTmpLowFreq = (int) (GameInfo.getCurrFreq() * 1.15);
-
 		while(mRun) {
 			switch(mTestType) {
 			case High: collectHighFreq();
@@ -41,6 +37,9 @@ public class MicTestThread extends Thread {
 	private void collectHighFreq() {
 		int tmpCurrFreq = (int) (GameInfo.getCurrFreq() * 0.75);
 		
+		if(mTmpHighFreq <= 0) {
+			mTmpHighFreq = (int) (GameInfo.getCurrFreq() * 0.75);
+		}
 		if (tmpCurrFreq > mTmpHighFreq) {
 			mTmpHighFreq = tmpCurrFreq;
 		}
@@ -49,7 +48,11 @@ public class MicTestThread extends Thread {
 	private void collectLowFreq() {
 		int tmpCurrFreq = (int) (GameInfo.getCurrFreq() * 1.25);
 		
-		if (tmpCurrFreq < mTmpLowFreq) {
+		if (mTmpLowFreq <= 0) {
+			mTmpLowFreq = (int) (GameInfo.getCurrFreq() * 1.25);
+		}
+		
+		if (tmpCurrFreq < mTmpLowFreq && tmpCurrFreq > 10) {
 			mTmpLowFreq = tmpCurrFreq;
 		}
 		

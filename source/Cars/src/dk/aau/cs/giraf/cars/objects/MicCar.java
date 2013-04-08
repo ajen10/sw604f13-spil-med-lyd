@@ -52,7 +52,8 @@ public class MicCar extends Car {
 	public void PerformWork() {
 		// TODO Auto-generated method stub
 		int currFreq = GameInfo.getCurrFreq();
-		System.out.println(currFreq + " ---- " + mHighFreq + " ------ " + mLowFreq);
+		
+		System.out.println("current: " + currFreq + "--" + "high: " + mHighFreq + "--" + "low: " + mLowFreq);
 		
 		if (currFreq > 0) {
 			if (currFreq > mHighFreq && mStartY > 0) {
