@@ -4,7 +4,7 @@ import android.graphics.Rect;
 
 public final class MapDivider {
 
-	
+	public static int lanes = 3;
 	public static int width = 1;
 	public static int height = 2;
 	public static int totalObstacleWidth;
@@ -15,13 +15,13 @@ public final class MapDivider {
 	public static int mapHeight;
 	public static int mapYStart;
 	public static int mapYEnd;
+	public static int[] laneCenters;
 	
 	private MapDivider() {}
 	
 	public static void CalculateConstants(GameView gameView) {
 		width = gameView.getWidth();
 		height = gameView.getHeight();
-		System.out.println("Width = " + width + " height = " + height);
 		
 		totalObstacleWidth = (int) (width/7.5);
 		totalObstacleHeight = totalObstacleWidth;
@@ -32,9 +32,27 @@ public final class MapDivider {
 		mapYStart = (height - mapHeight) / 2;
 		mapYEnd = mapHeight + mapYStart;
 		
-	
-		
+		int laneHeight = mapHeight / 3;
+		laneCenters = new int[lanes];
+		for (int i = 0; i < lanes; i++) {
+			laneCenters[i] = laneHeight * i + laneHeight / 2;
+		}
 	}
+	
+	public static void CalculateConstants(int Height, int carHeight) {
+		mapHeight = Height;
+		obstacleHeight = carHeight;
+		int laneHeight = mapHeight / 3;
+		laneCenters = new int[lanes];
+		
+		System.out.println("mapHeight: " + mapHeight);
+		
+		for (int i = 0; i < lanes; i++) {
+			laneCenters[i] = laneHeight * i + laneHeight / 2;
+			System.out.println("Lane #" + i + ": " + laneCenters[i]);
+		}
+	}
+	
 	public static Rect CalculateObstacle(int lane, int coloumn){
 		int x1;
 		int x2;

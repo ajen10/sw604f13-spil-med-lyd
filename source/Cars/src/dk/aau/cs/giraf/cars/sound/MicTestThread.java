@@ -72,7 +72,6 @@ public class MicTestThread extends Thread {
 
 	private void collectLowFreq() {
 		int firstDimension = (3400-50) / arrayIntervals + 1;
-		int secondDimension = 2;
 		int[] soundArray = new int[firstDimension];
 		int tmpCurrFreq;
 		int frequencyRange;
