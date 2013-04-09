@@ -22,7 +22,7 @@ public class GameActivity extends Activity {
 		
 		objectList = new ArrayList<GameObject>(); 
 		
-		int[] bitmapIds = new int[] { R.drawable.map, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat};
+		int[] bitmapIds = new int[] { R.drawable.map, R.drawable.garage_backwall, R.drawable.garage_port_aaben, R.drawable.garage_frontwall, R.drawable.garage_tag, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
@@ -45,6 +45,7 @@ public class GameActivity extends Activity {
 		objectList.add(new Bump(1, 3));
 		objectList.add(new Cat(2, 1));
 		objectList.add(new Barricade(3, 5));
+		objectList.add(new Garage(2, 6));
 		SetObjects();
 	}
 	public void SetObjects() {
