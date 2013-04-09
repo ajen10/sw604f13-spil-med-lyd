@@ -25,11 +25,12 @@ public class SettingsActivity extends Activity implements DialogListener {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
+	
 	@Override
 	public void onStop(){
 		super.onStop();
 	//	recorderThread.recording = false;
-	}  
+	}
 	
     public void showMicTestDialog(View v) {
     	MicTestDialogFragment micTest = new MicTestDialogFragment();

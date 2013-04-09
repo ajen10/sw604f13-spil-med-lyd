@@ -1,16 +1,30 @@
 package dk.aau.cs.giraf.cars;
 
-import android.os.Bundle;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.content.*;
 
 public class StartupActivity extends Activity {
-
+//	Bundle temp;
+//	private long currentGuardian;
+//	private Context mContext;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        temp = savedInstanceState;
+//        
+//        
+//        currentGuardian = getIntent().getExtras().getLong("currentGuardian");
+//        Helper helper = new Helper(mContext);
+//        Profile guardianProfile = helper.profilesHelper.getProfileById(currentGuardian);
+//    
+//        TextView textView = (TextView) findViewById(R.id.textView1);
+//        textView.setText("Daniel");
+
         setContentView(R.layout.activity_startup);
     }
 
@@ -29,6 +43,7 @@ public class StartupActivity extends Activity {
     
     public void showSettingsView(View view) {
     	Intent intent = new Intent(StartupActivity.this, SettingsActivity.class);
+//    	intent.putExtra("currentGuardianID", temp.getLong("currentGuardianID"));
     	StartupActivity.this.startActivity(intent);
     }
     
