@@ -13,6 +13,7 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
 public class StartupActivity extends Activity {
 	private long guardianId;
 	public static Profile guardian;
+	public static Profile child;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +26,12 @@ public class StartupActivity extends Activity {
 			guardianId = extras.getLong("currentGuardianID");
 			guardian = helper.profilesHelper.getProfileById(guardianId);
 		}
-
-		System.out.println(guardian.getFirstname());
-		TextView textView = (TextView) findViewById(R.id.textView1);
-		textView.setText("Profile: " + guardian.getFirstname() + " " + guardian.getSurname());
+		
+		//GET CHOSEN CHILD AND WRITE IT IN TEXTVIEW2. MAKE IF-CONSTRUCTION TO ONLY SHOW GUARDIAN IF A GUARDIAN IS LOGGED IN
+		TextView textViewC = (TextView) findViewById(R.id.textView2);
+		textViewC.setText("Child: " + guardian.getFirstname() + " " + guardian.getSurname());
+		TextView textViewG = (TextView) findViewById(R.id.textView1);
+		textViewG.setText("Guardian: " + guardian.getFirstname() + " " + guardian.getSurname());
 	}
 
 
