@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.System;
 
-import dk.aau.cs.giraf.cars.gamecode.GameObjects.Car;
+import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
 
 
 public class GameThread extends Thread {
@@ -50,15 +50,16 @@ public class GameThread extends Thread {
 		workableObjects.clear();
 		
 		for (GameObject object : gameObjects) {
+			if (object instanceof Car) {
+				car = (Car) object;
+			}
 			if (object instanceof IWorkable) {
 				workableObjects.add((IWorkable) object);
 			}
-			else if (object instanceof ICollidable) {
+			if (object instanceof ICollidable) {
 				collidableObjects.add((ICollidable) object);
 			}
-			else if (object instanceof Car) {
-				car = (Car) object;
-			}
+
 		}
 	}
 	
@@ -71,7 +72,16 @@ public class GameThread extends Thread {
 				object.PerformWork();
 			}
 			for (ICollidable object : collidableObjects) {
-				car.CalculateCollisions(object.calculateCollisionBox()); //�NDRE TIL PASSENDE FORM
+				if (car != null &&
+					car.CalculateCollisions(object.calculateCollisionBox())) { //�NDRE TIL PASSENDE FORM
+					if (object instanceof Garage) {
+						System.out.println("DU HAR NAAET EN GARAGE");
+					}
+					else {
+						car.resetPosition();
+						System.out.println("DU HAR RAMT ET OBJECT");
+					}
+				}
 			}
 		
 			long newTime = System.nanoTime();

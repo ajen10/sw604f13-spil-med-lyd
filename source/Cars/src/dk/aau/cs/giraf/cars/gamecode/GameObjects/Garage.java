@@ -2,6 +2,7 @@ package dk.aau.cs.giraf.cars.gamecode.GameObjects;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.graphics.Point;
 import android.graphics.Rect;
 
 import dk.aau.cs.giraf.cars.R;
@@ -54,8 +55,13 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	}
 
 	@Override
-	public int calculateCollisionBox() {
-		return 0;
+	public Point[] calculateCollisionBox() {
+		Point[] collisionBox = new Point[4];
+		collisionBox[0] = new Point(-10,-10);
+		collisionBox[1] = new Point(-10,-10);
+		collisionBox[2] = new Point(-10,-10);
+		collisionBox[3] = new Point(-10,-10);
+		return collisionBox;
 	}
 
 	@Override

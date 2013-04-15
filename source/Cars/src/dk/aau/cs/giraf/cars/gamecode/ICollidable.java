@@ -1,6 +1,8 @@
 package dk.aau.cs.giraf.cars.gamecode;
 
+import android.graphics.Point;
+
 public interface ICollidable {
 	public boolean collisionDetection();
-	public int calculateCollisionBox(); //ÆNDRE TIL PASSENDE FORM
+	public Point[] calculateCollisionBox(); //ÆNDRE TIL PASSENDE FORM
 }

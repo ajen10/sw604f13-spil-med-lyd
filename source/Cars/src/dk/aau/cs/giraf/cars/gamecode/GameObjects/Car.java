@@ -2,6 +2,7 @@ package dk.aau.cs.giraf.cars.gamecode.GameObjects;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.graphics.Point;
 import android.graphics.Rect;
 
 import dk.aau.cs.giraf.cars.R;
@@ -13,10 +14,12 @@ import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
-	protected int xOffset = 0;
+	public int xOffset = 0;
 	protected int yOffset = 0;
 	private final int mLowFreq;
 	private final int mHighFreq;
+	Point[] collisionBox;
+	private boolean updateCarCollisionBox = true;
 	
 	public Car(int y) {
 		// TODO Auto-generated constructor stub
@@ -24,6 +27,12 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 
 		mLowFreq = GameInfo.getLowFreq();
 		mHighFreq = GameInfo.getHighFreq();
+		
+		collisionBox = new Point[4];
+		collisionBox[0] = new Point(0,0);
+		collisionBox[1] = new Point(0,0);
+		collisionBox[2] = new Point(0,0);
+		collisionBox[3] = new Point(0,0);
 	}
 	
 	@Override
@@ -34,6 +43,7 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	@Override
 	public void PerformWork() {
 		// TODO Auto-generated method stub
+		updateCarCollisionBox = true;
 		xOffset++;
 		
 		int currFreq = GameInfo.getCurrFreq();
@@ -66,7 +76,31 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	}
 	
 	//�NDRE TIL PASSENDE FORM
-	public void CalculateCollisions(int form) {
+	public boolean CalculateCollisions(Point[] form) {
+		if (updateCarCollisionBox) {
+			collisionBox[0].x = xOffset;
+			collisionBox[0].y = yOffset;
+			collisionBox[1].x = xOffset;
+			collisionBox[1].y = MapDivider.obstacleHeight + yOffset;
+			collisionBox[2].x = MapDivider.obstacleWidth + xOffset;
+			collisionBox[2].y = MapDivider.obstacleHeight + yOffset;
+			collisionBox[3].x = MapDivider.obstacleWidth + xOffset;
+			collisionBox[3].y = yOffset;
+			
+			updateCarCollisionBox = false;
+		}
+		if (collisionBox[0].y > form[2].y || collisionBox[1].y < form[0].y) {
+			return false;
+		}
+		if (collisionBox[0].x > form[3].x || collisionBox[2].x < form[1].x){
+			return false;
+		}  
 		
+		return true; 
+		
+	}
+	public void resetPosition(){
+		yOffset = MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight;
+		xOffset = 0;
 	}
 }

@@ -2,6 +2,7 @@ package dk.aau.cs.giraf.cars.gamecode.GameObjects;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.graphics.Point;
 import android.graphics.Rect;
 
 import dk.aau.cs.giraf.cars.R;
@@ -13,10 +14,16 @@ import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
 public class Cat extends GameObject implements IDrawable, ICollidable {
 	Rect rectangle;
+	Point[] collisionBox;
 	
 	public Cat(int lane, int coloumn) {
 		rectangle = MapDivider.CalculateObstacle(lane, coloumn);
-		// TODO Auto-generated constructor stub
+		collisionBox = new Point[4];
+		int objectSideCollisionY = rectangle.top + (int) (rectangle.height()*0.70);
+		collisionBox[0] = new Point(rectangle.centerX(),rectangle.top);
+		collisionBox[1] = new Point(rectangle.left, objectSideCollisionY);
+		collisionBox[2] = new Point(rectangle.centerX(),rectangle.bottom);
+		collisionBox[3] = new Point(rectangle.right, objectSideCollisionY);
 	}
 
 	@Override
@@ -32,9 +39,10 @@ public class Cat extends GameObject implements IDrawable, ICollidable {
 	}
 
 	@Override
-	public int calculateCollisionBox() {
+	public Point[] calculateCollisionBox() {
+		
 		// TODO Auto-generated method stub
-		return 0;
+		return collisionBox;
 	}
 
 }
