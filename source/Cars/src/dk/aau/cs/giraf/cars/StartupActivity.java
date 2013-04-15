@@ -13,6 +13,7 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
 public class StartupActivity extends Activity {
 	private long guardianId;
 	public static Profile guardian;
+	private long childId;
 	public static Profile child;
 
 	@Override
@@ -23,17 +24,24 @@ public class StartupActivity extends Activity {
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {        	   
-			guardianId = extras.getLong("currentGuardianID");
-			guardian = helper.profilesHelper.getProfileById(guardianId);
-		}
-		
-		//GET CHOSEN CHILD AND WRITE IT IN TEXTVIEW2. MAKE IF-CONSTRUCTION TO ONLY SHOW GUARDIAN IF A GUARDIAN IS LOGGED IN
-		TextView textViewC = (TextView) findViewById(R.id.textView2);
-		textViewC.setText("Child: " + guardian.getFirstname() + " " + guardian.getSurname());
-		TextView textViewG = (TextView) findViewById(R.id.textView1);
-		textViewG.setText("Guardian: " + guardian.getFirstname() + " " + guardian.getSurname());
-	}
+			try{
+				guardianId = extras.getLong("currentGuardianID");
+				guardian = helper.profilesHelper.getProfileById(guardianId);
 
+				TextView textViewG = (TextView) findViewById(R.id.textView1);
+				textViewG.setText("Guardian: " + guardian.getFirstname() + " " + guardian.getSurname());
+			}
+			catch(NullPointerException e) {
+
+			}
+			finally{
+				childId = extras.getLong("currentChildID");
+				child = helper.profilesHelper.getProfileById(childId);
+				TextView textViewC = (TextView) findViewById(R.id.textView2);
+				textViewC.setText("Child: " + child.getFirstname() + " " + child.getSurname());
+			}
+		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
