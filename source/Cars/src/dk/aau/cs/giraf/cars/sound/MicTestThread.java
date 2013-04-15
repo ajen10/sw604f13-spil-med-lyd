@@ -44,20 +44,22 @@ public class MicTestThread extends Thread {
 		while(mTestType == TestTypes.High) {
 			tmpCurrFreq = GameInfo.getCurrFreq();
 			
-			frequencyRange = tmpCurrFreq / 50;
+			if (tmpCurrFreq > 50) {
+				frequencyRange = tmpCurrFreq / arrayIntervals;
 			
-			if (frequencyRange != 0) {
-				soundArray[frequencyRange]++;
-			}
+				if (frequencyRange != 0) {
+					soundArray[frequencyRange]++;
+				}
 			
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+				}
 			}
 		}
 		
-		int highestValue = 1;
-		for (int i = 2; i < firstDimension; i++) {
+		int highestValue = 0;
+		for (int i = 1; i < firstDimension; i++) {
 			if (soundArray[i] > soundArray[highestValue]) {
 				highestValue = i;
 			}
@@ -79,20 +81,22 @@ public class MicTestThread extends Thread {
 		while(mTestType == TestTypes.Low) {
 			tmpCurrFreq = GameInfo.getCurrFreq();
 			
-			frequencyRange = tmpCurrFreq / 50;
+			if (tmpCurrFreq > 50) {
+				frequencyRange = tmpCurrFreq / arrayIntervals;
 			
-			if (frequencyRange != 0) {
-				soundArray[frequencyRange]++;
-			}
+				if (frequencyRange != 0) {
+					soundArray[frequencyRange]++;
+				}
 			
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+				}
 			}
 		}
 		
-		int highestValue = 1;
-		for (int i = 2; i < firstDimension; i++) {
+		int highestValue = 0;
+		for (int i = 1; i < firstDimension; i++) {
 			if (soundArray[i] > soundArray[highestValue]) {
 				highestValue = i;
 			}
