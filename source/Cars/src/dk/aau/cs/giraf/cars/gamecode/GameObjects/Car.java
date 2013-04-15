@@ -23,7 +23,6 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
-		// TODO Auto-generated method stub
 		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( offset, y, MapDivider.obstacleWidth + offset, MapDivider.obstacleHeight + y));
 	}
 
