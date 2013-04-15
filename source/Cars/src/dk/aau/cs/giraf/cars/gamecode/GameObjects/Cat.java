@@ -7,10 +7,11 @@ import android.graphics.Rect;
 import dk.aau.cs.giraf.cars.R;
 import dk.aau.cs.giraf.cars.gamecode.GameObject;
 import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
+import dk.aau.cs.giraf.cars.gamecode.ICollidable;
 import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
-public class Cat extends GameObject implements IDrawable {
+public class Cat extends GameObject implements IDrawable, ICollidable {
 	Rect rectangle;
 	
 	public Cat(int lane, int coloumn) {
@@ -22,6 +23,18 @@ public class Cat extends GameObject implements IDrawable {
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
 		// TODO Auto-generated method stub
 		spriteBatcher.draw(gl, R.drawable.cat, new Rect(0, 0, 219, 271), rectangle);
+	}
+
+	@Override
+	public boolean collisionDetection() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int calculateCollisionBox() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
