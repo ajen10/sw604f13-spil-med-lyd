@@ -14,7 +14,7 @@ import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
-	public int xOffset = 0;
+	protected int xOffset = 0;
 	protected int yOffset = 0;
 	private final int mLowFreq;
 	private final int mHighFreq;

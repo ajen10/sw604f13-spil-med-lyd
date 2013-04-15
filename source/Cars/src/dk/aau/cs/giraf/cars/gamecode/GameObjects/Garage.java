@@ -19,6 +19,7 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	Rect doorOpen;
 	Rect frontwall;
 	Rect roof;
+	public boolean closed = false;
 
 	public Garage(int lane, int coloumn) {
 		rectangle = MapDivider.CalculateObstacle(lane, coloumn);
