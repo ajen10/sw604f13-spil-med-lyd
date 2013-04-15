@@ -13,6 +13,7 @@ public class GameThread extends Thread {
 	List<ICollidable> collidableObjects;
 	Car car;
 	Boolean running;
+	private boolean mSettingsView = false;
 	
 	public GameThread(List<GameObject> gameObjects) {
 		workableObjects = new ArrayList<IWorkable>();
@@ -31,9 +32,19 @@ public class GameThread extends Thread {
 		}
 	}
 	
+	public GameThread(Car car) {
+		this.car = car;
+		
+		mSettingsView = true;
+	}
+	
 	public void run() {
 		running = true;
-		gameLogic();
+		if (!mSettingsView) {
+			gameLogic();
+		} else {
+			settingsLogic();
+		}
 	}
 	public void SetObjects(List<GameObject> gameObjects) {
 		workableObjects.clear();
@@ -52,7 +63,7 @@ public class GameThread extends Thread {
 	}
 	
 	
-	public void gameLogic() {
+	private void gameLogic() {
 		while(running){
 			long currentTime = System.nanoTime();
 			
@@ -60,9 +71,26 @@ public class GameThread extends Thread {
 				object.PerformWork();
 			}
 			for (ICollidable object : collidableObjects) {
-				car.CalculateCollisions(object.calculateCollisionBox()); //ÆNDRE TIL PASSENDE FORM
+				car.CalculateCollisions(object.calculateCollisionBox()); //ï¿½NDRE TIL PASSENDE FORM
 			}
 		
+			long newTime = System.nanoTime();
+			long difference = newTime - currentTime;
+			int sleepFor = (int) ((millisecondsPerTick * 1000000 - difference) / 1000000);
+
+			try {
+				if (sleepFor > 0)
+				Thread.sleep(sleepFor);
+			} catch (InterruptedException e) {}
+		}
+	}
+	
+	private void settingsLogic() {
+		while(running){
+			long currentTime = System.nanoTime();
+			
+			car.PerformWork();
+			
 			long newTime = System.nanoTime();
 			long difference = newTime - currentTime;
 			int sleepFor = (int) ((millisecondsPerTick * 1000000 - difference) / 1000000);

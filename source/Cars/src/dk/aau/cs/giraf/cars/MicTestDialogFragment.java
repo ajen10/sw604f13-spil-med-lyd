@@ -1,6 +1,8 @@
 package dk.aau.cs.giraf.cars;
 
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
+import dk.aau.cs.giraf.cars.sound.MicTestThread;
+import dk.aau.cs.giraf.cars.sound.TestTypes;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,11 +15,10 @@ import android.widget.TextView;
 
 public class MicTestDialogFragment extends DialogFragment {
 
-	private RecorderThread mRecordThread = new RecorderThread();;
-	private int mLowFreq;
-	private int mHighFreq;
-	private enum TestStates { lowFreqStep, highFreqStep };
-	private TestStates testState = TestStates.lowFreqStep;
+	private RecorderThread mRecordThread = new RecorderThread();
+	private MicTestThread mMicThread = new MicTestThread();
+
+	private TestTypes testState = TestTypes.Low;
 	
 	public MicTestDialogFragment() { 
 		
@@ -45,21 +46,21 @@ public class MicTestDialogFragment extends DialogFragment {
 	        	public void onClick(View v) {
 	        		DialogListener activity = (DialogListener) getActivity();
 	        			        		
-	        		if(testState == TestStates.lowFreqStep) {
-	        			
+	        		switch(testState) {
+	        		case Low:
 	        			text.setText(getString(R.string.mic_test_high));
 	        			img.setImageDrawable(getResources().getDrawable(R.drawable.mus));
-	        			
-	        			setLowFreq();
-	        			
-	        			testState = TestStates.highFreqStep;
-	        			
-	        			restartRecordThread();
-	        		} else {
+	        				        			
+	        			testState = TestTypes.High;
+	        			mMicThread.setType(testState);
+	        			break;
+	        		case High:
 	        			dismiss();
-
-	        			setHighFreq();
-	        			activity.pitchResult(mLowFreq, mHighFreq);
+	        			mMicThread.saveFrequencies();
+	        			mMicThread.stopThread();
+	        			
+	        			activity.pitchResult();
+	        			break;
 	        		}
 	        	}
 	        });
@@ -72,6 +73,14 @@ public class MicTestDialogFragment extends DialogFragment {
 	        
 	        retryButton.setOnClickListener(new OnClickListener() {
 	        	public void onClick(View v) {
+	        		switch(testState) {
+	        		case Low:
+	        			mMicThread.restartLowFreq();
+	        			break;
+	        		case High:
+	        			mMicThread.restartHighFreq();
+	        			break;
+	        		}
 	        	}
 	        });
 			
@@ -83,31 +92,21 @@ public class MicTestDialogFragment extends DialogFragment {
 		super.onActivityCreated(savedInstanceState);
 		
 		mRecordThread.start();
+		mMicThread.setType(TestTypes.Low);
+		mMicThread.start();
+		
 	}
 	
-	public void setLowFreq() {
-		mLowFreq = mRecordThread.getLowFrequency();
-	}
-	
-	public void setHighFreq() {
-		mHighFreq = mRecordThread.getHighFrequency();
-	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		System.out.println("DESTROYED");
-		mRecordThread.interrupt();
+		mRecordThread.recording = false;
 	}
 	    
     public interface DialogListener {
-    	void pitchResult(int lowFreq, int highFreq);
-    }
-    
-    public void restartRecordThread() {
-    	mRecordThread.interrupt();
-    	
-    	mRecordThread = new RecorderThread();
+    	void pitchResult();
     }
 	
 }
