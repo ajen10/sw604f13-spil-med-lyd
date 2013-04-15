@@ -28,7 +28,6 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
-		// TODO Auto-generated method stub
 		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( xOffset, yOffset, MapDivider.obstacleWidth + xOffset, MapDivider.obstacleHeight + yOffset));
 	}
 
@@ -66,7 +65,7 @@ public class Car extends GameObject implements IWorkable, IDrawable {
  		}
 	}
 	
-	//ÆNDRE TIL PASSENDE FORM
+	//ï¿½NDRE TIL PASSENDE FORM
 	public void CalculateCollisions(int form) {
 		
 	}
