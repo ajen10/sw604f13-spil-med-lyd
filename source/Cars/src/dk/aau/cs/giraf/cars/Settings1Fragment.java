@@ -23,6 +23,9 @@ public class Settings1Fragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		fillData(getActivity().getIntent().getExtras().getLong("currentGuardianID"));
+		this.getListView().setDivider(null);
+		this.getListView().setDividerHeight(0);
+		this.getListView().setPadding(0, 0, 125, 0);
 	}
 
 	public void fillData(long currentGuardianID) {
@@ -30,7 +33,7 @@ public class Settings1Fragment extends ListFragment {
 		guardian = helper.getProfileById(currentGuardianID);
 		List<Profile> nameList = new ArrayList<Profile>();
 		nameList.addAll(helper.getChildrenByGuardian(guardian));
-		adapter = new ProfileAdapter(getActivity(), nameList);						
+		adapter = new ProfileAdapter(getActivity(), nameList);	
 		setListAdapter(adapter);
 	}
 
@@ -39,7 +42,7 @@ public class Settings1Fragment extends ListFragment {
 		super.onListItemClick(l, v, position, id);
 		if(previousColoredItem != null)
 			previousColoredItem.setBackgroundColor(Color.BLACK);
-		v.setBackgroundColor(Color.BLUE);
+		v.setBackgroundColor(Color.MAGENTA);
 		previousColoredItem = v;
 	}
 }
