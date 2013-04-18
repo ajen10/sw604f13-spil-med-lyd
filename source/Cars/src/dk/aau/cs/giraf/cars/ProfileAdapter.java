@@ -13,12 +13,10 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
 
 public class ProfileAdapter extends BaseAdapter {
 
-	private Activity activity;
 	private List<Profile> data;
 	private static LayoutInflater inflater=null;
 
 	public ProfileAdapter(Activity activity, List<Profile> data) {
-		this.activity = activity;
 		this.data=data;
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
