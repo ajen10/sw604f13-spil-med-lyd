@@ -9,15 +9,16 @@
         android:id="@+id/settings1fragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".25"
+        android:layout_weight=".35"
         class="dk.aau.cs.giraf.cars.Settings1Fragment"
-        tools:layout="@layout/fragment_settings1" />
+        tools:layout="@layout/fragment_settings1" 
+        />
     
     <fragment
         android:id="@+id/settings2fragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight=".75"
+        android:layout_weight=".65"
         class="dk.aau.cs.giraf.cars.Settings2Fragment"
         tools:layout="@layout/fragment_settings2" />
     

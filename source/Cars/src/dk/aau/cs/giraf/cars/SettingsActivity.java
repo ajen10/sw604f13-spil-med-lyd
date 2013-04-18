@@ -10,7 +10,7 @@ import dk.aau.cs.giraf.cars.MicTestDialogFragment.DialogListener;
 
 public class SettingsActivity extends Activity implements DialogListener {
 	RecorderThread recorderThread = new RecorderThread();
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,11 +25,12 @@ public class SettingsActivity extends Activity implements DialogListener {
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
+	
 	@Override
 	public void onStop(){
 		super.onStop();
 	//	recorderThread.recording = false;
-	}  
+	}
 	
     public void showMicTestDialog(View v) {
     	MicTestDialogFragment micTest = new MicTestDialogFragment();
