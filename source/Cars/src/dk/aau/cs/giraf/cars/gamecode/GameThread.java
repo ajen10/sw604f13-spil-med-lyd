@@ -76,6 +76,7 @@ public class GameThread extends Thread {
 					car.CalculateCollisions(object.calculateCollisionBox())) { //�NDRE TIL PASSENDE FORM
 					if (object instanceof Garage) {
 						((Garage)object).startClosing();
+						car.resetPosition();
 						//Funktion til animation af garage + kald af   car.resetPosition();
 					}
 					else {

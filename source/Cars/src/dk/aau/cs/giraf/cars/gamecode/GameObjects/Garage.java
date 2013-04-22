@@ -113,9 +113,11 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	}
 	
 	public void startClosing() {
+		if (!closing) {
 		closed = true;
 		closing = true;
 		animationCounter = 50;
+		}
 	}
 
 	@Override

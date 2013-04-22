@@ -49,10 +49,10 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		int currFreq = GameInfo.getCurrFreq();
 		
 		if (currFreq > 0) {
-			if (currFreq > mHighFreq && yOffset > 0) {
+			if (currFreq > mHighFreq && yOffset > MapDivider.mapYStart) {
 				yOffset--;
 				//System.out.println("Going up");
-			} else if (currFreq < mLowFreq && (yOffset < (MapDivider.mapHeight - MapDivider.obstacleHeight))) {
+			} else if (currFreq < mLowFreq && (yOffset < (MapDivider.mapYEnd - MapDivider.obstacleHeight))) {
 				yOffset++;
 				//System.out.println("Going down");
 			}
