@@ -23,7 +23,7 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	Rect roof;
 	Point[] collisionBox;
 	public boolean closed = false;
-	boolean closing = true;
+	boolean closing = false;
 	AnimationState animState = AnimationState.Open;
 	int animationCounter;
 
