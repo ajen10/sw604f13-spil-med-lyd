@@ -44,13 +44,6 @@ public final class MapDivider {
 		obstacleHeight = carHeight;
 		int laneHeight = mapHeight / 3;
 		laneCenters = new int[lanes];
-		
-		System.out.println("mapHeight: " + mapHeight);
-		
-		for (int i = 0; i < lanes; i++) {
-			laneCenters[i] = laneHeight * i + laneHeight / 2;
-			System.out.println("Lane #" + i + ": " + laneCenters[i]);
-		}
 	}
 	
 	public static Rect CalculateObstacle(int lane, int coloumn){
