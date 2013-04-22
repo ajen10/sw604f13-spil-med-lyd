@@ -35,7 +35,7 @@ public final class MapDivider {
 		int laneHeight = mapHeight / 3;
 		laneCenters = new int[lanes];
 		for (int i = 0; i < lanes; i++) {
-			laneCenters[i] = laneHeight * i + laneHeight / 2;
+			laneCenters[i] = mapYStart + obstacleSpace + laneHeight * i;
 		}
 	}
 	

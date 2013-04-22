@@ -3,17 +3,18 @@ package dk.aau.cs.giraf.cars;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.lang.System;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import dk.aau.cs.giraf.cars.gamecode.*;
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
+import dk.aau.cs.giraf.cars.sound.RecorderThread;
 
 public class GameActivity extends Activity {
 	GameView view;
 	List<GameObject> objectList;
 	GameThread gameThread;
+	RecorderThread recorderThread;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +29,19 @@ public class GameActivity extends Activity {
 		setContentView(view);
 		
 		gameThread = new GameThread(objectList);
+		recorderThread = new RecorderThread();
 		
 		SetObjects();
 		
 		gameThread.start();
+		recorderThread.start();
 	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		System.out.println("DESTROYED");
 		gameThread.stopRunning();
+		recorderThread.recording = false;
 	}
 	
 	public void AddObjects() { 
