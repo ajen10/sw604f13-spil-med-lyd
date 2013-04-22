@@ -14,6 +14,7 @@ public class GameThread extends Thread {
 	Car car;
 	Boolean running;
 	private boolean mSettingsView = false;
+	int numberOfClosedGarages;
 	
 	public GameThread(List<GameObject> gameObjects) {
 		workableObjects = new ArrayList<IWorkable>();
@@ -65,7 +66,9 @@ public class GameThread extends Thread {
 	
 	
 	private void gameLogic() {
+		numberOfClosedGarages = 0;
 		while(running){
+			
 			long currentTime = System.nanoTime();
 			
 			for (IWorkable object : workableObjects) {
@@ -75,12 +78,25 @@ public class GameThread extends Thread {
 				if (car != null &&
 					car.CalculateCollisions(object.calculateCollisionBox())) { //�NDRE TIL PASSENDE FORM
 					if (object instanceof Garage) {
+						
+						if (((Garage)object).closed == false){
+							numberOfClosedGarages++;
+						}
+						
 						((Garage)object).startClosing();
-						car.resetPosition();
-						//Funktion til animation af garage + kald af   car.resetPosition();
+						
+						if (numberOfClosedGarages == 3){
+							// TODO DISPLAY WIN
+						}
+						else{
+							car.resetPosition();
+							// TODO evt. Gen. ny map
+						}
 					}
 					else {
+						// TODO DISPLAY COLLISION
 						car.resetPosition();
+						// TODO evt. Gen. ny map
 					}
 				}
 			}
