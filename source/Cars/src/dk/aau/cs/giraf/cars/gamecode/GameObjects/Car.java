@@ -94,11 +94,45 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		}
 		if (collisionBox[0].x > form[3].x || collisionBox[2].x < form[1].x){
 			return false;
-		}  
+		}
 		
-		return true; 
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (doesLineCrossLine(collisionBox[i], collisionBox[(i + 1) % 4],
+									  form[j], form[(j + 1) % 4])) {
+					return true;
+				}
+			}
+		}
 		
+		return false;
 	}
+	private boolean doesLineCrossLine(Point line1Start, Point line1End,
+									  Point line2Start, Point line2End) {
+		float crossProduct1 = crossProduct(line1Start, line1End, line2Start);
+		float crossProduct2 = crossProduct(line1Start, line1End, line2End);
+		if ((crossProduct1 < 0 && crossProduct2 < 0) ||
+				(crossProduct1 > 0 && crossProduct2 > 0)) {
+			return false;
+		}
+		else {
+			float crossProduct3 = crossProduct(line2Start, line2End, line1Start);
+			float crossProduct4 = crossProduct(line2Start, line2End, line1End);
+			
+			if ((crossProduct3 < 0 && crossProduct4 < 0) ||
+					(crossProduct3 > 0 && crossProduct4 > 0)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	private float crossProduct(Point line1Start, Point line1End,
+							   Point line2Point) {
+		return (line1End.x - line1Start.x) * (line2Point.y - line1End.y) -
+			   (line1End.y - line1Start.y) * (line2Point.x - line1End.x);
+	}
+	
 	public void resetPosition(){
 		yOffset = MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight;
 		xOffset = 0;
