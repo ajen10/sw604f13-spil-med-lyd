@@ -47,8 +47,8 @@ public class GameActivity extends Activity {
 	public void AddObjects() { 
 		Random rand = new Random();
 		int i;
-		int numberOfObjects = 3;    // TODO Indsæt nummer for objekter
-		float carSpeed = 0.75F;     // TODO Indsæt hastigheden på bilen her som en float
+		int numberOfObjects = GameInfo.numberOfObstacles;
+		float carSpeed = GameInfo.carSpeed;
 		int[][] roadObstacles;
 		roadObstacles = ObjectPlacement.objectPlacement(numberOfObjects);
 		for(i=0;i<numberOfObjects;i++){
