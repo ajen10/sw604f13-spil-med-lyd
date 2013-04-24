@@ -47,7 +47,8 @@ public class GameActivity extends Activity {
 	public void AddObjects() { 
 		Random rand = new Random();
 		int i;
-		int numberOfObjects = 3;    //Indsæt nummer for objekter
+		int numberOfObjects = 3;    // TODO Indsæt nummer for objekter
+		float carSpeed = 0.75F;     // TODO Indsæt hastigheden på bilen her som en float
 		int[][] roadObstacles;
 		roadObstacles = ObjectPlacement.objectPlacement(numberOfObjects);
 		for(i=0;i<numberOfObjects;i++){
@@ -64,9 +65,8 @@ public class GameActivity extends Activity {
 			if (obstaclesNumber==3){
 				objectList.add(new Rock(roadObstacles[i][0], roadObstacles[i][1]));
 			}
-			//System.out.println("Object" + i +" har placering " + roadObstacles[i][0] + roadObstacles[i][1]);
 		}
-		objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight));
+		objectList.add(new Car(MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight, carSpeed));
 		objectList.add(new Garage(1, 6));
 		objectList.add(new Garage(2, 6));
 		objectList.add(new Garage(3, 6));

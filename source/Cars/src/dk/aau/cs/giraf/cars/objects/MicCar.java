@@ -17,7 +17,7 @@ public class MicCar extends Car {
 	private int mEndY;
 	
 	public MicCar(int viewWidth, int viewHeight, int carWidth, int carHeight) {
-		super(0);
+		super(0,0);   //Second argument is the speed of the car in the X direction
 		mViewWidth = viewWidth;
 		mImgWidth = carWidth;
 		mImgHeight = carHeight;
@@ -38,7 +38,7 @@ public class MicCar extends Car {
 	@Override
 	public void PerformWork() {
 		super.PerformWork();
-		this.xOffset--;
+		//this.xOffset--;
 	}
 
 }

@@ -14,15 +14,16 @@ import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
-	protected int xOffset = 0;
+	protected float xOffset = -MapDivider.obstacleWidth;
 	protected int yOffset = 0;
 	private final int mLowFreq;
 	private final int mHighFreq;
 	Point[] collisionBox;
 	private boolean updateCarCollisionBox = true;
+	private float carSpeedAsFloat;
 	
-	public Car(int y) {
-		// TODO Auto-generated constructor stub
+	public Car(int y, float carSpeed) {
+		carSpeedAsFloat = carSpeed;
 		this.yOffset = y;
 
 		mLowFreq = GameInfo.getLowFreq();
@@ -37,22 +38,23 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
-		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( xOffset, yOffset, MapDivider.obstacleWidth + xOffset, MapDivider.obstacleHeight + yOffset));
+		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset, MapDivider.obstacleWidth + (int)xOffset, MapDivider.obstacleHeight + yOffset));
 	}
 
 	@Override
 	public void PerformWork() {
-		// TODO Auto-generated method stub
 		updateCarCollisionBox = true;
-		xOffset++;
+		xOffset = xOffset + carSpeedAsFloat;
 		
 		int currFreq = GameInfo.getCurrFreq();
 		
 		if (currFreq > 0) {
 			if (currFreq > mHighFreq && yOffset > MapDivider.mapYStart) {
 				yOffset--;
+				yOffset--;
 				//System.out.println("Going up");
 			} else if (currFreq < mLowFreq && (yOffset < (MapDivider.mapYEnd - MapDivider.obstacleHeight))) {
+				yOffset++;
 				yOffset++;
 				//System.out.println("Going down");
 			}
@@ -78,13 +80,13 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	//�NDRE TIL PASSENDE FORM
 	public boolean CalculateCollisions(Point[] form) {
 		if (updateCarCollisionBox) {
-			collisionBox[0].x = xOffset;
+			collisionBox[0].x = (int)xOffset;
 			collisionBox[0].y = yOffset;
-			collisionBox[1].x = xOffset;
+			collisionBox[1].x = (int)xOffset;
 			collisionBox[1].y = MapDivider.obstacleHeight + yOffset;
-			collisionBox[2].x = MapDivider.obstacleWidth + xOffset;
+			collisionBox[2].x = MapDivider.obstacleWidth + (int)xOffset;
 			collisionBox[2].y = MapDivider.obstacleHeight + yOffset;
-			collisionBox[3].x = MapDivider.obstacleWidth + xOffset;
+			collisionBox[3].x = MapDivider.obstacleWidth + (int)xOffset;
 			collisionBox[3].y = yOffset;
 			
 			updateCarCollisionBox = false;
@@ -135,6 +137,6 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	
 	public void resetPosition(){
 		yOffset = MapDivider.mapYStart + MapDivider.obstacleSpace + MapDivider.totalObstacleHeight;
-		xOffset = 0;
+		xOffset = -MapDivider.obstacleWidth;
 	}
 }
