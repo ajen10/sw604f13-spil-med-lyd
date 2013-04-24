@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 
 import dk.aau.cs.giraf.cars.R;
+import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.gamecode.GameObject;
 import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
 import dk.aau.cs.giraf.cars.gamecode.ICollidable;
@@ -96,6 +97,8 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 						break;
 					case Closed:
 						closing = false;
+						closed = true;
+						GameInfo.garageClosing = false;
 						break;
 				}
 			}
@@ -114,8 +117,8 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	
 	public void startClosing() {
 		if (!closing) {
-		closed = true;
 		closing = true;
+		GameInfo.garageClosing = true;
 		animationCounter = 50;
 		}
 	}

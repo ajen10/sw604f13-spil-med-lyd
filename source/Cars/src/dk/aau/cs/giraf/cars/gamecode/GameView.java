@@ -18,6 +18,7 @@ public class GameView extends GLSurfaceView implements Drawer {
 	private boolean mSettingsView = false;
 	
 	public GameView(Context context, Resources resources, int[] bitmapIds) {
+		
 		super(context);
 		parent = (GameActivity) context;
 		
@@ -59,9 +60,14 @@ public class GameView extends GLSurfaceView implements Drawer {
 		//spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(150, 150, 250, 250));
 		if (!mSettingsView) {
 			spriteBatcher.draw(gl, R.drawable.map, new Rect(0, 0, 2010, 1172), new Rect(0, MapDivider.mapYStart, spriteBatcher.getViewWidth(), MapDivider.mapYEnd));
+			if (GameInfo.win){
+				spriteBatcher.draw(gl, R.drawable.trophy, new Rect(0, 0, 1090, 951), new Rect((int)(MapDivider.obstacleWidth*3), MapDivider.mapYStart+(int)(MapDivider.obstacleHeight*0.25), (int)(MapDivider.obstacleWidth*3)+(int)(MapDivider.obstacleWidth*2), MapDivider.mapYEnd-(int)(MapDivider.obstacleHeight*0.25)));
+			}
 		} else {
 			gl.glClearColor(255, 255, 255, 0);
 		}
+		
+		
 		
 		for (IDrawable object : drawableObjects) {
 			object.Draw(gl, spriteBatcher);
