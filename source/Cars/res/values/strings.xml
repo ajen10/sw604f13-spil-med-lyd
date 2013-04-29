@@ -16,4 +16,8 @@
     <string name="mic_test_low">Snak med en lav stemme</string>
     <string name="mic_test_high">Snak med en høj stemme</string>
     <string name="none"></string>
+    <string name="help_label">Tryk på en knap for at få besvaret spørgsmålet</string>
+    <string name="help_mic">Hvordan indstiller jeg mikrofonen</string>
+    <string name="help_game">Hvordan spiller jeg spillet?</string>
+    <string name="help_settings">Hvordan ændre jeg spil indstillinger?</string>
 </resources>
