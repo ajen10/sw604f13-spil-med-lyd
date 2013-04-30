@@ -20,7 +20,6 @@ public class RecorderThread extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println("recorderThread started");
 		AudioRecord recorder;
 		int p;
 		short[] audioData;
