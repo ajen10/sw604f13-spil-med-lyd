@@ -27,6 +27,7 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	boolean closing = false;
 	AnimationState animState = AnimationState.Open;
 	int animationCounter;
+	int coloredBitmapId = -1;
 
 	public Garage(int lane, int coloumn) {
 		Rect rectangle = MapDivider.CalculateObstacle(lane, coloumn);
@@ -75,6 +76,12 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 		collisionBox[1] = new Point(rectangle.left, objectSideCollisionY);
 		collisionBox[2] = new Point(rectangle.centerX(),rectangle.bottom);
 		collisionBox[3] = new Point(rectangle.right, objectSideCollisionY);
+	}
+	
+	public Garage(int lane, int coloumn, int bitmapId) {
+		this(lane, coloumn);
+		
+		coloredBitmapId = bitmapId;
 	}
 
 	@Override
@@ -144,7 +151,12 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 				break;
 		}
 		
-		spriteBatcher.draw(gl, R.drawable.garage_frontwall, new Rect(0, 0, 414, 281), frontwall);
+		if (coloredBitmapId != -1) {
+			spriteBatcher.draw(gl, coloredBitmapId, new Rect(0, 0, 414, 281), frontwall);
+		}
+		else {
+			spriteBatcher.draw(gl, R.drawable.garage_frontwall, new Rect(0, 0, 414, 281), frontwall);
+		}
 		spriteBatcher.draw(gl, R.drawable.garage_tag, new Rect(0, 0, 524, 164), roof);
 	}
 	

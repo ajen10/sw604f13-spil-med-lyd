@@ -34,9 +34,9 @@ public class MicInputDialogFragment extends DialogFragment {
 			// Inflate the Dialog’s UI.
 			View buttonView = inflater.inflate(R.layout.dialog_mic_input, container, false);
 			
-			int[] bitmapIds = new int[] {R.drawable.ic_launcher};
+			BitmapContainer.add(R.drawable.ic_launcher);
 			
-			mGameView = new GameView(getActivity(), getResources(), bitmapIds, true);
+			mGameView = new GameView(getActivity(), getResources(), true);
 			mGameView.setZOrderOnTop(true);
 			final float scale = getResources().getDisplayMetrics().density;
 

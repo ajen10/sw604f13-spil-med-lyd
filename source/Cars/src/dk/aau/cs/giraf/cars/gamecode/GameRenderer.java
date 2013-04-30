@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import dk.aau.cs.giraf.cars.BitmapContainer;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLUtils;
@@ -57,10 +58,11 @@ public class GameRenderer implements Renderer {
 	int[] bitmapIds;
 	Resources resources;
 
-	public GameRenderer(Resources resources, int[] bitmapIds, Drawer drawer) {
+	public GameRenderer(Resources resources, Drawer drawer) {
 		// Temporarily stores for loading textures later:
-		this.bitmapIds = bitmapIds;
+		this.bitmapIds = BitmapContainer.getBitmapIds();
 		this.resources = resources;
+		BitmapContainer.setResources(resources);
 		// Create data structure to hold info for draw calls
 		textureIds = new int[bitmapIds.length];
 		spriteData = new ArrayList<SpriteData>(bitmapIds.length);
@@ -131,7 +133,7 @@ public class GameRenderer implements Renderer {
 		gl.glGenTextures(textureIds.length, textureIds, 0);
 		for (int i = 0; i < bitmapIds.length; i++) {
 			addTexture(gl,
-					BitmapFactory.decodeResource(resources, bitmapIds[i]),
+					BitmapContainer.get(bitmapIds[i]),
 					textureIds[i]);
 		}
 	}

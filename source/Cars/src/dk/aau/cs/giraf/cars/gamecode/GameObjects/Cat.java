@@ -9,7 +9,6 @@ import dk.aau.cs.giraf.cars.R;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.gamecode.GameObject;
 import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
-import dk.aau.cs.giraf.cars.gamecode.GameView;
 import dk.aau.cs.giraf.cars.gamecode.ICollidable;
 import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;

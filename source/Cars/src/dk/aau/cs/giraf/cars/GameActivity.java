@@ -24,8 +24,25 @@ public class GameActivity extends Activity {
 		
 		objectList = new ArrayList<GameObject>(); 
 		
-		int[] bitmapIds = new int[] { R.drawable.map, R.drawable.garage_backwall, R.drawable.garage_port_aaben, R.drawable.garage_port_step1, R.drawable.garage_port_step2, R.drawable.garage_port_closed, R.drawable.garage_frontwall, R.drawable.garage_tag, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat, R.drawable.trophy};
-		view = new GameView(this, getResources(), bitmapIds);
+		BitmapContainer.add(R.drawable.map);
+		BitmapContainer.add(R.drawable.garage_backwall);
+		BitmapContainer.add(R.drawable.garage_port_aaben);
+		BitmapContainer.add(R.drawable.garage_port_step1);
+		BitmapContainer.add(R.drawable.garage_port_step2);
+		BitmapContainer.add(R.drawable.garage_port_closed);
+		BitmapContainer.add(R.drawable.garage_frontwall);
+		BitmapContainer.add(R.drawable.garage_tag);
+		BitmapContainer.add(R.drawable.ic_launcher);
+		BitmapContainer.add(R.drawable.rock);
+		BitmapContainer.add(R.drawable.barricade);
+		BitmapContainer.add(R.drawable.bump);
+		BitmapContainer.add(R.drawable.car);
+		BitmapContainer.add(R.drawable.cat);
+		BitmapContainer.add(R.drawable.trophy);
+		//tempGarageColoredId = BitmapContainer.add(R.drawable.garage_frontwall, 255, 0, 0);
+		
+		view = new GameView(this, getResources());
+		
 		setContentView(view);
 		
 		gameThread = new GameThread(objectList);
@@ -80,7 +97,6 @@ public class GameActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.game, menu);
 		return true;
 	}

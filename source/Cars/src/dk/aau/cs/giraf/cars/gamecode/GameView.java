@@ -6,36 +6,35 @@ import java.util.List;
 import javax.microedition.khronos.opengles.GL10;
 import dk.aau.cs.giraf.cars.GameActivity;
 import dk.aau.cs.giraf.cars.R;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.opengl.GLSurfaceView;
 
-// TODO Add touch screen registration
+@SuppressLint("ViewConstructor")
 public class GameView extends GLSurfaceView implements Drawer {
 	List<IDrawable> drawableObjects;
 	GameActivity parent;
 	private boolean mSettingsView = false;
 	
-	public GameView(Context context, Resources resources, int[] bitmapIds) {
+	public GameView(Context context, Resources resources) {
 		
 		super(context);
 		parent = (GameActivity) context;
 		
 		drawableObjects = new ArrayList<IDrawable>();
-		setRenderer(new GameRenderer(resources, bitmapIds, this));
+		setRenderer(new GameRenderer(resources, this));
 	}
 	
-	public GameView(Context context, Resources resources, int[] bitmapIds, boolean settingsView) {
+	public GameView(Context context, Resources resources, boolean settingsView) {
 		super(context);
 		mSettingsView = settingsView;
 		
 		drawableObjects = new ArrayList<IDrawable>();
-		setRenderer(new GameRenderer(resources, bitmapIds, this));
+		setRenderer(new GameRenderer(resources, this));
 	}
 
-	
-	
 	public void SetObjects(List<GameObject> gameObjects) {
 		drawableObjects.clear();
 		
