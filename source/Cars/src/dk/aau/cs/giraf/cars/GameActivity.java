@@ -24,7 +24,7 @@ public class GameActivity extends Activity {
 		
 		objectList = new ArrayList<GameObject>(); 
 		
-		int[] bitmapIds = new int[] { R.drawable.map, R.drawable.garage_backwall, R.drawable.garage_port_aaben, R.drawable.garage_port_step1, R.drawable.garage_port_step2, R.drawable.garage_port_closed, R.drawable.garage_frontwall, R.drawable.garage_tag, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat, R.drawable.trophy};
+		int[] bitmapIds = new int[] {R.drawable.map, R.drawable.grass, R.drawable.garage_backwall, R.drawable.garage_port_aaben, R.drawable.garage_port_step1, R.drawable.garage_port_step2, R.drawable.garage_port_closed, R.drawable.garage_frontwall, R.drawable.garage_tag, R.drawable.ic_launcher, R.drawable.rock,R.drawable.barricade, R.drawable.bump, R.drawable.car, R.drawable.cat, R.drawable.trophy};
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
