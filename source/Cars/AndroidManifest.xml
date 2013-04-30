@@ -15,11 +15,12 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
- 		android:label="@string/app_name" 
+ 		 
          >
         <activity
             android:name="dk.aau.cs.giraf.cars.StartupActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:label="@string/label_start" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,12 +35,12 @@
         <activity
             android:name="dk.aau.cs.giraf.cars.SettingsActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar" >            
+            android:label="@string/label_settings" >            
         </activity>
         <activity
             android:name="dk.aau.cs.giraf.cars.HelpActivity"
             android:screenOrientation="landscape" 
-            android:theme="@android:style/Theme.NoTitleBar" >                        
+            android:label="@string/label_help" >                        
         </activity>
     </application>
 

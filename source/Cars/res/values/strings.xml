@@ -20,4 +20,7 @@
     <string name="help_mic">Hvordan indstiller jeg mikrofonen</string>
     <string name="help_game">Hvordan spiller jeg spillet?</string>
     <string name="help_settings">Hvordan ændre jeg spil indstillinger?</string>
+    <string name="label_start">Cars - Start</string>
+    <string name="label_settings">Cars - Indstillinger</string>
+    <string name="label_help">Cars - Hjælp</string>
 </resources>
