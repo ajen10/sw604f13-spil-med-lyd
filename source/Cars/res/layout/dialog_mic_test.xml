@@ -33,8 +33,7 @@
         android:layout_height="50dp"
         android:text="@string/cancel"
         android:clickable="true" 
-        android:layout_weight="1"
-        android:background="#FFFF0000"/>
+        android:layout_weight="1"/>
             <!-- style="?android:attr/buttonBarButtonStyle"  -->
     
 
@@ -45,8 +44,7 @@
         android:layout_height="50dp"
         android:text="@string/retry" 
         android:clickable="true" 
-        android:layout_weight="1"
-        android:background="#FF0000FF"/>
+        android:layout_weight="1"/>
        
  	<Button
         android:id="@+id/next_button"
@@ -54,7 +52,6 @@
         android:layout_height="50dp"
         android:text="@string/next"
         android:clickable="true" 
-        android:layout_weight="1"
-        android:background="#FF00FF00"/>
+        android:layout_weight="1"/>
  	</LinearLayout>
 </LinearLayout>

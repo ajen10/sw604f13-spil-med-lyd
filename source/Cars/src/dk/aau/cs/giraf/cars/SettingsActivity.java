@@ -35,6 +35,8 @@ public class SettingsActivity extends Activity implements DialogListener {
     public void showMicTestDialog(View v) {
     	MicTestDialogFragment micTest = new MicTestDialogFragment();
     	
+    	micTest.setCancelable(false);
+    	
     	micTest.show(getFragmentManager(), "micTestDialog");
     	
     	
@@ -44,6 +46,8 @@ public class SettingsActivity extends Activity implements DialogListener {
 	public void pitchResult() {
 		// TODO Auto-generated method stub
 		MicInputDialogFragment micInput = new MicInputDialogFragment();
+		
+		micInput.setCancelable(false);
 		
 		micInput.show(getFragmentManager(), "micInputDialog");
 		

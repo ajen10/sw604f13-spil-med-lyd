@@ -6,10 +6,11 @@ public class GameInfo {
 	private static int mLowFreq = -1;
 	private static int mHighFreq = -1;
 	private static int mCurrFreq = -1;
-	public static float carSpeed = 0.75F;    // TODO Indsæt hastigheden på bilen her som en float
-	public static int numberOfObstacles = 2; // TODO Indsæt nummer for objekter
+	public static float carSpeed = 0.75F;    // TODO Indsï¿½t hastigheden pï¿½ bilen her som en float
+	public static int numberOfObstacles = 2; // TODO Indsï¿½t nummer for objekter
 	public static boolean garageClosing = false;
 	public static boolean win = false;
+	public static boolean pause = false;
 	private GameInfo() { /*empty */ }
 	
 	public static void setHighFreq(int highFreq) {

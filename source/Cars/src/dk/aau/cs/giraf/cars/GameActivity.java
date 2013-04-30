@@ -28,7 +28,7 @@ public class GameActivity extends Activity {
 		view = new GameView(this, getResources(), bitmapIds);
 		setContentView(view);
 		
-		gameThread = new GameThread(objectList);
+		gameThread = new GameThread(objectList, getFragmentManager());
 		recorderThread = new RecorderThread();
 		
 		SetObjects();
