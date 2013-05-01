@@ -36,6 +36,7 @@ public class GameActivity extends Activity {
 		BitmapContainer.setResources(getResources());
 		
 		BitmapContainer.add(R.drawable.map);
+		BitmapContainer.add(R.drawable.grass);
 		BitmapContainer.add(R.drawable.garage_backwall);
 		BitmapContainer.add(R.drawable.garage_port_aaben);
 		BitmapContainer.add(R.drawable.garage_port_step1);

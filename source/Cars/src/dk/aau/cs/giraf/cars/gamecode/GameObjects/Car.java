@@ -182,7 +182,9 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 			openColors.add(2);
 		}
 		
-		Random rand = new Random();
-		currentColor = openColors.get(rand.nextInt(openColors.size()));
+		if (openColors.size() > 0) {
+			Random rand = new Random();
+			currentColor = openColors.get(rand.nextInt(openColors.size()));
+		}
 	}
 }

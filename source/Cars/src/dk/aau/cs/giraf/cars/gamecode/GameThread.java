@@ -116,14 +116,13 @@ public class GameThread extends Thread {
 							car.closeColor();
 						}
 						else {
-							// TODO DISPLAY COLLISION
+							GameInfo.pause = true;
+							showDialog();
 						}
 						car.resetPosition();
 					}
 					else {
-						// TODO DISPLAY COLLISION
 						car.resetPosition();
-						// TODO evt. Gen. ny map
 						GameInfo.pause = true;
 						showDialog();
 					}
