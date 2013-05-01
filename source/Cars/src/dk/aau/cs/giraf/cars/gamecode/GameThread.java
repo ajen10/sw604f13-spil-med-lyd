@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.System;
 
+import android.app.FragmentManager;
+
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
 
 
@@ -15,10 +17,29 @@ public class GameThread extends Thread {
 	Boolean running;
 	private boolean mSettingsView = false;
 	public int numberOfClosedGarages;
+	private FragmentManager manager;
 	
 	public GameThread(List<GameObject> gameObjects) {
 		workableObjects = new ArrayList<IWorkable>();
 		collidableObjects = new ArrayList<ICollidable>();
+		
+		for (GameObject object : gameObjects) {
+			if (object instanceof IWorkable) {
+				workableObjects.add((IWorkable) object);
+			}
+			else if (object instanceof ICollidable) {
+				collidableObjects.add((ICollidable) object);
+			}
+			else if (object instanceof Car) {
+				car = (Car) object;
+			}
+		}
+	}
+	
+	public GameThread(List<GameObject> gameObjects, FragmentManager manager) {
+		workableObjects = new ArrayList<IWorkable>();
+		collidableObjects = new ArrayList<ICollidable>();
+		this.manager = manager;
 		
 		for (GameObject object : gameObjects) {
 			if (object instanceof IWorkable) {
@@ -95,6 +116,8 @@ public class GameThread extends Thread {
 						// TODO DISPLAY COLLISION
 						car.resetPosition();
 						// TODO evt. Gen. ny map
+						GameInfo.pause = true;
+						showDialog();
 					}
 				}
 			}
@@ -125,6 +148,14 @@ public class GameThread extends Thread {
 				Thread.sleep(sleepFor);
 			} catch (InterruptedException e) {}
 		}
+	}
+	
+	
+	public void showDialog() {
+		CarCrashDialogFragment carCrash = new CarCrashDialogFragment();
+		
+		carCrash.setCancelable(false);
+		carCrash.show(manager, "crashdialog");
 	}
 	
 	public void stopRunning() {

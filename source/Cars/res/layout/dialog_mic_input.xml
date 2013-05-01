@@ -11,7 +11,6 @@
         android:layout_height="50dp"
         android:clickable="true"
         android:text="@string/retry"
-        android:background="#FF0000FF"
         android:layout_weight="1"/>  
 
         <!-- <ImageView
@@ -30,8 +29,7 @@
         android:layout_height="50dp"
         android:clickable="true"
         android:text="@string/next"
-        android:layout_weight="1"
-        android:background="#FF00FF00" />
+        android:layout_weight="1" />
     
 
 </LinearLayout>

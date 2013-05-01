@@ -9,7 +9,6 @@ import dk.aau.cs.giraf.cars.R;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.gamecode.GameObject;
 import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
-import dk.aau.cs.giraf.cars.gamecode.GameView;
 import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
@@ -47,12 +46,12 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	@Override
 	public void PerformWork() {
 		updateCarCollisionBox = true;
-		if (GameInfo.win == false && GameInfo.garageClosing == false){
+		if (GameInfo.win == false && GameInfo.garageClosing == false && GameInfo.pause == false){
 			xOffset = xOffset + carSpeedAsFloat;
 		}
 		int currFreq = GameInfo.getCurrFreq();
 		
-		if (currFreq > 0) {
+		if (currFreq > 0 && xOffset > -(MapDivider.obstacleWidth / 2)) {
 			if (currFreq > mHighFreq && yOffset - halfObstacleHeight > MapDivider.mapYStart) {
 				yOffset -= 2;
 			} else if (currFreq < mLowFreq && yOffset + halfObstacleHeight < MapDivider.mapYEnd) {
