@@ -13,6 +13,7 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
 import dk.aau.cs.giraf.oasis.lib.models.Setting;
 import dk.aau.cs.giraf.oasis.lib.controllers.AppsHelper;
 
+
 public class Settings1Fragment extends ListFragment {
 	private ProfileAdapter adapter;
 	private Profile guardian;
@@ -61,6 +62,7 @@ public class Settings1Fragment extends ListFragment {
 		v.setBackgroundColor(Color.MAGENTA);
 		previousColoredItem = v;
 		getSettingsById(((Profile) l.getAdapter().getItem(position)).getId());
+
 	}
 }
 

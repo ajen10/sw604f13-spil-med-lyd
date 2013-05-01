@@ -10,6 +10,7 @@ import android.widget.TextView;
 import dk.aau.cs.giraf.oasis.lib.Helper;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
 
+
 public class StartupActivity extends Activity {
 	private long guardianId;
 	public static Profile guardian;
@@ -65,5 +66,4 @@ public class StartupActivity extends Activity {
 		Intent intent = new Intent(StartupActivity.this, HelpActivity.class);
 		StartupActivity.this.startActivity(intent);
 	}
-
 }
