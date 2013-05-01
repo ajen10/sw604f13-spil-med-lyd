@@ -17,7 +17,7 @@ public class MicCar extends Car {
 	private int mEndY;
 	
 	public MicCar(int viewWidth, int viewHeight, int carWidth, int carHeight) {
-		super(0,0);   //Second argument is the speed of the car in the X direction
+		super(0, 0, null, null);   //Second argument is the speed of the car in the X direction
 		mViewWidth = viewWidth;
 		mImgWidth = carWidth;
 		mImgHeight = carHeight;

@@ -16,8 +16,8 @@ public abstract class BitmapContainer {
 		bitmapIds.add(bitmapId);
 		resourceList.add(bitmapId);
 	}
-	public static int add(int bitmapId, int recolorRed, int recolorGreen, int recolorBlue) {
-		int largestId = 0;
+	public static int add(int bitmapId, int newColor) {
+		int largestId = 0x7f020011 + 99;
 		for (Integer id : bitmapIds) {
 			if (id > largestId) {
 				largestId = id;
@@ -25,17 +25,16 @@ public abstract class BitmapContainer {
 		}
 		
 		int newBitmapId = largestId + 1;
-		Bitmap newBitmap = recolorBitmap(bitmapId, recolorRed, recolorGreen, recolorBlue);
+		Bitmap newBitmap = recolorBitmap(bitmapId, newColor);
+		bitmapIds.add(newBitmapId);
 		recoloredList.add(new BitmapReference(newBitmapId, newBitmap));
 		return newBitmapId;
 	}
-	private static Bitmap recolorBitmap(int bitmapId, int recolorRed, int recolorGreen, int recolorBlue) {
+	private static Bitmap recolorBitmap(int bitmapId, int color) {
 		int whiteValue = 0xFFFFFFFF;
-		int recolorValue = 0xFF000000 + recolorRed * 256 * 256 +
-										recolorGreen * 256 +
-										recolorBlue;
+		int recolorValue = color;
 		
-		Bitmap newBitmap = BitmapFactory.decodeResource(resources, bitmapId).copy(Bitmap.Config.ARGB_8888, true);
+		Bitmap newBitmap = get(bitmapId).copy(Bitmap.Config.ARGB_8888, true);
 		for (int x = 0; x < newBitmap.getWidth(); x++) {
 			for (int y = 0; y < newBitmap.getHeight(); y++) {
 				if (newBitmap.getPixel(x, y) == whiteValue) {
@@ -47,43 +46,53 @@ public abstract class BitmapContainer {
 		return newBitmap;
 	}
 	
-	public static Bitmap get(int resourceId) {
+	public static Bitmap get(int bitmapId) {
+			System.out.println(bitmapId);
+			if (bitmapId == 2130837509) {
+				System.out.println("lol");
+			}
 		for (Integer id : resourceList) {
-			if (id == resourceId) {
-				return BitmapFactory.decodeResource(resources, resourceId);
+			if (id == bitmapId) {
+				if (bitmapId == 0x7F020005) {
+					System.out.println(resources);
+				}
+				return BitmapFactory.decodeResource(resources, bitmapId);
 			}
 		}
 		for (BitmapReference reference : recoloredList) {
-			if (reference.id == resourceId) {
+			if (reference.id == bitmapId) {
 				return reference.bitmap;
 			}
 		}
 		
+		System.out.println("Did not find bitmap");
 		return null;
 	}
 
 	public static int[] getBitmapIds() {
-		int[] bitmapIds = new int[size()];
+		int[] arrayBitmapIds = new int[size()];
 		
 		int i = 0;
-		for (Integer id : resourceList) {
-			bitmapIds[i] = id;
-			i++;
-		}
-		for (BitmapReference reference : recoloredList) {
-			bitmapIds[i] = reference.id;
+		for (Integer id : bitmapIds) {
+			arrayBitmapIds[i] = id;
 			i++;
 		}
 		
-		return bitmapIds;
+		return arrayBitmapIds;
 	}
 	
 	public static int size() {
-		return resourceList.size() + recoloredList.size();
+		return bitmapIds.size();
 	}
 	
 	public static void setResources(Resources resources) {
 		BitmapContainer.resources = resources; 
+	}
+	
+	public static void clear() {
+		bitmapIds.clear();
+		resourceList.clear();
+		recoloredList.clear();
 	}
 	
 }

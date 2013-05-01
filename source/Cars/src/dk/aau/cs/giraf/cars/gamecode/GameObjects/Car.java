@@ -1,7 +1,11 @@
 package dk.aau.cs.giraf.cars.gamecode.GameObjects;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import javax.microedition.khronos.opengles.GL10;
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -23,8 +27,12 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	private float carSpeedAsFloat;
 	public float carScaling = 0.7F;
 	private int halfObstacleHeight = (int)(MapDivider.obstacleHeight * carScaling) / 2;
+	private int[] colors;
+	private int[] bitmapIds;
+	private boolean[] closedColors;
+	private int currentColor;
 	
-	public Car(int y, float carSpeed) {
+	public Car(int y, float carSpeed, int[] colors, int[] bitmapIds) {
 		carSpeedAsFloat = carSpeed;
 		this.yOffset = y;
 
@@ -36,11 +44,22 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		collisionBox[1] = new Point(0,0);
 		collisionBox[2] = new Point(0,0);
 		collisionBox[3] = new Point(0,0);
+		
+		this.colors = colors;
+		this.bitmapIds = bitmapIds;
+		closedColors = new boolean[colors.length];
+		Random rand = new Random();
+		currentColor = rand.nextInt(colors.length);
 	}
 	
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
-		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset - halfObstacleHeight, (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset, yOffset + halfObstacleHeight));
+		if (colors[currentColor] != Color.WHITE) {
+			spriteBatcher.draw(gl, bitmapIds[currentColor], new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset - halfObstacleHeight, (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset, yOffset + halfObstacleHeight));
+		}
+		else {
+			spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset - halfObstacleHeight, (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset, yOffset + halfObstacleHeight));
+		}
 	}
 
 	@Override
@@ -135,8 +154,35 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 			   (line1End.y - line1Start.y) * (line2Point.x - line1End.x);
 	}
 	
-	public void resetPosition(){
+	public void resetPosition() {
 		yOffset = MapDivider.mapYStart + MapDivider.totalObstacleHeight / 2 + MapDivider.totalObstacleHeight;
 		xOffset = -MapDivider.obstacleWidth;
+	}
+	
+	public int getColor() {
+		return colors[currentColor];
+	}
+	
+	public void closeColor() {
+		closedColors[currentColor] = true;
+		
+		newColor();
+	}
+	
+	public void newColor() {
+		ArrayList<Integer> openColors = new ArrayList<Integer>();
+		
+		if (closedColors[0] == false) {
+			openColors.add(0);
+		}
+		if (closedColors[1] == false) {
+			openColors.add(1);
+		}
+		if (closedColors[2] == false) {
+			openColors.add(2);
+		}
+		
+		Random rand = new Random();
+		currentColor = openColors.get(rand.nextInt(openColors.size()));
 	}
 }

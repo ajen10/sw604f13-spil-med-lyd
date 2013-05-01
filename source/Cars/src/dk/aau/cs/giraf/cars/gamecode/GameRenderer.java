@@ -44,7 +44,7 @@ public class GameRenderer implements Renderer {
 	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 	OTHER DEALINGS IN THE SOFTWARE. */
 
-	// drawer.onDrawFrame(..) gets called by SpriteBatcher each frame
+	// drawer.onDrawFrame(..) gets called by GameRenderer each frame
 	private Drawer drawer;
 
 	private int width;
@@ -62,7 +62,6 @@ public class GameRenderer implements Renderer {
 		// Temporarily stores for loading textures later:
 		this.bitmapIds = BitmapContainer.getBitmapIds();
 		this.resources = resources;
-		BitmapContainer.setResources(resources);
 		// Create data structure to hold info for draw calls
 		textureIds = new int[bitmapIds.length];
 		spriteData = new ArrayList<SpriteData>(bitmapIds.length);
@@ -247,7 +246,7 @@ public class GameRenderer implements Renderer {
 				return;
 			}
 		}
-		Log.w("SpriteBatcher", "Warning: bitmapId not found");
+		Log.w("GameRenderer", "Warning: bitmapId not found (" + bitmapId + ")");
 	}
 
 	public void draw(GL10 gl, int bitmapId, Rect src, Rect dst, int angle) {
