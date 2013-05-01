@@ -2,6 +2,7 @@ package dk.aau.cs.giraf.cars.gamecode.GameObjects;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -27,6 +28,8 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	boolean closing = false;
 	AnimationState animState = AnimationState.Open;
 	int animationCounter;
+	int[] coloredBitmapIds = null;
+	public int color = Color.WHITE;
 
 	public Garage(int lane, int coloumn) {
 		Rect rectangle = MapDivider.CalculateObstacle(lane, coloumn);
@@ -56,9 +59,6 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 							rectangle.left + (int)(rectangle.width() * 0.25),
 							rectangle.bottom - (int)(rectangle.height() * 0.05));
 		
-		
-		//05, 05, 19, 05
-		
 		frontwall = new Rect(rectangle.left + (int)(rectangle.width() * 0.24),
 							 rectangle.top + (int)(rectangle.height() * 0.45),
 							 rectangle.right - (int)(rectangle.width() * 0.05),
@@ -75,6 +75,13 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 		collisionBox[1] = new Point(rectangle.left, objectSideCollisionY);
 		collisionBox[2] = new Point(rectangle.centerX(),rectangle.bottom);
 		collisionBox[3] = new Point(rectangle.right, objectSideCollisionY);
+	}
+	
+	public Garage(int lane, int coloumn, int color, int[] bitmapIds) {
+		this(lane, coloumn);
+		
+		this.color = color;
+		coloredBitmapIds = bitmapIds;
 	}
 
 	@Override
@@ -125,6 +132,14 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
+		if (coloredBitmapIds == null) {
+			DrawWhite(gl, spriteBatcher);
+		}
+		else {
+			DrawColored(gl, spriteBatcher);
+		}
+	}
+	private void DrawWhite(GL10 gl, GameRenderer spriteBatcher) {
 		spriteBatcher.draw(gl, R.drawable.garage_backwall, new Rect(0, 0, 414, 281), backwall);
 		
 		switch(animState) {
@@ -146,6 +161,29 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 		
 		spriteBatcher.draw(gl, R.drawable.garage_frontwall, new Rect(0, 0, 414, 281), frontwall);
 		spriteBatcher.draw(gl, R.drawable.garage_tag, new Rect(0, 0, 524, 164), roof);
+	}
+	private void DrawColored(GL10 gl, GameRenderer spriteBatcher) {
+		spriteBatcher.draw(gl, coloredBitmapIds[0], new Rect(0, 0, 414, 281), backwall);
+		
+		switch(animState) {
+			case Open:
+				spriteBatcher.draw(gl, coloredBitmapIds[1], new Rect(0, 0, 511, 149), doorOpen);
+				break;
+			case Step1:
+				spriteBatcher.draw(gl, coloredBitmapIds[2], new Rect(0, 50, 365, 251), doorAnimation1);
+				break;
+			case Step2:
+				spriteBatcher.draw(gl, coloredBitmapIds[3], new Rect(0, 20, 266, 351), doorAnimation2);
+				break;
+			case Closed:
+				spriteBatcher.draw(gl, coloredBitmapIds[4], new Rect(0, 0, 92, 436), doorClosed);
+				break;
+			default:
+				break;
+		}
+		
+		spriteBatcher.draw(gl, coloredBitmapIds[5], new Rect(0, 0, 414, 281), frontwall);
+		spriteBatcher.draw(gl, coloredBitmapIds[6], new Rect(0, 0, 524, 164), roof);
 	}
 	
 	private enum AnimationState { Open, Step1, Step2, Closed }

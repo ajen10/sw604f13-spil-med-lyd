@@ -109,7 +109,15 @@ public class GameThread extends Thread {
 				if (car != null &&
 					car.CalculateCollisions(object.calculateCollisionBox())) { //�NDRE TIL PASSENDE FORM
 					if (object instanceof Garage) {
-						((Garage)object).startClosing();
+						Garage garage = (Garage)object;
+						
+						if (garage.color == car.getColor()) {
+							garage.startClosing();
+							car.closeColor();
+						}
+						else {
+							// TODO DISPLAY COLLISION
+						}
 						car.resetPosition();
 					}
 					else {
