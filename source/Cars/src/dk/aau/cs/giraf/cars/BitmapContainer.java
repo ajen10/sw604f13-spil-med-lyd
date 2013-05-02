@@ -47,15 +47,8 @@ public abstract class BitmapContainer {
 	}
 	
 	public static Bitmap get(int bitmapId) {
-			System.out.println(bitmapId);
-			if (bitmapId == 2130837509) {
-				System.out.println("lol");
-			}
 		for (Integer id : resourceList) {
 			if (id == bitmapId) {
-				if (bitmapId == 0x7F020005) {
-					System.out.println(resources);
-				}
 				return BitmapFactory.decodeResource(resources, bitmapId);
 			}
 		}
