@@ -1,5 +1,8 @@
 package dk.aau.cs.giraf.cars.sound;
 
+import java.util.Arrays;
+
+
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.sound.TestTypes;
 
@@ -9,6 +12,8 @@ public class MicTestThread extends Thread {
 	private int mTmpHighFreq = 0;
 	private TestTypes mTestType = TestTypes.Low;
 	private int arrayIntervals = 50;
+	private boolean restartHigh = false;
+	private boolean restartLow = false;
 	
 	public MicTestThread() {
 		// TODO Auto-generated constructor stub
@@ -42,6 +47,11 @@ public class MicTestThread extends Thread {
 		int frequencyRange;
 		
 		while(mTestType == TestTypes.High) {
+			if (restartHigh) {
+				Arrays.fill(soundArray, 0);
+				restartHigh = false;
+			}
+			
 			tmpCurrFreq = GameInfo.getCurrFreq();
 			
 			if (tmpCurrFreq > 50) {
@@ -79,6 +89,11 @@ public class MicTestThread extends Thread {
 		int frequencyRange;
 		
 		while(mTestType == TestTypes.Low) {
+			if (restartLow) {
+				Arrays.fill(soundArray, 0);
+				restartLow = false;
+			}
+			
 			tmpCurrFreq = GameInfo.getCurrFreq();
 			
 			if (tmpCurrFreq > 50) {
@@ -115,11 +130,11 @@ public class MicTestThread extends Thread {
 	}
 	
 	public void restartLowFreq() {
-		mTmpLowFreq = 0;
+		restartLow = true;
 	}
 	
 	public void restartHighFreq() {
-		mTmpHighFreq = 0;
+		restartHigh = true;
 	}
 	
 

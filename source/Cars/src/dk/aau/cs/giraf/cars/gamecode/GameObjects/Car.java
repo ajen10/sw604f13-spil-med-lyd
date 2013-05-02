@@ -41,6 +41,11 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
 		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset - halfObstacleHeight, (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset, yOffset + halfObstacleHeight));
+		int sx = (int) xOffset;
+		int sy = yOffset - halfObstacleHeight;
+		int ex = (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset;
+		int ey = yOffset + halfObstacleHeight;
+		System.out.println("sx = " + sx + " sy: " + sy + " ex: " + ex + " ey: " + ey);
 	}
 
 	@Override
