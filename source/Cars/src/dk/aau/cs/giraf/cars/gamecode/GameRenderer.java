@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+
+import dk.aau.cs.giraf.cars.BitmapContainer;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLUtils;
@@ -25,25 +27,26 @@ public class GameRenderer implements Renderer {
 	/* License
 
 	Copyright (c) 2013 Tim Wicksteed
-	Permission is hereby granted, free of charge, to any person
-	obtaining a copy of this software and associated documentation
-	files (the ìSoftwareî), to deal in the Software without
-	restriction, including without limitation the rights to use,
-	copy, modify, merge, publish, distribute, sublicense, and/or
-	sell copies of the Software, and to permit persons to whom the
-	Software is furnished to do so, subject to the following conditions:
-	The above copyright notice and this permission notice shall be
-	included in all copies or substantial portions of the Software.
-	THE SOFTWARE IS PROVIDED ìAS ISî, WITHOUT WARRANTY OF ANY KIND,
-	EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-	OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-	NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR OR COPYRIGHT
-	HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-	WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-	OTHER DEALINGS IN THE SOFTWARE. */
+	Permission is hereby granted, free of charge, to any person obtaining
+	a copy of this software and associated documentation files (the ‚ÄúSoftware‚Äù), 
+	to deal in the Software without restriction, including without limitation the 
+	rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+	sell copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
 
-	// drawer.onDrawFrame(..) gets called by SpriteBatcher each frame
+	The above copyright notice and this permission notice shall be included in all 
+	copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED ‚ÄúAS IS‚Äù, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHOR OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+	DEALINGS IN THE SOFTWARE. */
+
+	// drawer.onDrawFrame(..) gets called by GameRenderer each frame
+
 	private Drawer drawer;
 
 	private int width;
@@ -57,9 +60,10 @@ public class GameRenderer implements Renderer {
 	int[] bitmapIds;
 	Resources resources;
 
-	public GameRenderer(Resources resources, int[] bitmapIds, Drawer drawer) {
+
+	public GameRenderer(Resources resources, Drawer drawer) {
 		// Temporarily stores for loading textures later:
-		this.bitmapIds = bitmapIds;
+		this.bitmapIds = BitmapContainer.getBitmapIds();
 		this.resources = resources;
 		// Create data structure to hold info for draw calls
 		textureIds = new int[bitmapIds.length];
@@ -131,7 +135,7 @@ public class GameRenderer implements Renderer {
 		gl.glGenTextures(textureIds.length, textureIds, 0);
 		for (int i = 0; i < bitmapIds.length; i++) {
 			addTexture(gl,
-					BitmapFactory.decodeResource(resources, bitmapIds[i]),
+					BitmapContainer.get(bitmapIds[i]),
 					textureIds[i]);
 		}
 	}
@@ -245,7 +249,9 @@ public class GameRenderer implements Renderer {
 				return;
 			}
 		}
-		Log.w("SpriteBatcher", "Warning: bitmapId not found");
+
+		Log.w("GameRenderer", "Warning: bitmapId not found (" + bitmapId + ")");
+
 	}
 
 	public void draw(GL10 gl, int bitmapId, Rect src, Rect dst, int angle) {
@@ -257,7 +263,7 @@ public class GameRenderer implements Renderer {
 				return;
 			}
 		}
-		Log.w("SpriteBatcher", "Warning: bitmapId not found");
+		Log.w("GameRenderer", "Warning: bitmapId not found (" + bitmapId + ")");
 	}
 
 	// COMPLICATED
@@ -279,7 +285,7 @@ public class GameRenderer implements Renderer {
 				return;
 			}
 		}
-		Log.w("SpriteBatcher", "Warning: bitmapId not found");
+		Log.w("GameRenderer", "Warning: bitmapId not found (" + bitmapId + ")");
 	}
 
 	// DIRECT
