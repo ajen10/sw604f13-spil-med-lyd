@@ -4,15 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.System;
 
-<<<<<<< HEAD
-public class GameThread extends Thread {
-	final int millisecondsPerTick = 25;
-	List<IWorkable> workableObjects;
-	Boolean running;
-	
-	public GameThread(List<GameObject> gameObjects) {
-		workableObjects = new ArrayList<IWorkable>();
-=======
+
 import android.app.FragmentManager;
 
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;

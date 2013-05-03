@@ -1,41 +1,19 @@
 package dk.aau.cs.giraf.cars.gamecode.GameObjects;
 
-<<<<<<< HEAD
 import javax.microedition.khronos.opengles.GL10;
 
 import android.graphics.Rect;
 
-=======
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.microedition.khronos.opengles.GL10;
-
 import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.Rect;
-
 import dk.aau.cs.giraf.cars.R;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
->>>>>>> dev
 import dk.aau.cs.giraf.cars.gamecode.GameObject;
 import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
 import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
-<<<<<<< HEAD
-
-public class Car extends GameObject implements IWorkable, IDrawable {
-	int offset = 0;
-	
-	public Car() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
-		// TODO Auto-generated method stub
-		//spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(150 + offset, 150, 250 + offset, 250));
-=======
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
 public class Car extends GameObject implements IWorkable, IDrawable {
@@ -87,16 +65,10 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		else {
 			spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset - halfObstacleHeight, (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset, yOffset + halfObstacleHeight));
 		}
->>>>>>> dev
 	}
 
 	@Override
 	public void PerformWork() {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-	}
-
-=======
 		updateCarCollisionBox = true;
 		if (GameInfo.win == false && GameInfo.garageClosing == false && GameInfo.pause == false){
 			xOffset = xOffset + carSpeedAsFloat;
@@ -220,5 +192,4 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 			currentColor = openColors.get(rand.nextInt(openColors.size()));
 		}
 	}
->>>>>>> dev
 }
