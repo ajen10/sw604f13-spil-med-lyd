@@ -2,13 +2,14 @@ package dk.aau.cs.giraf.cars.gamecode;
 
 import dk.aau.cs.giraf.cars.R;
 import android.os.Bundle;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.graphics.Color;
-import android.util.DisplayMetrics;
-import android.widget.ImageView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class CarCrashDialogFragment extends DialogFragment {
 	
@@ -18,12 +19,33 @@ public class CarCrashDialogFragment extends DialogFragment {
 	}
 	
 	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.dialog_car_crash, container, false);
+		
+		Button nextButton = (Button) view.findViewById(R.id.next_button);
+		
+		nextButton.setOnClickListener(new OnClickListener() {
+        	public void onClick(View v) {
+        		GameInfo.pause = false;
+        		dismiss();
+        	}
+        });
+		
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+        view.setBackgroundColor(Color.WHITE);
+        
+		return view;
+
+	}
+	
+	/*@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
         
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 		int height = displaymetrics.heightPixels;
-		int wwidth = displaymetrics.widthPixels;
+		int width = displaymetrics.widthPixels;
 		
 		// Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -49,7 +71,7 @@ public class CarCrashDialogFragment extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-	}
+	}*/
 	
 }
 

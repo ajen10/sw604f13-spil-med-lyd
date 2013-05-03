@@ -23,4 +23,17 @@
     <string name="label_start">Cars - Start</string>
     <string name="label_settings">Cars - Indstillinger</string>
     <string name="label_help">Cars - Hjælp</string>
+    <string name="colors">Farver</string>
+    <string name="mic_settings">Indstil mikrofon</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="hundredpct">100%</string>
+    <string name="seventyfivepct">75%</string>
+    <string name="twentyfivepct">25%</string>
+    <string name="fiftypct">50%</string>
+    <string name="obstacles">Antal forhindringer</string>
+    <string name="carspeed">Bilens hastighed</string>
+    <string name="start">Start</string>
 </resources>
