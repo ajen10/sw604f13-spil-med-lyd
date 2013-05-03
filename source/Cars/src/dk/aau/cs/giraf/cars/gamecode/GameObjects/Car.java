@@ -47,9 +47,15 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		
 		this.colors = colors;
 		this.bitmapIds = bitmapIds;
-		closedColors = new boolean[colors.length];
-		Random rand = new Random();
-		currentColor = rand.nextInt(colors.length);
+		if (colors != null) {
+			closedColors = new boolean[colors.length];
+			Random rand = new Random();
+			currentColor = rand.nextInt(colors.length);
+		} else {
+			currentColor = 0;
+			this.colors = new int[] {Color.WHITE};
+		}
+		
 	}
 	
 	@Override

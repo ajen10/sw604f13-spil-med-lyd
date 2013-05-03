@@ -9,30 +9,28 @@ import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
 
 public class MicCar extends Car {
 	private final int mViewWidth;
+	private final int mViewHeight;
 	private final int mImgWidth;
 	private final int mImgHeight;
-	private int mStartX;
 	private int mStartY;
-	private int mEndX;
 	private int mEndY;
 	
 	public MicCar(int viewWidth, int viewHeight, int carWidth, int carHeight) {
 		super(0, 0, null, null);   //Second argument is the speed of the car in the X direction
 		mViewWidth = viewWidth;
+		mViewHeight = viewHeight;
 		mImgWidth = carWidth;
 		mImgHeight = carHeight;
 	}
 
 	@Override
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
-		int x = (mViewWidth / 2) - (mImgWidth / 2);
+	
+		mStartY = (mViewHeight / 2) - (mViewWidth / 2) + yOffset;
+		mEndY = mStartY + mViewWidth;
 		
-		mStartX = x;
-		mStartY = yOffset;
-		mEndX = x + (mImgWidth * 2);
-		mEndY = (mImgHeight * 2) + yOffset;
-		
-		spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(mStartX, mStartY , mEndX, mEndY));
+		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, mImgWidth, mImgHeight), new Rect(0, mStartY , mViewWidth, mEndY));
+
 	}
 
 	@Override
