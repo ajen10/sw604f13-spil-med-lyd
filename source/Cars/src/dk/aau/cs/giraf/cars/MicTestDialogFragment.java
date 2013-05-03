@@ -49,9 +49,6 @@ public class MicTestDialogFragment extends DialogFragment {
 			int gameViewHeight = (int)(GAMEVIEW_HEIGHT * scale + 0.5f);
 					
 			LinearLayout.LayoutParams gameViewParams = new LinearLayout.LayoutParams(gameViewWidth, gameViewHeight);
-			
-	        
-	        gameViewParams.bottomMargin = (int) (10.0f * scale + 0.5f);
 	        gameViewParams.gravity = Gravity.CENTER_HORIZONTAL;
 	        
 	       	LinearLayout openglLayout = (LinearLayout) buttonView.findViewById(R.id.opengl_layout);
