@@ -36,6 +36,7 @@ public class CarCrashDialogFragment extends DialogFragment {
 		
 		nextButton.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
+        		GameInfo.pause = false;
         		dismiss();
         	}
         });

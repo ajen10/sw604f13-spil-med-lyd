@@ -27,7 +27,7 @@ public class MicCar extends Car {
 	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
 	
 		mStartY = (mViewHeight / 2) - (mViewWidth / 2) + yOffset;
-		mEndY = mStartY + mViewWidth + yOffset;
+		mEndY = mStartY + mViewWidth;
 		
 		spriteBatcher.draw(gl, R.drawable.car, new Rect(0, 0, mImgWidth, mImgHeight), new Rect(0, mStartY , mViewWidth, mEndY));
 
