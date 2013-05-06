@@ -37,4 +37,12 @@
     <string name="carspeed">Bilens hastighed</string>
     <string name="start">Start</string>
     <string name="chosecolor">Vælg en farve</string>
+    <string name="mic">Mikrofon</string>
+    <string name="michelptext">For at indstille mikrofonen skal du ude på startskærmen trykke på indstillinger og derefter på knappen Start til højre for teksten Mikrofon Indstillinger. Når knappen trykkes bliver din stemme testet ved at optage dig snakke med en dyb stemme og derefter en høj stemme. Til sidst kan du se hvordan din stemme nu påvirker figuren der flytter sig op og ned når du snakker. Hvis resultatet ikke er tilfredsstillende kan testen tages igen, før du begynder at spille.</string>
+    <string name="okay">Okay</string>
+    <string name="settings">Indstillinger</string>
+    <string name="micsettingstext">For at ændre indstillinger i spillet skal du ude på startskærmen trykke på Indstillinger hvorefter et nyt vindue vil vise den nuværendes profils indstillinger. I højre side kan du ændre dine ønskede indstillinger og derefter tryk på knappen Gem. I venstre side er der en liste over af de profile den nuværende bruger kan tilgå. Hvis der trykkes på et navn vises den profils indstillinger</string>
+    <string name="gamehelp">Spil Hjælp</string>
+    <string name="gamehelptext">Spillet går ud på at styre bilen ind i garagerne der er placeret i højre side af skærmen. Der er forhindringer på kørebanen som skal undgåes. Hvis et objekt bliver påkørt er bilen ødelagt og du skal starte forfra. Du kan styre bilen ned ved at lave en dyb lyd og ligeledes op ved at lave en høj lyd. Hvis alle biler køres ind i deres garage har du vundet spillet</string>
+
 </resources>

@@ -67,7 +67,7 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 	public void changeColors(View view) {
 		Dialog color_dialog = new Dialog(this);
 		color_dialog.setContentView(R.layout.color_dialog);
-		color_dialog.setTitle("@string/chosecolor");
+		color_dialog.setTitle(R.string.chosecolor);
 		color_dialog.setCanceledOnTouchOutside(false);
 		color_dialog.show();
 
