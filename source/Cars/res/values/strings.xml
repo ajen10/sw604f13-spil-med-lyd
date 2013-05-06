@@ -23,7 +23,7 @@
     <string name="label_start">Cars - Start</string>
     <string name="label_settings">Cars - Indstillinger</string>
     <string name="label_help">Cars - Hjælp</string>
-    <string name="colors">Farver</string>
+    <string name="colors">Farver på garagerne</string>
     <string name="mic_settings">Indstil mikrofon</string>
     <string name="one">1</string>
     <string name="two">2</string>
@@ -36,4 +36,5 @@
     <string name="obstacles">Antal forhindringer</string>
     <string name="carspeed">Bilens hastighed</string>
     <string name="start">Start</string>
+    <string name="chosecolor">Vælg en farve</string>
 </resources>

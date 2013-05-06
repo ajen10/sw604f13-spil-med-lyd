@@ -12,6 +12,7 @@ import dk.aau.cs.giraf.cars.MicSetupDialogFragment.DialogListener;
 import android.view.View.OnClickListener;
 import dk.aau.cs.giraf.cars.R.id;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
+import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 
 
 public class SettingsActivity extends Activity implements DialogListener, InputTestDialogListener {
@@ -38,25 +39,25 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		//	recorderThread.recording = false;
 	}
 
-	
-	
+
+
 	public void createTestDialog() {
 		MicSetupDialogFragment micTest = new MicSetupDialogFragment();
-    	
-    	micTest.setCancelable(false);
-    	
-    	micTest.show(getFragmentManager(), "micTestDialog");
-    	
+
+		micTest.setCancelable(false);
+
+		micTest.show(getFragmentManager(), "micTestDialog");
+
 	}
-    public void showMicTestDialog(View v) {
-    	createTestDialog();
-    }
+	public void showMicTestDialog(View v) {
+		createTestDialog();
+	}
 
 	@Override
 	public void pitchResult() {
 		// TODO Auto-generated method stub
 		MicTestDialogFragment micInput = new MicTestDialogFragment();
-		
+
 		micInput.setCancelable(false);
 
 		micInput.show(getFragmentManager(), "micInputDialog");
@@ -66,7 +67,7 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 	public void changeColors(View view) {
 		Dialog color_dialog = new Dialog(this);
 		color_dialog.setContentView(R.layout.color_dialog);
-		color_dialog.setTitle("V�lg en farve");
+		color_dialog.setTitle("@string/chosecolor");
 		color_dialog.setCanceledOnTouchOutside(false);
 		color_dialog.show();
 
@@ -90,6 +91,7 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 				ColorDrawable temp2 = (ColorDrawable)temp;
 				parent.setBackgroundColor(temp2.getColor());
 				color_dialog.dismiss();
+
 			}
 
 		}
@@ -106,7 +108,30 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		case cancel:
 			break;
 		}
-		
+
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		View view;
+		Drawable temp;
+		ColorDrawable temp2;
+
+		view = findViewById(R.id.color1);
+		temp = view.getBackground();
+		temp2 = (ColorDrawable) temp;
+		GameInfo.color1 = temp2.getColor();
+
+		view = findViewById(R.id.color2);
+		temp = view.getBackground();
+		temp2 = (ColorDrawable) temp;
+		GameInfo.color2 = temp2.getColor();
+
+		view = findViewById(R.id.color3);
+		temp = view.getBackground();
+		temp2 = (ColorDrawable) temp;
+		GameInfo.color3 = temp2.getColor();
 	}
 }
 
