@@ -1,5 +1,6 @@
 package dk.aau.cs.giraf.cars;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +30,14 @@ public class GameActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		try {
+			JSON_querying.databaseRead("10", "hello");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setContentView(R.layout.activity_game);
 		
 		objectList = new ArrayList<GameObject>();
