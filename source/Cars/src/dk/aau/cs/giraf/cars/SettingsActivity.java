@@ -87,11 +87,8 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Drawable temp = v.getBackground();
-				ColorDrawable temp2 = (ColorDrawable)temp;
-				parent.setBackgroundColor(temp2.getColor());
+				parent.setBackgroundDrawable(v.getBackground());
 				color_dialog.dismiss();
-
 			}
 
 		}
