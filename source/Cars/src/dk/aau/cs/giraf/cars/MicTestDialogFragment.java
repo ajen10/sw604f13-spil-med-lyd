@@ -80,8 +80,6 @@ public class MicTestDialogFragment extends DialogFragment {
 			int carWidth = (int)(car.getIntrinsicWidth());
 			int carHeight = (int)(car.getIntrinsicHeight());
 			
-			System.out.println(carWidth);
-			System.out.println(carHeight);
 			MapDivider.CalculateConstants(gameViewHeight, carHeight);
 	        
 	        mCar = new MicCar(gameViewWidth, gameViewHeight, carWidth, carHeight);

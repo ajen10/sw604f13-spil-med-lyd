@@ -85,7 +85,7 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	}
 
 	@Override
-	public void PerformWork() {
+	public void performWork() {
 		if (closing) {
 			animationCounter--;
 			if (animationCounter < 0) {
@@ -131,7 +131,7 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	}
 
 	@Override
-	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
+	public void draw(GL10 gl, GameRenderer spriteBatcher) {
 		if (coloredBitmapIds == null) {
 			DrawWhite(gl, spriteBatcher);
 		}

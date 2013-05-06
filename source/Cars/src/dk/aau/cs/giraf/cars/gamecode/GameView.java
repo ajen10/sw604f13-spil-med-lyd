@@ -71,7 +71,7 @@ public class GameView extends GLSurfaceView implements Drawer {
 
 
 		for (IDrawable object : drawableObjects) {
-			object.Draw(gl, spriteBatcher);
+			object.draw(gl, spriteBatcher);
 		}
 	}
 

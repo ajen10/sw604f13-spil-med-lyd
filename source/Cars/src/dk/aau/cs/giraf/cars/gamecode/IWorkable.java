@@ -1,5 +1,5 @@
 package dk.aau.cs.giraf.cars.gamecode;
 
 public interface IWorkable {
-	public void PerformWork();
+	public void performWork();
 }

@@ -58,7 +58,7 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	}
 	
 	@Override
-	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
+	public void draw(GL10 gl, GameRenderer spriteBatcher) {
 		if (colors[currentColor] != Color.WHITE) {
 			spriteBatcher.draw(gl, bitmapIds[currentColor], new Rect(0, 0, 898, 348), new Rect( (int)xOffset, yOffset - halfObstacleHeight, (int)(MapDivider.obstacleWidth * carScaling) + (int)xOffset, yOffset + halfObstacleHeight));
 		}
@@ -68,7 +68,7 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	}
 
 	@Override
-	public void PerformWork() {
+	public void performWork() {
 		updateCarCollisionBox = true;
 		if (GameInfo.win == false && GameInfo.garageClosing == false && GameInfo.pause == false){
 			xOffset = xOffset + carSpeedAsFloat;
