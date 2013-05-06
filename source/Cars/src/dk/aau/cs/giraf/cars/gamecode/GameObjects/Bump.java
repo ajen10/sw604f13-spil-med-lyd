@@ -29,7 +29,7 @@ public class Bump extends GameObject implements IDrawable, ICollidable {
 	}
 
 	@Override
-	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
+	public void draw(GL10 gl, GameRenderer spriteBatcher) {
 		// TODO Auto-generated method stub
 		if (GameInfo.win == false){
 		spriteBatcher.draw(gl, R.drawable.bump, new Rect(0, 0, 411, 288), rectangle);

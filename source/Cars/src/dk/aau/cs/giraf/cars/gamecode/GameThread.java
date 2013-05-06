@@ -93,7 +93,7 @@ public class GameThread extends Thread {
 			numberOfClosedGarages = 0;
 			
 			for (IWorkable object : workableObjects) {
-				object.PerformWork();
+				object.performWork();
 				
 				if (object instanceof Garage &&
 						((Garage)object).closed == true){
@@ -144,7 +144,7 @@ public class GameThread extends Thread {
 		while(running){
 			long currentTime = System.nanoTime();
 			
-			car.PerformWork();
+			car.performWork();
 			
 			long newTime = System.nanoTime();
 			long difference = newTime - currentTime;

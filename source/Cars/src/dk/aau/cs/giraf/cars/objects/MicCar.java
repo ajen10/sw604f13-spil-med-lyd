@@ -24,7 +24,7 @@ public class MicCar extends Car {
 	}
 
 	@Override
-	public void Draw(GL10 gl, GameRenderer spriteBatcher) {
+	public void draw(GL10 gl, GameRenderer spriteBatcher) {
 	
 		mStartY = (mViewHeight / 2) - (mViewWidth / 2) + yOffset;
 		mEndY = mStartY + mViewWidth;
@@ -34,8 +34,8 @@ public class MicCar extends Car {
 	}
 
 	@Override
-	public void PerformWork() {
-		super.PerformWork();
+	public void performWork() {
+		super.performWork();
 		//this.xOffset--;
 	}
 
