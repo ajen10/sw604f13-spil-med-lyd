@@ -7,14 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import dk.aau.cs.giraf.cars.MicTestDialogFragment.InputTestDialogListener;
-import dk.aau.cs.giraf.cars.MicSetupDialogFragment.DialogListener;
+import dk.aau.cs.giraf.cars.MicSetupDialogFragment.InputTestDialogListener;
 import android.view.View.OnClickListener;
 import dk.aau.cs.giraf.cars.R.id;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
 
 
-public class SettingsActivity extends Activity implements DialogListener, InputTestDialogListener {
+public class SettingsActivity extends Activity implements InputTestDialogListener {
 	RecorderThread recorderThread = new RecorderThread();
 
 	@Override
@@ -51,17 +50,6 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
     public void showMicTestDialog(View v) {
     	createTestDialog();
     }
-
-	@Override
-	public void pitchResult() {
-		// TODO Auto-generated method stub
-		MicTestDialogFragment micInput = new MicTestDialogFragment();
-		
-		micInput.setCancelable(false);
-
-		micInput.show(getFragmentManager(), "micInputDialog");
-
-	}
 
 	public void changeColors(View view) {
 		Dialog color_dialog = new Dialog(this);
@@ -102,10 +90,8 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		switch (resultState) {
 		case restart:
 			createTestDialog();
-		case save:
-		case cancel:
+		case complete:
 			break;
-		}
 		
 	}
 }

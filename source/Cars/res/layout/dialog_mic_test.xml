@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:minWidth="500dp">
+    android:orientation="vertical">
     
     <LinearLayout 
         android:orientation="vertical"
@@ -12,8 +11,9 @@
         android:id="@+id/opengl_layout"
         android:layout_weight="1"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-   
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal">
             </LinearLayout>
         
    <LinearLayout 

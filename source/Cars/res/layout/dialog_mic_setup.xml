@@ -14,8 +14,8 @@
     
     <ImageView 
         android:id="@+id/dialog_drawable_to_mimic"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/none"/>
         
@@ -24,9 +24,6 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
     
-        
-        <!--     style="?android:attr/buttonBarStyle"	
-         -->
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="0dp"
@@ -34,7 +31,6 @@
         android:text="@string/cancel"
         android:clickable="true" 
         android:layout_weight="1"/>
-            <!-- style="?android:attr/buttonBarButtonStyle"  -->
     
 
     <Button

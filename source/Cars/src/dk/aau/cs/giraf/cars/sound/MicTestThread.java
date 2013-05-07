@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
-import dk.aau.cs.giraf.cars.sound.TestTypes;
+import dk.aau.cs.giraf.cars.sound.SetupStates;
 
 public class MicTestThread extends Thread {
 	private boolean mRun = false;
 	private int mTmpLowFreq = 0;
 	private int mTmpHighFreq = 0;
-	private TestTypes mTestType = TestTypes.Low;
+	private SetupStates mTestType = SetupStates.Low;
 	private int arrayIntervals = 50;
 	private boolean restartHigh = false;
 	private boolean restartLow = false;
@@ -25,7 +25,7 @@ public class MicTestThread extends Thread {
 		collectFrequencies();
 	}
 	
-	public void setType(TestTypes testType) {
+	public void setType(SetupStates testType) {
 		mTestType = testType;
 	}
 	
@@ -46,7 +46,7 @@ public class MicTestThread extends Thread {
 		int tmpCurrFreq;
 		int frequencyRange;
 		
-		while(mTestType == TestTypes.High) {
+		while(mTestType == SetupStates.High) {
 			if (restartHigh) {
 				Arrays.fill(soundArray, 0);
 				restartHigh = false;
@@ -75,11 +75,6 @@ public class MicTestThread extends Thread {
 			}
 		}
 		mTmpHighFreq = (highestValue + 1) * 50 - 100;
-		
-		System.out.println(mTmpHighFreq);
-		
-		GameInfo.setHighFreq(mTmpHighFreq);
-		GameInfo.setLowFreq(mTmpLowFreq);
 	}
 
 	private void collectLowFreq() {
@@ -88,7 +83,7 @@ public class MicTestThread extends Thread {
 		int tmpCurrFreq;
 		int frequencyRange;
 		
-		while(mTestType == TestTypes.Low) {
+		while(mTestType == SetupStates.Low) {
 			if (restartLow) {
 				Arrays.fill(soundArray, 0);
 				restartLow = false;
@@ -122,7 +117,8 @@ public class MicTestThread extends Thread {
 	}
 	
 	public void saveFrequencies() {
-		mTestType = TestTypes.Low;
+		GameInfo.setHighFreq(mTmpHighFreq);
+		GameInfo.setLowFreq(mTmpLowFreq);
 	}
 
 	public void stopThread() {
