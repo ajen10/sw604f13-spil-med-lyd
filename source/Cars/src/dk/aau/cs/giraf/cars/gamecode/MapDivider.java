@@ -40,13 +40,14 @@ public final class MapDivider {
 	}
 	
 	public static void CalculateConstants(int Height, int carHeight) {
-		mapHeight = Height;
+		mapYEnd = Height;
 		obstacleHeight = carHeight;
-		int laneHeight = mapHeight / 3;
+		int laneHeight = Height / 3;
 		laneCenters = new int[lanes];
-		
+		System.out.println(laneHeight);
 		for (int i = 0; i < lanes; i++) {
 			laneCenters[i] = laneHeight * i + laneHeight / 2;
+			//System.out.println("Nr:" + i + " center: " + laneCenters[i]);
 		}
 	}
 	
@@ -62,6 +63,4 @@ public final class MapDivider {
 		
 		return new Rect(x1, y1, x2, y2);
 	}
-
-	
 }

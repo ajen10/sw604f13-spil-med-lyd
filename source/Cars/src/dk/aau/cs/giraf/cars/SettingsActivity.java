@@ -7,22 +7,23 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import dk.aau.cs.giraf.cars.MicTestDialogFragment.InputTestDialogListener;
-import dk.aau.cs.giraf.cars.MicSetupDialogFragment.DialogListener;
+import dk.aau.cs.giraf.cars.MicSetupDialogFragment.InputTestDialogListener;
 import android.view.View.OnClickListener;
 import dk.aau.cs.giraf.cars.R.id;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
+import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 
 
-public class SettingsActivity extends Activity implements DialogListener, InputTestDialogListener {
+public class SettingsActivity extends Activity implements InputTestDialogListener {
 	RecorderThread recorderThread = new RecorderThread();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
-		//recorderThread.start();
-		//System.out.println("average frequency = " + recorderThread.getFrequency());
+		findViewById(R.id.color1).setBackgroundColor(GameInfo.color1);
+		findViewById(R.id.color2).setBackgroundColor(GameInfo.color2);
+		findViewById(R.id.color3).setBackgroundColor(GameInfo.color3);
 	}
 
 	@Override
@@ -32,41 +33,22 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		return true;
 	}
 
-	@Override
-	public void onStop(){
-		super.onStop();
-		//	recorderThread.recording = false;
-	}
-
-	
-	
 	public void createTestDialog() {
 		MicSetupDialogFragment micTest = new MicSetupDialogFragment();
-    	
-    	micTest.setCancelable(false);
-    	
-    	micTest.show(getFragmentManager(), "micTestDialog");
-    	
+
+		micTest.setCancelable(false);
+
+		micTest.show(getFragmentManager(), "micTestDialog");
+
 	}
-    public void showMicTestDialog(View v) {
-    	createTestDialog();
-    }
-
-	@Override
-	public void pitchResult() {
-		// TODO Auto-generated method stub
-		MicTestDialogFragment micInput = new MicTestDialogFragment();
-		
-		micInput.setCancelable(false);
-
-		micInput.show(getFragmentManager(), "micInputDialog");
-
+	public void showMicTestDialog(View v) {
+		createTestDialog();
 	}
 
 	public void changeColors(View view) {
 		Dialog color_dialog = new Dialog(this);
 		color_dialog.setContentView(R.layout.color_dialog);
-		color_dialog.setTitle("Vælg en farve");
+		color_dialog.setTitle(R.string.chosecolor);
 		color_dialog.setCanceledOnTouchOutside(false);
 		color_dialog.show();
 
@@ -86,14 +68,11 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Drawable temp = v.getBackground();
-				ColorDrawable temp2 = (ColorDrawable)temp;
-				parent.setBackgroundColor(temp2.getColor());
+				parent.setBackgroundDrawable(v.getBackground());
 				color_dialog.dismiss();
 			}
 
-		}
-				);
+		});
 	}
 
 	@Override
@@ -102,11 +81,35 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		switch (resultState) {
 		case restart:
 			createTestDialog();
-		case save:
-		case cancel:
+		case complete:
 			break;
+
 		}
-		
 	}
+
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		View view;
+		Drawable temp;
+		ColorDrawable temp2;
+
+		view = findViewById(R.id.color1);
+		temp = view.getBackground();
+		temp2 = (ColorDrawable) temp;
+		GameInfo.color1 = temp2.getColor();
+
+		view = findViewById(R.id.color2);
+		temp = view.getBackground();
+		temp2 = (ColorDrawable) temp;
+		GameInfo.color2 = temp2.getColor();
+
+		view = findViewById(R.id.color3);
+		temp = view.getBackground();
+		temp2 = (ColorDrawable) temp;
+		GameInfo.color3 = temp2.getColor();
+	}
+
 }
 
