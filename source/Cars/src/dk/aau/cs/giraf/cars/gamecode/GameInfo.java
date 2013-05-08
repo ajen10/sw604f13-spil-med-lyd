@@ -13,8 +13,8 @@ public class GameInfo {
 	public static boolean garageClosing = false;
 	public static boolean win = false;
 	public static boolean pause = false;
-	public static int color1 = Color.GREEN;
-	public static int color2 = Color.BLUE;
+	public static int color1 = Color.WHITE;
+	public static int color2 = Color.WHITE;
 	public static int color3 = Color.WHITE;
 	
 	private GameInfo() { /*empty */ }

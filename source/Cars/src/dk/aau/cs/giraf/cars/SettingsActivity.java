@@ -22,6 +22,9 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
+		findViewById(R.id.color1).setBackgroundColor(GameInfo.color1);
+		findViewById(R.id.color2).setBackgroundColor(GameInfo.color2);
+		findViewById(R.id.color3).setBackgroundColor(GameInfo.color3);
 		//recorderThread.start();
 		//System.out.println("average frequency = " + recorderThread.getFrequency());
 	}
