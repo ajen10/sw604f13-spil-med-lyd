@@ -34,7 +34,7 @@ public class MicCar extends Car {
 	@Override
 	public void draw(GL10 gl, GameRenderer spriteBatcher) {
 	
-		mStartY = (mViewHeight / 2) - (mViewWidth / 2) + yOffset;
+		mStartY = yOffset - (mViewWidth / 2);
 		mEndY = mStartY + mViewWidth;
 		mCarScaledWidth = mViewWidth;
 		mCarScaledHeight = mViewWidth;
@@ -46,7 +46,6 @@ public class MicCar extends Car {
 	@Override
 	public void performWork() {		
 		int currFreq = GameInfo.getCurrFreq();
-		System.out.println("cf: " + currFreq);
 		
 		if (currFreq > 0) {
 			if (currFreq > mHighFreq && yOffset - (mCarScaledHeight / 2) > MapDivider.mapYStart) {
@@ -58,10 +57,11 @@ public class MicCar extends Car {
  			int closestLane = 0;
  			for (int i = 1; i < MapDivider.lanes; i++) {
  				if (Math.abs(MapDivider.laneCenters[i] - yOffset) <
- 					Math.abs(MapDivider.laneCenters[closestLane] - yOffset)) {
+ 						Math.abs(MapDivider.laneCenters[closestLane] - yOffset)) {
  					closestLane = i;
  				}
  			}
+ 			
  			int offset = MapDivider.laneCenters[closestLane] - yOffset;
  			if (offset != 0) {
  				if (offset > 0) {

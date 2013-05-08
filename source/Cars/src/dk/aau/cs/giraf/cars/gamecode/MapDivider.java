@@ -40,9 +40,9 @@ public final class MapDivider {
 	}
 	
 	public static void CalculateConstants(int Height, int carHeight) {
-		mapHeight = Height;
+		mapYEnd = Height;
 		obstacleHeight = carHeight;
-		int laneHeight = mapHeight / 3;
+		int laneHeight = Height / 3;
 		laneCenters = new int[lanes];
 		
 		for (int i = 0; i < lanes; i++) {
@@ -62,10 +62,4 @@ public final class MapDivider {
 		
 		return new Rect(x1, y1, x2, y2);
 	}
-
-//	static int laneOne = 0;
-//	static int laneTwo = height/3;
-//	static int laneThree = (height/3)*2;
-//	static double ratio = width/height;
-	
 }
