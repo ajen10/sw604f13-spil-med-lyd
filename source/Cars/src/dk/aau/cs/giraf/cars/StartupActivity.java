@@ -23,6 +23,8 @@ public class StartupActivity extends Activity {
 		setContentView(R.layout.activity_startup);
 		Helper helper = new Helper(this);
 
+		Settings.load(1234, this);
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {        	   
 			try{
@@ -49,6 +51,12 @@ public class StartupActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.startup, menu);
 		return true;
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Settings.save(1234, this);
 	}
 
 	public void showGameView(View view) {
