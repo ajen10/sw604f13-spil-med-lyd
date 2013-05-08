@@ -44,9 +44,10 @@ public final class MapDivider {
 		obstacleHeight = carHeight;
 		int laneHeight = Height / 3;
 		laneCenters = new int[lanes];
-		
+		System.out.println(laneHeight);
 		for (int i = 0; i < lanes; i++) {
 			laneCenters[i] = laneHeight * i + laneHeight / 2;
+			//System.out.println("Nr:" + i + " center: " + laneCenters[i]);
 		}
 	}
 	

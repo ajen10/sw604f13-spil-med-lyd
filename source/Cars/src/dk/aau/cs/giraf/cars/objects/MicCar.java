@@ -29,6 +29,7 @@ public class MicCar extends Car {
 		mImgHeight = carHeight;
 		mLowFreq = lowFreq;
 		mHighFreq = highFreq;
+		yOffset = viewHeight / 2;
 	}
 
 	@Override
