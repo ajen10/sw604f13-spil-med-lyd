@@ -7,15 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import dk.aau.cs.giraf.cars.MicTestDialogFragment.InputTestDialogListener;
-import dk.aau.cs.giraf.cars.MicSetupDialogFragment.DialogListener;
+import dk.aau.cs.giraf.cars.MicSetupDialogFragment.InputTestDialogListener;
 import android.view.View.OnClickListener;
 import dk.aau.cs.giraf.cars.R.id;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 
 
-public class SettingsActivity extends Activity implements DialogListener, InputTestDialogListener {
+public class SettingsActivity extends Activity implements InputTestDialogListener {
 	RecorderThread recorderThread = new RecorderThread();
 
 	@Override
@@ -25,8 +24,6 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		findViewById(R.id.color1).setBackgroundColor(GameInfo.color1);
 		findViewById(R.id.color2).setBackgroundColor(GameInfo.color2);
 		findViewById(R.id.color3).setBackgroundColor(GameInfo.color3);
-		//recorderThread.start();
-		//System.out.println("average frequency = " + recorderThread.getFrequency());
 	}
 
 	@Override
@@ -35,14 +32,6 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		getMenuInflater().inflate(R.menu.settings, menu);
 		return true;
 	}
-
-	@Override
-	public void onStop(){
-		super.onStop();
-		//	recorderThread.recording = false;
-	}
-
-
 
 	public void createTestDialog() {
 		MicSetupDialogFragment micTest = new MicSetupDialogFragment();
@@ -54,17 +43,6 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 	}
 	public void showMicTestDialog(View v) {
 		createTestDialog();
-	}
-
-	@Override
-	public void pitchResult() {
-		// TODO Auto-generated method stub
-		MicTestDialogFragment micInput = new MicTestDialogFragment();
-
-		micInput.setCancelable(false);
-
-		micInput.show(getFragmentManager(), "micInputDialog");
-
 	}
 
 	public void changeColors(View view) {
@@ -94,8 +72,7 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 				color_dialog.dismiss();
 			}
 
-		}
-				);
+		});
 	}
 
 	@Override
@@ -104,12 +81,12 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		switch (resultState) {
 		case restart:
 			createTestDialog();
-		case save:
-		case cancel:
+		case complete:
 			break;
-		}
 
+		}
 	}
+
 
 	@Override
 	protected void onDestroy() {
@@ -133,5 +110,6 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 		temp2 = (ColorDrawable) temp;
 		GameInfo.color3 = temp2.getColor();
 	}
+
 }
 

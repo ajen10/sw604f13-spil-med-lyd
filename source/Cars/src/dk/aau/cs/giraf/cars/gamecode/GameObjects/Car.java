@@ -100,7 +100,7 @@ public class Car extends GameObject implements IWorkable, IDrawable {
  			}
  		}
 	}
-	
+		
 	public boolean CalculateCollisions(Point[] form) {
 		if (updateCarCollisionBox) {
 			int widthScaled = (int)(MapDivider.obstacleWidth * carScaling);
