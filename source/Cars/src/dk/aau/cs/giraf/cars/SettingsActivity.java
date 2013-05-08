@@ -37,19 +37,19 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		//	recorderThread.recording = false;
 	}
 
-	
-	
+
+
 	public void createTestDialog() {
 		MicSetupDialogFragment micTest = new MicSetupDialogFragment();
-    	
-    	micTest.setCancelable(false);
-    	
-    	micTest.show(getFragmentManager(), "micTestDialog");
-    	
+
+		micTest.setCancelable(false);
+
+		micTest.show(getFragmentManager(), "micTestDialog");
+
 	}
-    public void showMicTestDialog(View v) {
-    	createTestDialog();
-    }
+	public void showMicTestDialog(View v) {
+		createTestDialog();
+	}
 
 	public void changeColors(View view) {
 		Dialog color_dialog = new Dialog(this);
@@ -80,8 +80,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 				color_dialog.dismiss();
 			}
 
-		}
-				);
+		});
 	}
 
 	@Override
@@ -92,7 +91,8 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 			createTestDialog();
 		case complete:
 			break;
-		
-	}
+
+		}
+	}	
 }
 

@@ -122,7 +122,7 @@ public class MicSetupDialogFragment extends DialogFragment {
 		int gameViewWidth = (int)(GAMEVIEW_WIDTH * scale + 0.5f);
 		int gameViewHeight = (int)(GAMEVIEW_HEIGHT * scale + 0.5f);
 				
-		LinearLayout.LayoutParams gameViewParams = new LinearLayout.LayoutParams(gameViewWidth, gameViewHeight);
+		LinearLayout.LayoutParams gameViewParams = new LinearLayout.LayoutParams(gameViewWidth, 300);
         
        	LinearLayout openglLayout = (LinearLayout) buttonView.findViewById(R.id.opengl_layout);
 		openglLayout.addView(mGameView, gameViewParams);
@@ -156,9 +156,9 @@ public class MicSetupDialogFragment extends DialogFragment {
 		
 		System.out.println(carWidth);
 		System.out.println(carHeight);
-		MapDivider.CalculateConstants(gameViewHeight, carHeight);
+		MapDivider.CalculateConstants(gameViewHeight, 100);
         
-        mCar = new MicCar(gameViewWidth, gameViewHeight, carWidth, carHeight);
+        mCar = new MicCar(gameViewWidth, gameViewHeight, carWidth, carHeight, mMicThread.getTmpLowFreq(), mMicThread.getTmpHighFreq());
         
 		mGameThread = new GameThread((Car)mCar);
 					

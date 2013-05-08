@@ -40,6 +40,14 @@ public class MicTestThread extends Thread {
 		}
 	}
 	
+	public int getTmpHighFreq() {
+		return mTmpHighFreq;
+	}
+	
+	public int getTmpLowFreq() {
+		return mTmpLowFreq;
+	}
+	
 	private void collectHighFreq() {
 		int firstDimension = (3400-50) / arrayIntervals + 1;
 		int[] soundArray = new int[firstDimension];
