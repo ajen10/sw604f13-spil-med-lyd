@@ -14,7 +14,6 @@ public abstract class Settings {
 		try {
 			FileReader reader = new FileReader(fileString);
 
-			System.out.println("------------------------");
 			String str = readToSpace(reader);
 			GameInfo.carSpeed = Float.valueOf(str);
 			GameInfo.numberOfObstacles = Integer.valueOf(readToSpace(reader));
@@ -26,9 +25,9 @@ public abstract class Settings {
 			
 			reader.close();
 		} catch (IOException e) {
-			System.out.println("Error1");
+			System.out.println("IO Error");
 		} catch (NumberFormatException e) {
-			System.out.println("Error2");
+			System.out.println("Error in save file");
 			return true;
 		}
 		
@@ -36,31 +35,21 @@ public abstract class Settings {
 	}
 	private static String readToSpace(FileReader reader) throws IOException {
 		String returnStr = "";
-		System.out.println("Initial string: " + returnStr);
 		
 		int charRead = reader.read();
 		while (charRead != -1) {
 			returnStr += (char)charRead;
-
-			System.out.println("Added '" + (char)charRead + "'; Int: " + charRead);
 			
 			charRead = reader.read();
-
-			System.out.println("Current string: " + returnStr + "; String length: " + returnStr.length());
 			if ((char)charRead == ' ') {
-				System.out.println("BREAKING");
 				break;
 			}
 		}
-
-		System.out.println("Returning: " + returnStr);
-		System.out.println("------------------------");
+		
 		return returnStr;
 	}
 	
 	public static boolean save(long userId, Context context) {
-		System.out.println("Saving");
-		
 		try {
 			String fileString = context.getFilesDir() + String.valueOf(userId);
 			FileWriter writer = new FileWriter(fileString, false);
@@ -80,7 +69,7 @@ public abstract class Settings {
 			writer.write(String.valueOf(GameInfo.getLowFreq()));
 			writer.close();
 		} catch (IOException e) {
-			System.out.println("Error3");
+			System.out.println("Error while saving");
 		}
 		
 		return true;
