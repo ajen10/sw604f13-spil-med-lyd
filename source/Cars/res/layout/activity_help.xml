@@ -25,8 +25,8 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="135dp"
-        android:text="@string/help_mic"
-        android:onClick="showMicHelp" />
+        android:onClick="showMicHelp"
+        android:text="@string/help_mic" />
 
     <Button
         android:id="@+id/button2"
@@ -35,8 +35,8 @@
         android:layout_below="@+id/button1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
-        android:text="@string/help_settings"
-        android:onClick="showSettingsHelp" />
+        android:onClick="showSettingsHelp"
+        android:text="@string/help_settings" />
 
     <Button
         android:id="@+id/button3"
@@ -45,7 +45,7 @@
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
-        android:text="@string/help_game"
-        android:onClick="showGameHelp" />
+        android:onClick="showGameHelp"
+        android:text="@string/help_game" />
 
 </RelativeLayout>
