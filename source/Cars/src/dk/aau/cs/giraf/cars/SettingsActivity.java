@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import dk.aau.cs.giraf.cars.MicSetupDialogFragment.InputTestDialogListener;
 import android.view.View.OnClickListener;
+import android.widget.RadioGroup;
 import dk.aau.cs.giraf.cars.R.id;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
@@ -16,6 +17,8 @@ import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 
 public class SettingsActivity extends Activity implements InputTestDialogListener {
 	RecorderThread recorderThread = new RecorderThread();
+	RadioGroup carSpeed;
+	RadioGroup obstacleCount;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,31 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		findViewById(R.id.color1).setBackgroundColor(GameInfo.color1);
 		findViewById(R.id.color2).setBackgroundColor(GameInfo.color2);
 		findViewById(R.id.color3).setBackgroundColor(GameInfo.color3);
+
+		carSpeed = (RadioGroup) findViewById(R.id.car_speed);
+		obstacleCount = (RadioGroup) findViewById(R.id.obstacle_count);
+		
+		if (GameInfo.carSpeed == 1.00) {
+			carSpeed.check(R.id.speed100pct);
+		} else if (GameInfo.carSpeed == 0.75) {
+			carSpeed.check(R.id.speed75pct);
+		} else if (GameInfo.carSpeed == 0.50) {
+			carSpeed.check(R.id.speed50pct);
+		} else if (GameInfo.carSpeed == 0.25) {
+			carSpeed.check(R.id.speed25pct);
+		}
+		
+		if (GameInfo.numberOfObstacles == 4) {
+			obstacleCount.check(R.id.obstacles4);
+		} else if (GameInfo.numberOfObstacles == 3) {
+			obstacleCount.check(R.id.obstacles3);
+		} else if (GameInfo.numberOfObstacles == 2) {
+			obstacleCount.check(R.id.obstacles2);
+		} else if (GameInfo.numberOfObstacles == 1) {
+			obstacleCount.check(R.id.obstacles1);
+		}
+		//carSpeed.setOnCheckedChangeListener(this);
+		//obstacleCount.setOnCheckedChangeListener(this);
 	}
 
 	@Override
@@ -83,10 +111,43 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 			createTestDialog();
 		case complete:
 			break;
-
 		}
 	}
 
+	/*@Override
+    public void onCheckedChanged(RadioGroup group, int checkedId){
+		if (group.getId() == R.id.car_speed) {
+			switch(checkedId) {
+			case R.id.speed100pct:
+				GameInfo.carSpeed = 1.00f;
+				break;
+			case R.id.speed75pct:
+				GameInfo.carSpeed = 0.75f;
+				break;
+			case R.id.speed50pct:
+				GameInfo.carSpeed = 0.50f;
+				break;
+			case R.id.speed25pct:
+				GameInfo.carSpeed = 0.25f;
+				break;
+			}
+		} else if (group.getId() == R.id.obstacle_count) {
+			switch(checkedId) {
+			case R.id.obstacles1:
+				GameInfo.numberOfObstacles = 1;
+				break;
+			case R.id.obstacles2:
+				GameInfo.numberOfObstacles = 2;
+				break;
+			case R.id.obstacles3:
+				GameInfo.numberOfObstacles = 3;
+				break;
+			case R.id.obstacles4:
+				GameInfo.numberOfObstacles = 4;
+				break;
+			}
+		}
+	}*/
 
 	@Override
 	protected void onDestroy() {
@@ -109,6 +170,41 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		temp = view.getBackground();
 		temp2 = (ColorDrawable) temp;
 		GameInfo.color3 = temp2.getColor();
+
+		updateGameInfo();
+	}
+
+	private void updateGameInfo() {
+
+		switch(carSpeed.getCheckedRadioButtonId()) {
+		case R.id.speed100pct:
+			GameInfo.carSpeed = 1.00f;
+			break;
+		case R.id.speed75pct:
+			GameInfo.carSpeed = 0.75f;
+			break;
+		case R.id.speed50pct:
+			GameInfo.carSpeed = 0.50f;
+			break;
+		case R.id.speed25pct:
+			GameInfo.carSpeed = 0.25f;
+			break;
+		}
+		switch(obstacleCount.getCheckedRadioButtonId()) {
+		case R.id.obstacles1:
+			GameInfo.numberOfObstacles = 1;
+			break;
+		case R.id.obstacles2:
+			GameInfo.numberOfObstacles = 2;
+			break;
+		case R.id.obstacles3:
+			GameInfo.numberOfObstacles = 3;
+			break;
+		case R.id.obstacles4:
+			GameInfo.numberOfObstacles = 4;
+			break;
+
+		}
 	}
 
 }
