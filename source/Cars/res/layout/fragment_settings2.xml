@@ -127,7 +127,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/textView4"
         android:layout_marginTop="100dp"
-        android:background="@drawable/color1"
+        android:background="#FFFFFF"
         android:clickable="true"
         android:onClick="changeColors" />
 
@@ -138,7 +138,7 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_alignTop="@+id/textView4"
         android:layout_marginTop="100dp"
-        android:background="@drawable/color3"
+        android:background="#FFFFFF"
         android:clickable="true"
         android:onClick="changeColors" />
 
@@ -149,7 +149,7 @@
         android:layout_alignTop="@+id/color1"
         android:layout_marginLeft="45dp"
         android:layout_toRightOf="@+id/color1"
-        android:background="@drawable/color2"
+        android:background="#FFFFFF"
         android:clickable="true"
         android:onClick="changeColors" />
 

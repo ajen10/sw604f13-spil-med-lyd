@@ -67,7 +67,7 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 	public void changeColors(View view) {
 		Dialog color_dialog = new Dialog(this);
 		color_dialog.setContentView(R.layout.color_dialog);
-		color_dialog.setTitle("@string/chosecolor");
+		color_dialog.setTitle(R.string.chosecolor);
 		color_dialog.setCanceledOnTouchOutside(false);
 		color_dialog.show();
 
@@ -87,11 +87,8 @@ public class SettingsActivity extends Activity implements DialogListener, InputT
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Drawable temp = v.getBackground();
-				ColorDrawable temp2 = (ColorDrawable)temp;
-				parent.setBackgroundColor(temp2.getColor());
+				parent.setBackgroundDrawable(v.getBackground());
 				color_dialog.dismiss();
-
 			}
 
 		}
