@@ -22,8 +22,6 @@ public class StartupActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_startup);
 		Helper helper = new Helper(this);
-
-		Settings.load(1234, this);
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {        	   
@@ -44,6 +42,7 @@ public class StartupActivity extends Activity {
 				textViewC.setText("Child: " + child.getFirstname() + " " + child.getSurname());
 			}
 		}
+		Settings.load(childId, this);
 	}
 
 	@Override
@@ -56,7 +55,6 @@ public class StartupActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Settings.save(1234, this);
 	}
 
 	public void showGameView(View view) {
@@ -67,6 +65,7 @@ public class StartupActivity extends Activity {
 	public void showSettingsView(View view) {
 		Intent intent = new Intent(StartupActivity.this, SettingsActivity.class);
 		intent.putExtra("currentGuardianID", guardianId);
+		intent.putExtra("currentChildId", childId);
 		StartupActivity.this.startActivity(intent);
 	}
 

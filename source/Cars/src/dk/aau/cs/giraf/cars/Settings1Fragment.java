@@ -18,10 +18,13 @@ public class Settings1Fragment extends ListFragment {
 	private ProfileAdapter adapter;
 	private Profile guardian;
 	private View previousColoredItem = null;
+	private long mChildId;
+	private List<Profile> nameList;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		mChildId = getActivity().getIntent().getExtras().getLong("currentChildId");
 		fillData(getActivity().getIntent().getExtras().getLong("currentGuardianID"));
 		this.getListView().setDivider(null);
 		this.getListView().setDividerHeight(0);
@@ -31,12 +34,12 @@ public class Settings1Fragment extends ListFragment {
 	public void fillData(long currentGuardianID) {
 		ProfilesHelper helper = new ProfilesHelper(getActivity());
 		guardian = helper.getProfileById(currentGuardianID);
-		List<Profile> nameList = new ArrayList<Profile>();
+		nameList = new ArrayList<Profile>();
 		nameList.addAll(helper.getChildrenByGuardian(guardian));
 		adapter = new ProfileAdapter(getActivity(), nameList);	
 		setListAdapter(adapter);
 	}
-
+	
 	public String getSettingsById(long Id) {
 		long appId;
 		Setting<String, String, String> tmp;
@@ -61,8 +64,14 @@ public class Settings1Fragment extends ListFragment {
 			previousColoredItem.setBackgroundColor(Color.BLACK);
 		v.setBackgroundColor(Color.MAGENTA);
 		previousColoredItem = v;
-		getSettingsById(((Profile) l.getAdapter().getItem(position)).getId());
-
+		//getSettingsById(((Profile) l.getAdapter().getItem(position)).getId());
+		long childId = ((Profile) l.getAdapter().getItem(position)).getId();
+		ListClickListener activity = (ListClickListener) getActivity();
+		activity.loadProfile(childId);
+	}
+	
+	interface ListClickListener {
+		void loadProfile(long userId);
 	}
 }
 

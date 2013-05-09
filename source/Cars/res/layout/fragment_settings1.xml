@@ -5,6 +5,7 @@
 
     <ListView
         android:id="@+id/expandableListView1"
+        android:listSelector="@drawable/listselector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
     </ListView>

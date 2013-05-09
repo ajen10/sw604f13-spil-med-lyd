@@ -7,6 +7,7 @@ import java.io.IOException;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 
 import android.content.Context;
+import android.graphics.Color;
 
 public abstract class Settings {
 	public static boolean load(long userId, Context context) {
@@ -25,6 +26,7 @@ public abstract class Settings {
 			
 			reader.close();
 		} catch (IOException e) {
+			loadDefaultSettings();
 			System.out.println("IO Error");
 		} catch (NumberFormatException e) {
 			System.out.println("Error in save file");
@@ -33,6 +35,17 @@ public abstract class Settings {
 		
 		return false;
 	}
+	
+	private static void loadDefaultSettings() {
+		GameInfo.carSpeed = 0.75f;
+		GameInfo.numberOfObstacles = 2;
+		GameInfo.color1 = Color.WHITE;
+		GameInfo.color2 = Color.WHITE;
+		GameInfo.color3 = Color.WHITE;
+		GameInfo.setHighFreq(1500);
+		GameInfo.setLowFreq(500);
+	}
+	
 	private static String readToSpace(FileReader reader) throws IOException {
 		String returnStr = "";
 		
