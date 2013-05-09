@@ -163,12 +163,9 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-
-
-		updateGameInfo();
 	}
 
-	private void updateGameInfo() {
+	private void saveColors() {
 		View view;
 		Drawable temp;
 		ColorDrawable temp2;
@@ -187,40 +184,12 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		temp = view.getBackground();
 		temp2 = (ColorDrawable) temp;
 		GameInfo.color3 = temp2.getColor();
-		
-		switch(carSpeed.getCheckedRadioButtonId()) {
-		case R.id.speed100pct:
-			GameInfo.carSpeed = 1.00f;
-			break;
-		case R.id.speed75pct:
-			GameInfo.carSpeed = 0.75f;
-			break;
-		case R.id.speed50pct:
-			GameInfo.carSpeed = 0.50f;
-			break;
-		case R.id.speed25pct:
-			GameInfo.carSpeed = 0.25f;
-			break;
-		}
-		switch(obstacleCount.getCheckedRadioButtonId()) {
-		case R.id.obstacles1:
-			GameInfo.numberOfObstacles = 1;
-			break;
-		case R.id.obstacles2:
-			GameInfo.numberOfObstacles = 2;
-			break;
-		case R.id.obstacles3:
-			GameInfo.numberOfObstacles = 3;
-			break;
-		case R.id.obstacles4:
-			GameInfo.numberOfObstacles = 4;
-			break;
-		}
 	}
 
 
 	@Override
 	public void loadProfile(long userId) {
+		saveColors();
 		Settings.save(mChildId, getBaseContext());
 
 		mChildId = userId;
