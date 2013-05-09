@@ -46,6 +46,47 @@ public abstract class BitmapContainer {
 		return newBitmap;
 	}
 	
+	public static int[] add(int bitmapId, int[] newColors) {
+		int largestId = 0x7f020011 + 99;
+		for (Integer id : bitmapIds) {
+			if (id > largestId) {
+				largestId = id;
+			}
+		}
+		
+		int[] newBitmapIds = new int[newColors.length];
+		for (int i = 0; i < newColors.length; i++) {
+			newBitmapIds[i] = largestId + i + 1;
+		}
+		Bitmap[] newBitmap = recolorBitmaps(bitmapId, newColors);
+		for (int i = 0; i < newColors.length; i++) {
+			bitmapIds.add(newBitmapIds[i]);
+			recoloredList.add(new BitmapReference(newBitmapIds[i], newBitmap[i]));
+		}
+		return newBitmapIds;
+	}
+	private static Bitmap[] recolorBitmaps(int bitmapId, int[] colors) {
+		int whiteValue = 0xFFFFFFFF;
+		int[] recolorValue = colors;
+		
+		Bitmap[] newBitmaps = new Bitmap[colors.length];
+		for (int i = 0; i < colors.length; i++) {
+			newBitmaps[i] = get(bitmapId).copy(Bitmap.Config.ARGB_8888, true);
+		}
+		
+		for (int x = 0; x < newBitmaps[0].getWidth(); x++) {
+			for (int y = 0; y < newBitmaps[0].getHeight(); y++) {
+				if (newBitmaps[0].getPixel(x, y) == whiteValue) {
+					for (int i = 0; i < colors.length; i++) {
+						newBitmaps[i].setPixel(x, y, recolorValue[i]);
+					}
+				}
+			}
+		}
+		
+		return newBitmaps;
+	}
+	
 	public static Bitmap get(int bitmapId) {
 		for (Integer id : resourceList) {
 			if (id == bitmapId) {

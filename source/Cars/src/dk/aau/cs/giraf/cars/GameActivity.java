@@ -68,63 +68,133 @@ public class GameActivity extends Activity {
 		recorderThread.start();
 	}
 	private void checkForGarageRecoloring() {
-		checkForGarageColor1();
-		checkForGarageColor2();
-		checkForGarageColor3();
+		ArrayList<Integer> colorList = new ArrayList<Integer>();
+		if (color1 != Color.WHITE) {
+			colorList.add(color1);
+		}
+		if (color2 != Color.WHITE) {
+			colorList.add(color2);
+		}
+		if (color3 != Color.WHITE) {
+			colorList.add(color3);
+		}
+		int[] colors = new int[colorList.size()];
+		for (int i = 0; i < colorList.size(); i++) {
+			colors[i] = colorList.get(i);
+		}
+		
+		if (colors.length <= 0) {
+			return;
+		}
+		
+		ArrayList<int[]> idList = new ArrayList<int[]>();
+		idList.add(BitmapContainer.add(R.drawable.garage_backwall, colors));
+		idList.add(BitmapContainer.add(R.drawable.garage_port_aaben, colors));
+		idList.add(BitmapContainer.add(R.drawable.garage_port_step1, colors));
+		idList.add(BitmapContainer.add(R.drawable.garage_port_step2, colors));
+		idList.add(BitmapContainer.add(R.drawable.garage_port_closed, colors));
+		idList.add(BitmapContainer.add(R.drawable.garage_frontwall, colors));
+		idList.add(BitmapContainer.add(R.drawable.garage_tag, colors));
+		
+		int colorIterated = 0;
+		if (color1 != Color.WHITE) {
+			garageColor1(colorIterated, idList);
+			
+			colorIterated++;
+		}
+		if (color2 != Color.WHITE) {
+			garageColor2(colorIterated, idList);
+			
+			colorIterated++;
+		}
+		if (color3 != Color.WHITE) {
+			garageColor3(colorIterated, idList);
+			
+			colorIterated++;
+		}
 	}
-	private void checkForGarageColor1() {
+	private void garageColor1(int id, ArrayList<int[]> list) {
 		if (color1 != Color.WHITE) {
 			color1_Ids = new int[7];
 			
-			color1_Ids[0] = BitmapContainer.add(R.drawable.garage_backwall, color1);
-			color1_Ids[1] = BitmapContainer.add(R.drawable.garage_port_aaben, color1);
-			color1_Ids[2] = BitmapContainer.add(R.drawable.garage_port_step1, color1);
-			color1_Ids[3] = BitmapContainer.add(R.drawable.garage_port_step2, color1);
-			color1_Ids[4] = BitmapContainer.add(R.drawable.garage_port_closed, color1);
-			color1_Ids[5] = BitmapContainer.add(R.drawable.garage_frontwall, color1);
-			color1_Ids[6] = BitmapContainer.add(R.drawable.garage_tag, color1);
+			color1_Ids[0] = list.get(0)[id];
+			color1_Ids[1] = list.get(1)[id];
+			color1_Ids[2] = list.get(2)[id];
+			color1_Ids[3] = list.get(3)[id];
+			color1_Ids[4] = list.get(4)[id];
+			color1_Ids[5] = list.get(5)[id];
+			color1_Ids[6] = list.get(6)[id];
 		}
 	}
-	private void checkForGarageColor2() {
+	private void garageColor2(int id, ArrayList<int[]> list) {
 		if (color2 != Color.WHITE) {
 			color2_Ids = new int[7];
 			
-			color2_Ids[0] = BitmapContainer.add(R.drawable.garage_backwall, color2);
-			color2_Ids[1] = BitmapContainer.add(R.drawable.garage_port_aaben, color2);
-			color2_Ids[2] = BitmapContainer.add(R.drawable.garage_port_step1, color2);
-			color2_Ids[3] = BitmapContainer.add(R.drawable.garage_port_step2, color2);
-			color2_Ids[4] = BitmapContainer.add(R.drawable.garage_port_closed, color2);
-			color2_Ids[5] = BitmapContainer.add(R.drawable.garage_frontwall, color2);
-			color2_Ids[6] = BitmapContainer.add(R.drawable.garage_tag, color2);
+			color2_Ids[0] = list.get(0)[id];
+			color2_Ids[1] = list.get(1)[id];
+			color2_Ids[2] = list.get(2)[id];
+			color2_Ids[3] = list.get(3)[id];
+			color2_Ids[4] = list.get(4)[id];
+			color2_Ids[5] = list.get(5)[id];
+			color2_Ids[6] = list.get(6)[id];
 		}
-	}	
-	private void checkForGarageColor3() {
+	}
+	private void garageColor3(int id, ArrayList<int[]> list) {
 		if (color3 != Color.WHITE) {
 			color3_Ids = new int[7];
 			
-			color3_Ids[0] = BitmapContainer.add(R.drawable.garage_backwall, color3);
-			color3_Ids[1] = BitmapContainer.add(R.drawable.garage_port_aaben, color3);
-			color3_Ids[2] = BitmapContainer.add(R.drawable.garage_port_step1, color3);
-			color3_Ids[3] = BitmapContainer.add(R.drawable.garage_port_step2, color3);
-			color3_Ids[4] = BitmapContainer.add(R.drawable.garage_port_closed, color3);
-			color3_Ids[5] = BitmapContainer.add(R.drawable.garage_frontwall, color3);
-			color3_Ids[6] = BitmapContainer.add(R.drawable.garage_tag, color3);
+			color3_Ids[0] = list.get(0)[id];
+			color3_Ids[1] = list.get(1)[id];
+			color3_Ids[2] = list.get(2)[id];
+			color3_Ids[3] = list.get(3)[id];
+			color3_Ids[4] = list.get(4)[id];
+			color3_Ids[5] = list.get(5)[id];
+			color3_Ids[6] = list.get(6)[id];
 		}
 	}
 	private void checkForCarRecoloring() {
+		ArrayList<Integer> colorList = new ArrayList<Integer>();
+		if (color1 != Color.WHITE) {
+			colorList.add(color1);
+		}
+		if (color2 != Color.WHITE) {
+			colorList.add(color2);
+		}
+		if (color3 != Color.WHITE) {
+			colorList.add(color3);
+		}
+		int[] colors = new int[colorList.size()];
+		for (int i = 0; i < colorList.size(); i++) {
+			colors[i] = colorList.get(i);
+		}
+		
+		if (colors.length <= 0) {
+			System.out.println("No recoloring of car");
+			return;
+		}
+		
+		int[] ids = BitmapContainer.add(R.drawable.car, colors);
+		carBitmapIds = new int[ids.length];
 		carColors = new int[3];
-		carBitmapIds = new int[3];
+		
+		int colorIterated = 0;
 		carColors[0] = color1;
 		if (color1 != Color.WHITE) {
-			carBitmapIds[0] = BitmapContainer.add(R.drawable.car, color1);
+			carBitmapIds[0] = ids[colorIterated];
+			
+			colorIterated++;
 		}
 		carColors[1] = color2;
 		if (color2 != Color.WHITE) {
-			carBitmapIds[1] = BitmapContainer.add(R.drawable.car, color2);
+			carBitmapIds[1] = ids[colorIterated];
+			
+			colorIterated++;
 		}
 		carColors[2] = color3;
 		if (color3 != Color.WHITE) {
-			carBitmapIds[2] = BitmapContainer.add(R.drawable.car, color3);
+			carBitmapIds[2] = ids[colorIterated];
+			
+			colorIterated++;
 		}
 	}
 	
