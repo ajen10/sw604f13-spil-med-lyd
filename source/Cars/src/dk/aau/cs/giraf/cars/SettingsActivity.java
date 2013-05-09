@@ -50,8 +50,6 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		} else if (GameInfo.numberOfObstacles == 1) {
 			obstacleCount.check(R.id.obstacles1);
 		}
-		//carSpeed.setOnCheckedChangeListener(this);
-		//obstacleCount.setOnCheckedChangeListener(this);
 	}
 
 	@Override
@@ -114,44 +112,15 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		}
 	}
 
-	/*@Override
-    public void onCheckedChanged(RadioGroup group, int checkedId){
-		if (group.getId() == R.id.car_speed) {
-			switch(checkedId) {
-			case R.id.speed100pct:
-				GameInfo.carSpeed = 1.00f;
-				break;
-			case R.id.speed75pct:
-				GameInfo.carSpeed = 0.75f;
-				break;
-			case R.id.speed50pct:
-				GameInfo.carSpeed = 0.50f;
-				break;
-			case R.id.speed25pct:
-				GameInfo.carSpeed = 0.25f;
-				break;
-			}
-		} else if (group.getId() == R.id.obstacle_count) {
-			switch(checkedId) {
-			case R.id.obstacles1:
-				GameInfo.numberOfObstacles = 1;
-				break;
-			case R.id.obstacles2:
-				GameInfo.numberOfObstacles = 2;
-				break;
-			case R.id.obstacles3:
-				GameInfo.numberOfObstacles = 3;
-				break;
-			case R.id.obstacles4:
-				GameInfo.numberOfObstacles = 4;
-				break;
-			}
-		}
-	}*/
-
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+
+
+		updateGameInfo();
+	}
+
+	private void updateGameInfo() {
 		View view;
 		Drawable temp;
 		ColorDrawable temp2;
@@ -170,12 +139,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		temp = view.getBackground();
 		temp2 = (ColorDrawable) temp;
 		GameInfo.color3 = temp2.getColor();
-
-		updateGameInfo();
-	}
-
-	private void updateGameInfo() {
-
+		
 		switch(carSpeed.getCheckedRadioButtonId()) {
 		case R.id.speed100pct:
 			GameInfo.carSpeed = 1.00f;
@@ -203,9 +167,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		case R.id.obstacles4:
 			GameInfo.numberOfObstacles = 4;
 			break;
-
 		}
 	}
-
 }
 
