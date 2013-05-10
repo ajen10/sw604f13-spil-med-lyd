@@ -64,25 +64,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/twentyfivepct" />
+            android:text="@string/slowest" />
 
         <RadioButton
             android:id="@+id/speed50pct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fiftypct" />
+            android:text="@string/slow" />
 
         <RadioButton
             android:id="@+id/speed75pct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/seventyfivepct" />
+            android:text="@string/normal" />
 
         <RadioButton
             android:id="@+id/speed100pct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hundredpct" />
+            android:text="@string/fast" />
     </RadioGroup>
 
     <RadioGroup

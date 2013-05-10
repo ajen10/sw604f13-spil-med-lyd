@@ -54,7 +54,6 @@ public class GameActivity extends Activity {
 		checkForCarRecoloring();
 		BitmapContainer.add(R.drawable.cat);
 		BitmapContainer.add(R.drawable.trophy);
-		//tempGarageColoredId = BitmapContainer.add(R.drawable.garage_frontwall, 255, 0, 0);
 
 		view = new GameView(this, getResources());
 		setContentView(view);

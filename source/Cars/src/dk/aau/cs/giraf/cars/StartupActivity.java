@@ -13,9 +13,9 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
 
 public class StartupActivity extends Activity {
 	private long guardianId;
-	public static Profile guardian;
-	private long childId;
-	public static Profile child;
+	public static long childId;
+	private TextView textViewG;
+	private TextView textViewC;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,9 @@ public class StartupActivity extends Activity {
 		if (extras != null) {        	   
 			try{
 				guardianId = extras.getLong("currentGuardianID");
-				guardian = helper.profilesHelper.getProfileById(guardianId);
+				Profile guardian = helper.profilesHelper.getProfileById(guardianId);
 
-				TextView textViewG = (TextView) findViewById(R.id.textView1);
+				textViewG = (TextView)findViewById(R.id.textView1);
 				textViewG.setText("Guardian: " + guardian.getFirstname() + " " + guardian.getSurname());
 			}
 			catch(NullPointerException e) {
@@ -37,12 +37,29 @@ public class StartupActivity extends Activity {
 			}
 			finally{
 				childId = extras.getLong("currentChildID");
-				child = helper.profilesHelper.getProfileById(childId);
-				TextView textViewC = (TextView) findViewById(R.id.textView2);
-				textViewC.setText("Child: " + child.getFirstname() + " " + child.getSurname());
+				Profile child = helper.profilesHelper.getProfileById(childId);
+				
+				textViewC = (TextView)findViewById(R.id.textView2);
+				textViewC.setText("Barn: " + child.getFirstname() + " " + child.getSurname());
 			}
 		}
+		
 		Settings.load(childId, this);
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		
+		Helper helper = new Helper(this);
+		Profile guardian = helper.profilesHelper.getProfileById(guardianId);
+		if (guardian != null) {
+			textViewG.setText("Guardian: " + guardian.getFirstname() + " " + guardian.getSurname());
+		}
+		Profile child = helper.profilesHelper.getProfileById(childId);
+		if (child != null) {
+			textViewC.setText("Barn: " + child.getFirstname() + " " + child.getSurname());			
+		}
 	}
 
 	@Override
@@ -50,11 +67,6 @@ public class StartupActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.startup, menu);
 		return true;
-	}
-	
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
 	}
 
 	public void showGameView(View view) {

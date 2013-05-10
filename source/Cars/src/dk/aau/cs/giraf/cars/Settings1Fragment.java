@@ -29,6 +29,34 @@ public class Settings1Fragment extends ListFragment {
 		this.getListView().setDivider(null);
 		this.getListView().setDividerHeight(0);
 		this.getListView().setPadding(0, 0, 125, 0);
+		
+		final ListView listView = getListView();
+		getListView().post(new Runnable() {
+		    @Override
+		    public void run() {
+		    	int wantedItemPosition = -1000;
+				for (int i = 0; i < listView.getAdapter().getCount(); i++) {
+					Object obj = listView.getAdapter().getItem(i);
+					Profile typed = (Profile)obj;
+					
+					if (typed.getId() == mChildId) {
+						wantedItemPosition = i;
+						break;
+					}
+				}
+				
+				int firstViewPosition = listView.getFirstVisiblePosition() - listView.getHeaderViewsCount();
+				int wantedItem = wantedItemPosition - firstViewPosition;
+				
+				if (wantedItem < 0 || wantedItem >= listView.getChildCount()) {
+					return;
+				}
+				
+				View view = listView.getChildAt(wantedItem);
+				view.setBackgroundColor(Color.MAGENTA);
+				previousColoredItem = view;
+		    }
+		});
 	}
 
 	public void fillData(long currentGuardianID) {

@@ -193,6 +193,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		Settings.save(mChildId, getBaseContext());
 
 		mChildId = userId;
+		StartupActivity.childId = userId;
 		
 		Settings.load(mChildId, getBaseContext());
 		loadGameInfo();
