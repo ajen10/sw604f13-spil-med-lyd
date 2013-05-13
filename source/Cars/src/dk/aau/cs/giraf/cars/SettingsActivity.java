@@ -117,7 +117,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 				break;
 			}
 		}
-		saveSettings(mChildId);
+		Settings.save(mChildId, getBaseContext());
 	}
 	
 	public void changeColors(View view) {
@@ -159,7 +159,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 			createTestDialog();
 			break;
 		case complete:
-			saveSettings(mChildId);
+			Settings.save(mChildId, getBaseContext());
 			break;
 		}
 	}
@@ -189,17 +189,13 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		temp2 = (ColorDrawable) temp;
 		GameInfo.color3 = temp2.getColor();
 		
-		saveSettings(mChildId);
-	}
-	
-	private void saveSettings(long userId) {
-		Settings.save(userId, getBaseContext());
+		Settings.save(mChildId, getBaseContext());
 	}
 
 	@Override
 	public void loadProfile(long userId) {
-		saveSettings(mChildId);
-
+		Settings.save(mChildId, getBaseContext());
+		
 		mChildId = userId;
 		StartupActivity.childId = userId;
 		

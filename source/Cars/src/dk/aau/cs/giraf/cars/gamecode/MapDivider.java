@@ -16,6 +16,7 @@ public final class MapDivider {
 	public static int mapYStart;
 	public static int mapYEnd;
 	public static int[] laneCenters;
+	private static final int CAR_Y_SPEED_FACTOR = 255;
 	
 	private MapDivider() {}
 	
@@ -62,5 +63,9 @@ public final class MapDivider {
 		x2 = x1 + obstacleWidth;
 		
 		return new Rect(x1, y1, x2, y2);
+	}
+	
+	public static float getCarYSpeed() {
+		return mapHeight / CAR_Y_SPEED_FACTOR;
 	}
 }

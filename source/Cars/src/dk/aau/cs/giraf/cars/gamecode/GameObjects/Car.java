@@ -30,6 +30,7 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	private int[] bitmapIds;
 	private boolean[] closedColors;
 	private int currentColor;
+	private float mCarYSpeed = MapDivider.getCarYSpeed();
 	
 	public Car(int y, float carSpeed, int[] colors, int[] bitmapIds) {
 		carSpeedAsFloat = carSpeed;
@@ -77,9 +78,9 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		
 		if (currFreq > 0 && xOffset > -(MapDivider.obstacleWidth / 2)) {
 			if (currFreq > mHighFreq && yOffset - halfObstacleHeight > MapDivider.mapYStart) {
-				yOffset -= 2;
+				yOffset -= mCarYSpeed;
 			} else if (currFreq < mLowFreq && yOffset + halfObstacleHeight < MapDivider.mapYEnd) {
-				yOffset += 2;
+				yOffset += mCarYSpeed;
 			}
  		} else {
  			int closestLane = 0;
