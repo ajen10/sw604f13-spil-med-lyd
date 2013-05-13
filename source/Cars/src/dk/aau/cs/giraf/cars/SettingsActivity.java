@@ -117,6 +117,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 				break;
 			}
 		}
+		saveSettings(mChildId);
 	}
 	
 	public void changeColors(View view) {
@@ -143,6 +144,7 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				parent.setBackgroundDrawable(v.getBackground());
+				saveColors();
 				color_dialog.dismiss();
 			}
 
@@ -184,13 +186,17 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		temp = view.getBackground();
 		temp2 = (ColorDrawable) temp;
 		GameInfo.color3 = temp2.getColor();
+		
+		saveSettings(mChildId);
 	}
-
+	
+	private void saveSettings(long userId) {
+		Settings.save(userId, getBaseContext());
+	}
 
 	@Override
 	public void loadProfile(long userId) {
-		saveColors();
-		Settings.save(mChildId, getBaseContext());
+		saveSettings(mChildId);
 
 		mChildId = userId;
 		StartupActivity.childId = userId;

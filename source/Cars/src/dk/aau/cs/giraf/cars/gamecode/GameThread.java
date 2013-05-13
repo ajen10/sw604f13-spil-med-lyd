@@ -96,7 +96,7 @@ public class GameThread extends Thread {
 					if (object instanceof Garage) {
 						Garage garage = (Garage)object;
 						
-						if (garage.color == car.getColor()) {
+						if (garage.color == car.getColor() && !garage.closed) {
 							garage.startClosing();
 							car.closeColor();
 						}
