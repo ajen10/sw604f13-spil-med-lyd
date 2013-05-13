@@ -34,6 +34,7 @@ public class MicSetupDialogFragment extends DialogFragment {
 	private static final float GAMEVIEW_WIDTH = 100.0f;
 	private static final float GAMEVIEW_HEIGHT = 400.0f;
 	private ViewFlipper mFlipper;
+	private boolean mGameThreadOn = false;
 
 	private SetupStates testState = SetupStates.Low;
 
@@ -51,9 +52,7 @@ public class MicSetupDialogFragment extends DialogFragment {
 		text.setText(getString(R.string.mic_test_low));
 		final ImageView img = (ImageView)view.findViewById(R.id.dialog_drawable_to_mimic);
 
-
 		img.setImageDrawable(getResources().getDrawable(R.drawable.bear));
-
 
 		Button nextButton = (Button)view.findViewById(R.id.next_button);
 		Button cancelButton = (Button)view.findViewById(R.id.cancel_button);
@@ -83,7 +82,7 @@ public class MicSetupDialogFragment extends DialogFragment {
 
 		cancelButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				getDialog().dismiss();
+				dismiss();
 			}
 		});
 
@@ -118,7 +117,6 @@ public class MicSetupDialogFragment extends DialogFragment {
 		mGameView.setZOrderOnTop(true);
 		final float scale = getResources().getDisplayMetrics().density;
 
-		
 		int gameViewWidth = (int)(GAMEVIEW_WIDTH * scale + 0.5f);
 		int gameViewHeight = (int)(GAMEVIEW_HEIGHT * scale + 0.5f);
 				
@@ -127,10 +125,8 @@ public class MicSetupDialogFragment extends DialogFragment {
        	LinearLayout openglLayout = (LinearLayout) buttonView.findViewById(R.id.opengl_layout);
 		openglLayout.addView(mGameView, gameViewParams);
 		
-
 		Button nextButton = (Button)buttonView.findViewById(R.id.next_button);
         Button retryButton = (Button)buttonView.findViewById(R.id.retry_button);
-        
         
        final InputTestDialogListener activity = (InputTestDialogListener) getActivity();
         
@@ -160,6 +156,7 @@ public class MicSetupDialogFragment extends DialogFragment {
         		
         mCar = new MicCar(gameViewWidth, gameViewHeight, carWidth, carHeight, mMicThread.getTmpLowFreq(), mMicThread.getTmpHighFreq());
         
+        mGameThreadOn = true;
 		mGameThread = new GameThread((Car)mCar);
 					
 		mGameView.SetObjects(mCar);
@@ -182,9 +179,11 @@ public class MicSetupDialogFragment extends DialogFragment {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
+		if (mGameThreadOn) {
+			mGameThread.stopRunning();
+		}
 		mRecordThread.recording = false;
 		mMicThread.stopThread();
-		mGameThread.stopRunning();
 	}
 	
 	public interface InputTestDialogListener {

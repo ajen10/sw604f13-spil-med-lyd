@@ -7,7 +7,7 @@ import android.media.AudioFormat;
 
 
 public class RecorderThread extends Thread {
-	public boolean recording;  //variable to start or stop recording
+	public boolean recording = false;  //variable to start or stop recording
 	public int frequency; //the public variable that contains the frequency value "heard", it is updated continually while the thread is running.
 	public int highestHumanPitch = 3400; //Determin the highst frequency a human can make to get rid of false data
 	public int voiceSensetivity = 10000;  //Determin the "volume" that that has to be recorded before the input data is valid

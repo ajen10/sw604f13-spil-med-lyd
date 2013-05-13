@@ -15,7 +15,7 @@ public class GameThread extends Thread {
 	List<IWorkable> workableObjects;
 	List<ICollidable> collidableObjects;
 	Car car;
-	Boolean running;
+	Boolean running = false;
 	private boolean mSettingsView = false;
 	public int numberOfClosedGarages;
 	private FragmentManager manager;
