@@ -157,7 +157,9 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		switch (resultState) {
 		case restart:
 			createTestDialog();
+			break;
 		case complete:
+			saveSettings(mChildId);
 			break;
 		}
 	}
