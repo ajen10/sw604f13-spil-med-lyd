@@ -93,9 +93,9 @@ public class Car extends GameObject implements IWorkable, IDrawable {
  			int offset = MapDivider.laneCenters[closestLane] - yOffset;
  			if (offset != 0) {
  				if (offset > 0) {
- 					yOffset++;
+ 					yOffset += Math.ceil(mCarYSpeed/2);
  				} else if (offset < 0) {
- 					yOffset--;
+ 					yOffset -= Math.ceil(mCarYSpeed/2);
  				}
  			}
  		}
