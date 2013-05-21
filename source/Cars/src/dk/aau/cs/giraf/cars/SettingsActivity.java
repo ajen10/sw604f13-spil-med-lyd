@@ -72,16 +72,12 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		return true;
 	}
 
-	public void createTestDialog() {
+	public void showMicTestDialog(View v) {
 		MicSetupDialogFragment micTest = new MicSetupDialogFragment();
 
 		micTest.setCancelable(false);
 
 		micTest.show(getFragmentManager(), "micTestDialog");
-
-	}
-	public void showMicTestDialog(View v) {
-		createTestDialog();
 	}
 
 	@Override
@@ -156,7 +152,8 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		// TODO Auto-generated method stub
 		switch (resultState) {
 		case restart:
-			createTestDialog();
+			View view = null;
+			showMicTestDialog(view);
 			break;
 		case complete:
 			Settings.save(mChildId, getBaseContext());
