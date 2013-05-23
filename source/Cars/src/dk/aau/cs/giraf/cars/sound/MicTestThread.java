@@ -82,7 +82,7 @@ public class MicTestThread extends Thread {
 				highestValue = i;
 			}
 		}
-		mTmpHighFreq = (highestValue + 1) * 50 - 100;
+		mTmpHighFreq = (highestValue + 1) * arrayIntervals - 100;
 	}
 
 	private void collectLowFreq() {
@@ -119,9 +119,7 @@ public class MicTestThread extends Thread {
 				highestValue = i;
 			}
 		}
-		mTmpLowFreq = (highestValue + 1) * 50 + 100;
-		
-		System.out.println(mTmpLowFreq);
+		mTmpLowFreq = (highestValue + 1) * arrayIntervals + 100;
 	}
 	
 	public void saveFrequencies() {
