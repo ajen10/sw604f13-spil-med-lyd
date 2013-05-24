@@ -193,4 +193,8 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 			currentColor = openColors.get(rand.nextInt(openColors.size()));
 		}
 	}
+	
+	public int getYOffset() {
+		return yOffset;
+	}
 }
