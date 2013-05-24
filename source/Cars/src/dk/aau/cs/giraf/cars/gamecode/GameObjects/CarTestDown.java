@@ -4,7 +4,7 @@ import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 import junit.framework.TestCase;
 
-public class CarTest extends TestCase {
+public class CarTestDown extends TestCase {
 
 	static Car car;
 	protected void setUp() throws Exception {
