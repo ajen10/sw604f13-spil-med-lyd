@@ -37,6 +37,10 @@ public class SettingsTest extends AndroidTestCase {
 
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		
+		Settings.loadDefaultSettings();
+		getContext().deleteFile("1234");
+		getContext().deleteFile("4321");
 	}
 
 	public void testLoad() {

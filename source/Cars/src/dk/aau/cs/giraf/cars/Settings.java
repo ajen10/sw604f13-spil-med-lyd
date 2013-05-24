@@ -36,7 +36,7 @@ public abstract class Settings {
 		return false;
 	}
 	
-	private static void loadDefaultSettings() {
+	public static void loadDefaultSettings() {
 		GameInfo.carSpeed = 0.75f;
 		GameInfo.numberOfObstacles = 2;
 		GameInfo.color1 = Color.WHITE;
