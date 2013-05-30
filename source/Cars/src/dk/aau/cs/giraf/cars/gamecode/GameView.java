@@ -13,12 +13,22 @@ import android.content.res.Resources;
 import android.graphics.Rect;
 import android.opengl.GLSurfaceView;
 
+/**
+ * View that is shown during the gameplay.
+ * This class is responsible for everything visual during the game.
+ */
 @SuppressLint("ViewConstructor")
 public class GameView extends GLSurfaceView implements Drawer {
 	List<IDrawable> drawableObjects;
 	GameActivity parent;
 	private boolean mSettingsView = false;
 	
+	/**
+	 * Standard constuctor, used in the game.
+	 * 
+	 * @param context	Context of the related activity. Can be obtained with "getContext()".
+	 * @param resources	Reference to the android resources. Can be obtained from "getResources()".
+	 */
 	public GameView(Context context, Resources resources) {
 		super(context);
 		parent = (GameActivity) context;
@@ -26,7 +36,13 @@ public class GameView extends GLSurfaceView implements Drawer {
 		drawableObjects = new ArrayList<IDrawable>();
 		setRenderer(new GameRenderer(resources, this));
 	}
-	
+	/**
+	 * Secondary constructor, used in the microphone wizard.
+	 * 
+	 * @param context		Context of the related activity. Can be obtained with "getContext()".
+	 * @param resources		Reference to the android resources. Can be obtained from "getResources()".
+	 * @param settingsView	Boolean indicating that it is the "settings" version of the GameView.
+	 */
 	public GameView(Context context, Resources resources, boolean settingsView) {
 		super(context);
 		mSettingsView = settingsView;
@@ -34,6 +50,12 @@ public class GameView extends GLSurfaceView implements Drawer {
 		setRenderer(new GameRenderer(resources, this));
 	}
 
+	/**
+	 * Replaces the objects of the GameView.
+	 * Filters the list for relevant objects to avoid overhead later.
+	 * 
+	 * @param gameObjects	List of objects to replace current objects.
+	 */
 	public void SetObjects(List<GameObject> gameObjects) {
 		drawableObjects.clear();
 
@@ -44,7 +66,11 @@ public class GameView extends GLSurfaceView implements Drawer {
 		}
 	}
 
-
+	/**
+	 * Same as SetObjects(List<GameObject> gameObjects), except with a single object.
+	 * 
+	 * @param gameObject	GameObject to replace current objects.
+	 */
 	public void SetObjects(GameObject gameObject) {
 		drawableObjects.clear();
 
@@ -54,6 +80,9 @@ public class GameView extends GLSurfaceView implements Drawer {
 
 	}
 
+	/**
+	 * Method called whenever a screen refresh is necessary.
+	 */
 	@Override
 	public void onDrawFrame(GL10 gl, GameRenderer spriteBatcher) {
 		//spriteBatcher.draw(gl, R.drawable.ic_launcher, new Rect(0, 0, 100, 100), new Rect(150, 150, 250, 250));
@@ -75,6 +104,12 @@ public class GameView extends GLSurfaceView implements Drawer {
 		}
 	}
 
+	/**
+	 * Method called whenever the view changes dimensions.
+	 * Calls AddObjects on GameActivity as this is the earliest point,
+	 * the view has correct dimension, hence the objects cannot be
+	 * placed properly prior to this point.
+	 */
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh){
 		super.onSizeChanged(w, h, oldw, oldh);

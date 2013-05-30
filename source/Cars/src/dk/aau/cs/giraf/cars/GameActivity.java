@@ -12,6 +12,9 @@ import dk.aau.cs.giraf.cars.gamecode.*;
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
 
+/**
+ * Main activity for the game.
+ */
 public class GameActivity extends Activity {
 	GameView view;
 	List<GameObject> objectList;
@@ -206,6 +209,11 @@ public class GameActivity extends Activity {
 		BitmapContainer.clear();
 	}
 	
+	/**
+	 * Generates and adds objects to the game field.
+	 * Adds the car, obstacles, garages and makes sure these objects
+	 * are added to all other parts of the game.
+	 */
 	public void AddObjects() { 
 		Random rand = new Random();
 		int i;
@@ -250,6 +258,9 @@ public class GameActivity extends Activity {
 		SetObjects();
 	}
 
+	/**
+	 * Adds game objects to the gamethread and gameview lists.
+	 */
 	public void SetObjects() {
 		gameThread.SetObjects(objectList);
 		view.SetObjects(objectList);

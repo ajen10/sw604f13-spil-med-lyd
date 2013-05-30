@@ -3,13 +3,15 @@ package dk.aau.cs.giraf.cars.gamecode;
 import android.graphics.Color;
 
 
-//Static class containing game information
+/**
+ * Class containing all relevant settings information for the game.
+ */
 public class GameInfo {
 	private static int mLowFreq = 500;
 	private static int mHighFreq = 1500;
 	private static int mCurrFreq = -1;
-	public static float carSpeed = 0.75F;    // TODO Indsæt hastigheden på bilen her som en float
-	public static int numberOfObstacles = 2; // TODO Indsæt nummer for objekter
+	public static float carSpeed = 0.75F;
+	public static int numberOfObstacles = 2;
 	public static boolean garageClosing = false;
 	public static boolean win = false;
 	public static boolean pause = false;

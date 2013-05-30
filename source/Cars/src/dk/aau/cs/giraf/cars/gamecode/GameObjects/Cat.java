@@ -29,7 +29,6 @@ public class Cat extends GameObject implements IDrawable, ICollidable {
 
 	@Override
 	public void draw(GL10 gl, GameRenderer spriteBatcher) {
-		// TODO Auto-generated method stub
 		if (GameInfo.win == false){
 		spriteBatcher.draw(gl, R.drawable.cat, new Rect(0, 0, 219, 271), rectangle);
 		}
@@ -37,14 +36,11 @@ public class Cat extends GameObject implements IDrawable, ICollidable {
 
 	@Override
 	public boolean collisionDetection() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public Point[] calculateCollisionBox() {
-		
-		// TODO Auto-generated method stub
 		return collisionBox;
 	}
 

@@ -16,6 +16,9 @@ import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
+/**
+ * Car object of the game.
+ */
 public class Car extends GameObject implements IWorkable, IDrawable {
 	protected float xOffset = -MapDivider.obstacleWidth;
 	protected int yOffset = 0;
@@ -32,6 +35,14 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 	private int currentColor;
 	private float mCarYSpeed = MapDivider.getCarYSpeed();
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param y			where the car is to start on the screen.
+	 * @param carSpeed	speed of the car.
+	 * @param colors	array containing colors of the car.
+	 * @param bitmapIds bitmap IDs for each color of the car.
+	 */
 	public Car(int y, float carSpeed, int[] colors, int[] bitmapIds) {
 		carSpeedAsFloat = carSpeed;
 		this.yOffset = y;
@@ -68,6 +79,10 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		}
 	}
 
+	/**
+	 * Method called from the gameThread.
+	 * Makes the car move forward and up/down depending on the user input.
+	 */
 	@Override
 	public void performWork() {
 		updateCarCollisionBox = true;
@@ -100,7 +115,13 @@ public class Car extends GameObject implements IWorkable, IDrawable {
  			}
  		}
 	}
-		
+	
+	/**
+	 * Calculates if there is a collision with the object defined in the parameter form.
+	 * 
+	 * @param form	Point array containing the possible collided object's points, in either clockwise, or counter-clockwise order.
+	 * @return		Returns true is a collision is detected, otherwise false.
+	 */
 	public boolean CalculateCollisions(Point[] form) {
 		if (updateCarCollisionBox) {
 			int widthScaled = (int)(MapDivider.obstacleWidth * carScaling);
@@ -160,21 +181,37 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 			   (line1End.y - line1Start.y) * (line2Point.x - line1End.x);
 	}
 	
+	/**
+	 * Resets the position of the car.
+	 * Invoked whenever the user either crashes, or parks the car in a garage.
+	 */
 	public void resetPosition() {
 		yOffset = MapDivider.mapYStart + MapDivider.totalObstacleHeight / 2 + MapDivider.totalObstacleHeight;
 		xOffset = -MapDivider.obstacleWidth;
 	}
 	
+	/**
+	 * Returns the currently active color of the car.
+	 * 
+	 * @return	Current color of the car, encoded in hexadecimal.
+	 */
 	public int getColor() {
 		return colors[currentColor];
 	}
 	
+	/**
+	 * Closes the current color.
+	 * Invoked when the car is parked in a matching garage.
+	 */
 	public void closeColor() {
 		closedColors[currentColor] = true;
 		
 		newColor();
 	}
 	
+	/**
+	 * Selects a new color based on which colors are still open.
+	 */
 	public void newColor() {
 		ArrayList<Integer> openColors = new ArrayList<Integer>();
 		
@@ -194,6 +231,11 @@ public class Car extends GameObject implements IWorkable, IDrawable {
 		}
 	}
 	
+	/**
+	 * Returns the offset of the car in the vertical plane.
+	 * 
+	 * @return	y offset.
+	 */
 	public int getYOffset() {
 		return yOffset;
 	}

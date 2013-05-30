@@ -14,7 +14,9 @@ import dk.aau.cs.giraf.cars.gamecode.ICollidable;
 import dk.aau.cs.giraf.cars.gamecode.IDrawable;
 import dk.aau.cs.giraf.cars.gamecode.IWorkable;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
-
+/**
+ * Garage object. The game have three garages.
+ */
 public class Garage extends GameObject implements IDrawable, ICollidable, IWorkable {
 	Rect backwall;
 	Rect doorOpen;
@@ -31,6 +33,13 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 	int[] coloredBitmapIds = null;
 	public int color = Color.WHITE;
 
+	/**
+	 * Constructor.
+	 * Calculates the drawing rectangles for all parts of the garage.
+	 * 
+	 * @param lane		what lane the garage is to be placed in.
+	 * @param coloumn	what coloumn the garage is to be placed in.
+	 */
 	public Garage(int lane, int coloumn) {
 		Rect rectangle = MapDivider.CalculateObstacle(lane, coloumn);
 
@@ -77,6 +86,14 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 		collisionBox[3] = new Point(rectangle.right, objectSideCollisionY);
 	}
 	
+	/**
+	 * Constructor used when the garage has a specific color.
+	 * 
+	 * @param lane		what lane the garage is to be placed in.
+	 * @param coloumn	what coloumn the garage is to be placed in.
+	 * @param color		color of the garage.
+	 * @param bitmapIds	bitmap IDs for the recolored parts.
+	 */
 	public Garage(int lane, int coloumn, int color, int[] bitmapIds) {
 		this(lane, coloumn);
 		
@@ -84,6 +101,9 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 		coloredBitmapIds = bitmapIds;
 	}
 
+	/**
+	 * Performwork, responsible for animating the garage, if it is closing.
+	 */
 	@Override
 	public void performWork() {
 		if (closing) {
@@ -117,11 +137,17 @@ public class Garage extends GameObject implements IDrawable, ICollidable, IWorka
 		return false;
 	}
 
+	/**
+	 * Returns the collision box of the garage.
+	 */
 	@Override
 	public Point[] calculateCollisionBox() {
 		return collisionBox;
 	}
 	
+	/**
+	 * Initiates the closing animation.
+	 */
 	public void startClosing() {
 		if (!closing) {
 		closing = true;

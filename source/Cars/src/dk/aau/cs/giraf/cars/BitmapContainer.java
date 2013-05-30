@@ -6,16 +6,32 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+/** 
+ * Replacement for the standard reference array originally used
+ * in SpriteBatcher by Tim Wicksteed.
+ */
 public abstract class BitmapContainer {
 	public static ArrayList<Integer> bitmapIds = new ArrayList<Integer>(); 
 	public static ArrayList<Integer> resourceList = new ArrayList<Integer>();
 	public static ArrayList<BitmapReference> recoloredList = new ArrayList<BitmapReference>();
 	private static Resources resources;
 	
+	/**
+	 * Adds an ID to the available resources.
+	 * 
+	 * @param bitmapId	the ID to add.
+	 */
 	public static void add(int bitmapId) {
 		bitmapIds.add(bitmapId);
 		resourceList.add(bitmapId);
 	}
+	/**
+	 * Adds a recolored bitmap to the available resources.
+	 * 
+	 * @param bitmapId	the ID of the original bitmap.
+	 * @param newColor	the Color of the recolored bitmap, encoded in hexadecimal numbers in the format, Alpha, Red, Green and Blue.
+	 * @return			the ID of the recolored bitmap.
+	 */
 	public static int add(int bitmapId, int newColor) {
 		int largestId = 0x7f020011 + 99;
 		for (Integer id : bitmapIds) {
@@ -45,7 +61,15 @@ public abstract class BitmapContainer {
 		
 		return newBitmap;
 	}
-	
+	/**
+	 * A variation of add(int bitmapId, int newColor), which
+	 * takes an array of colors and recolors the bitmap to all
+	 * colors at the same time.
+	 * 
+	 * @param bitmapId	the ID of the original bitmap.
+	 * @param newColors	the Colors of the recolored bitmaps, encoded in hexadecimal numbers in the format, Alpha, Red, Green and Blue.
+	 * @return			the IDs of the recolored bitmaps.
+	 */
 	public static int[] add(int bitmapId, int[] newColors) {
 		int largestId = 0x7f020011 + 99;
 		for (Integer id : bitmapIds) {
@@ -87,6 +111,14 @@ public abstract class BitmapContainer {
 		return newBitmaps;
 	}
 	
+	/**
+	 * Used to get a bitmap from a specific ID.
+	 * Searches through android resources first, followed by recolored images,
+	 * if the ID is not contained in the list of android resources.
+	 * 
+	 * @param bitmapId	ID of the matching bitmap.
+	 * @return			wanted bitmap.
+	 */
 	public static Bitmap get(int bitmapId) {
 		for (Integer id : resourceList) {
 			if (id == bitmapId) {
@@ -103,6 +135,11 @@ public abstract class BitmapContainer {
 		return null;
 	}
 
+	/**
+	 * Converts the internal list of bitmap IDs to an array of integer.
+	 * 
+	 * @return	an array of bitmap IDs.
+	 */
 	public static int[] getBitmapIds() {
 		int[] arrayBitmapIds = new int[size()];
 		
@@ -115,14 +152,27 @@ public abstract class BitmapContainer {
 		return arrayBitmapIds;
 	}
 	
+	/**
+	 * @return 	Returns the amount of available resources.
+	 */
 	public static int size() {
 		return bitmapIds.size();
 	}
 	
+	/**
+	 * Method used to set the reference to the standard android resources.
+	 * Must be called before attempting to recolor any bitmap, as it will
+	 * fail otherwise.
+	 * 
+	 * @param resources	android resources reference. Can be obtained from "getResources()" in an activity. 
+	 */
 	public static void setResources(Resources resources) {
 		BitmapContainer.resources = resources; 
 	}
 	
+	/**
+	 * Method for removing all IDs and recolored bitmaps.
+	 */
 	public static void clear() {
 		bitmapIds.clear();
 		resourceList.clear();

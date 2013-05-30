@@ -37,14 +37,11 @@ public class Barricade extends GameObject implements IDrawable, ICollidable {
 
 	@Override
 	public boolean collisionDetection() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public Point[] calculateCollisionBox() {
-		
-		// TODO Auto-generated method stub
 		return collisionBox;
 	}
 

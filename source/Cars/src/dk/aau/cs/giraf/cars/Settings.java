@@ -9,7 +9,17 @@ import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import android.content.Context;
 import android.graphics.Color;
 
+/**
+ * Class responsible for saving and loading a users profile data.
+ */
 public abstract class Settings {
+	/**
+	 * Loads user settings and sets them in the GameInfo class.
+	 * 
+	 * @param userId	Profile ID to load from.
+	 * @param context	Activity context, can be obtained with "getContext()" in an activity.
+	 * @return			Returns false if an error occurred, else true.
+	 */
 	public static boolean load(long userId, Context context) {
 		String fileString = context.getFilesDir() + String.valueOf(userId);
 		try {
@@ -30,10 +40,10 @@ public abstract class Settings {
 			System.out.println("IO Error");
 		} catch (NumberFormatException e) {
 			System.out.println("Error in save file");
-			return true;
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 	
 	public static void loadDefaultSettings() {
@@ -62,6 +72,13 @@ public abstract class Settings {
 		return returnStr;
 	}
 	
+	/**
+	 * Saves user settings to specific user ID.
+	 * 
+	 * @param userId	Profile ID to save to.
+	 * @param context	Activity context, can be obtained with "getContext()" in an activity.
+	 * @return			Returns false if an error occurred, else true.
+	 */
 	public static boolean save(long userId, Context context) {
 		try {
 			String fileString = context.getFilesDir() + String.valueOf(userId);
@@ -83,6 +100,7 @@ public abstract class Settings {
 			writer.close();
 		} catch (IOException e) {
 			System.out.println("Error while saving");
+			return false;
 		}
 		
 		return true;
