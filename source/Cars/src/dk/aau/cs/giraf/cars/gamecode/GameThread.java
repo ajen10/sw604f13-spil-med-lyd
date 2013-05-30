@@ -9,7 +9,9 @@ import android.app.FragmentManager;
 
 import dk.aau.cs.giraf.cars.gamecode.GameObjects.*;
 
-
+/**
+ * Thread responsible for making the game run.
+ */
 public class GameThread extends Thread {
 	final int millisecondsPerTick = 25;
 	List<IWorkable> workableObjects;
@@ -20,6 +22,12 @@ public class GameThread extends Thread {
 	public int numberOfClosedGarages;
 	private FragmentManager manager;
 	
+	/**
+	 * Standard constructor, used when instantiating the thread in the game.
+	 * 
+	 * @param gameObjects	Objects of the game. This list is filtered to avoid searching through objects that have no relevance to the GameThread.
+	 * @param manager		** HER ANDERS **
+	 */
 	public GameThread(List<GameObject> gameObjects, FragmentManager manager) {
 		workableObjects = new ArrayList<IWorkable>();
 		collidableObjects = new ArrayList<ICollidable>();
@@ -38,12 +46,20 @@ public class GameThread extends Thread {
 		}
 	}
 	
+	/**
+	 * Secondary constructor, used only for the Microphone example under the settings.
+	 * 
+	 * @param car	car object created in the microphone wizard.
+	 */
 	public GameThread(Car car) {
 		this.car = car;
 		
 		mSettingsView = true;
 	}
 	
+	/**
+	 * Method to start the thread.
+	 */
 	public void run() {
 		running = true;
 		if (!mSettingsView) {
@@ -53,8 +69,16 @@ public class GameThread extends Thread {
 		}
 	}
 
+	/**
+	 * Method for setting objects created after instantiating the thread.
+	 * Filters to avoid searching through object irrelevant to the
+	 * GameThread at later points in the execution.
+	 * 
+	 * @param gameObjects	Objects to replace the current objects.
+	 */
 	public void SetObjects(List<GameObject> gameObjects) {
 		workableObjects.clear();
+		collidableObjects.clear();
 		
 		for (GameObject object : gameObjects) {
 			if (object instanceof Car) {
@@ -141,7 +165,10 @@ public class GameThread extends Thread {
 			} catch (InterruptedException e) {}
 		}
 	}
-		
+	
+	/**
+	 * ** HER ANDERS **
+	 */
 	public void showDialog() {
 		CarCrashDialogFragment carCrash = new CarCrashDialogFragment();
 		
@@ -149,6 +176,9 @@ public class GameThread extends Thread {
 		carCrash.show(manager, "crashdialog");
 	}
 	
+	/**
+	 * Called to stop the thread.
+	 */
 	public void stopRunning() {
 		running = false;
 	}	
