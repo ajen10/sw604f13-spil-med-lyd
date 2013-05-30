@@ -6,7 +6,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.Menu;
 import android.view.View;
-
+	/**
+	 *	The Help Activity
+	 */
 public class HelpActivity extends Activity {
 
 	@Override
@@ -22,8 +24,8 @@ public class HelpActivity extends Activity {
 		return true;
 	}
 
-	public void showMicHelp(View v) {
 
+	public void showMicHelp(View v) {
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 		alertDialogBuilder.setTitle(R.string.mic);
 		alertDialogBuilder.setMessage(R.string.michelptext);

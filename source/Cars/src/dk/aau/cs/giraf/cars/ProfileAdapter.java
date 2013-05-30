@@ -11,11 +11,18 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
 
+/**
+ * Custom profile adapter
+ */
 public class ProfileAdapter extends BaseAdapter {
 
 	private List<Profile> data;
 	private static LayoutInflater inflater=null;
 
+	/**
+	 * @param activity		the activity that is to use the profile adapter
+	 * @param data			the data that is to be inserted into the profile adapter
+	 */
 	public ProfileAdapter(Activity activity, List<Profile> data) {
 		this.data=data;
 		inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -26,7 +26,7 @@ public class GameThread extends Thread {
 	 * Standard constructor, used when instantiating the thread in the game.
 	 * 
 	 * @param gameObjects	Objects of the game. This list is filtered to avoid searching through objects that have no relevance to the GameThread.
-	 * @param manager		** HER ANDERS **
+	 * @param manager		The fragment manager from the gameActivity, to allow displaying of dialogfragments on top of the game view. 
 	 */
 	public GameThread(List<GameObject> gameObjects, FragmentManager manager) {
 		workableObjects = new ArrayList<IWorkable>();
@@ -166,10 +166,7 @@ public class GameThread extends Thread {
 		}
 	}
 	
-	/**
-	 * ** HER ANDERS **
-	 */
-	public void showDialog() {
+	private void showDialog() {
 		CarCrashDialogFragment carCrash = new CarCrashDialogFragment();
 		
 		carCrash.setCancelable(false);

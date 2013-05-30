@@ -6,6 +6,9 @@ import java.util.Arrays;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.sound.SetupStates;
 
+/**
+ * Thread responsible for determining the high and low frequencies when calibrating the microphone
+ */
 public class MicTestThread extends Thread {
 	private boolean mRun = false;
 	private int mTmpLowFreq = 0;
@@ -15,16 +18,18 @@ public class MicTestThread extends Thread {
 	private boolean restartHigh = false;
 	private boolean restartLow = false;
 	
-	public MicTestThread() {
-		// TODO Auto-generated constructor stub
-	}
-	
+	/**
+	 * Method to start the thread
+	 */
 	@Override
 	public void run() {
 		mRun = true;
 		collectFrequencies();
 	}
 	
+	/**
+	 * @param testType			sets the frequency type currently being calibrated (high or low)
+	 */
 	public void setType(SetupStates testType) {
 		mTestType = testType;
 	}
@@ -40,10 +45,16 @@ public class MicTestThread extends Thread {
 		}
 	}
 	
+	/**
+	 * @return	temporary high frequency
+	 */
 	public int getTmpHighFreq() {
 		return mTmpHighFreq;
 	}
 	
+	/**
+	 * @return	temporary low frequency
+	 */
 	public int getTmpLowFreq() {
 		return mTmpLowFreq;
 	}
@@ -127,14 +138,23 @@ public class MicTestThread extends Thread {
 		GameInfo.setLowFreq(mTmpLowFreq);
 	}
 
+	/**
+	 *	called to stop the thread
+	 */
 	public void stopThread() {
 		mRun = false;
 	}
 	
+	/**
+	 * restarts the collection of the low frequency threshold
+	 */
 	public void restartLowFreq() {
 		restartLow = true;
 	}
 	
+	/**
+	 * restarts the collection of the high frequency threshold
+	 */
 	public void restartHighFreq() {
 		restartHigh = true;
 	}

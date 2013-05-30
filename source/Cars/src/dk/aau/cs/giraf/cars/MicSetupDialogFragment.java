@@ -24,6 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+/**
+ * Dialog shown when calibrating the microphone
+ */
 public class MicSetupDialogFragment extends DialogFragment {
 
 	private RecorderThread mRecordThread = new RecorderThread();
@@ -38,9 +41,6 @@ public class MicSetupDialogFragment extends DialogFragment {
 
 	private SetupStates testState = SetupStates.Low;
 
-	public MicSetupDialogFragment() { 
-
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, 
@@ -106,7 +106,7 @@ public class MicSetupDialogFragment extends DialogFragment {
 	}
 
 	
-	public void nextView() {
+	private void nextView() {
 		mFlipper.showNext();
 		
 		View buttonView = mFlipper.getCurrentView();

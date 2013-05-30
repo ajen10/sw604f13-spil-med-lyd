@@ -9,6 +9,9 @@ import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import dk.aau.cs.giraf.cars.gamecode.GameRenderer;
 import dk.aau.cs.giraf.cars.gamecode.MapDivider;
 
+/**
+ * Car object used in the dialogfragment MicSetupDialogFragment
+ */
 public class MicCar extends Car {
 	private final int mViewWidth;
 	private final int mViewHeight;
@@ -21,6 +24,14 @@ public class MicCar extends Car {
 	private int mCarScaledWidth;
 	private int mCarScaledHeight;
 	
+	/**
+	 * @param viewWidth			the openGL views width
+	 * @param viewHeight		the openGL views height
+	 * @param carWidth			width of the car in the image
+	 * @param carHeight			height of the car in the image
+	 * @param lowFreq			the temporary low frequency threshold
+	 * @param highFreq			the temporary high frequency threshold
+	 */
 	public MicCar(int viewWidth, int viewHeight, int carWidth, int carHeight, int lowFreq, int highFreq) {
 		super(0, 0, null, null);   //Second argument is the speed of the car in the X direction
 		mViewWidth = viewWidth;
@@ -44,6 +55,9 @@ public class MicCar extends Car {
 
 	}
 
+	/**
+	 *	Method handling the movement of the car
+	 */
 	@Override
 	public void performWork() {		
 		int currFreq = GameInfo.getCurrFreq();

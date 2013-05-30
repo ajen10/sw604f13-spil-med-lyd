@@ -11,13 +11,11 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * Dialog shown when a car collides with an object
+ */
 public class CarCrashDialogFragment extends DialogFragment {
-	
-	//Empty constructor
-	public CarCrashDialogFragment() {
-
-	}
-	
+		
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
