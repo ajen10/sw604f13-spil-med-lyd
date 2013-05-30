@@ -5,6 +5,10 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder.AudioSource;
 import android.media.AudioFormat;
 
+/**
+ * It handles the input from the microphone
+ *
+ */
 
 public class RecorderThread extends Thread {
 	public boolean recording = false;  //variable to start or stop recording
@@ -18,6 +22,10 @@ public class RecorderThread extends Thread {
 	}
 	
 
+	/**
+	 * Gets the input from the microphone, and runs the FFT algorithm.
+	 * And sets the current frequency
+	 */
 	@Override
 	public void run() {
 		System.out.println("recorderThread started");

@@ -5,6 +5,11 @@ import java.util.Random;
 public class ObjectPlacement {
 
 	// 0 = ingen objekt 1 = ikke nåbart område  2 = objekt
+	/**
+	 * Calculates places for obstacles to be placed at, randomly.
+	 * @param numberOfObjects the number of obstacles to be placed
+	 * @return the index of the obstacles to be placed.
+	 */
 	public static int[][] objectPlacement(int numberOfObjects){
 		int i, j;
 		boolean availablePathToEnd = false;
@@ -68,6 +73,14 @@ public class ObjectPlacement {
 
 		return ObstacleArray;
 	}
+	/**
+	 * Checks of "car" has reached a dead end, a garage, or max depth has been reached. Else continue(call recursivePath)
+	 * @param row - Current row
+	 * @param column - Current column
+	 * @param depth - Current depth to prevent infinete loop
+	 * @param roadObstacles - Where the obstacles are placed.
+	 * @param garagesReached - If the garages are reached or not.
+	 */
 	public static void path(int row, int column, int depth , int[][] roadObstacles, int[] garagesReached){
 		//	System.out.println("Column = " + column);
 		if (column == 0 && depth <14) {
@@ -80,6 +93,14 @@ public class ObjectPlacement {
 			recursivePath(row, column, depth, roadObstacles, garagesReached);
 		}
 	}
+	/**
+	 * Continues to a new row and lane, and increments depth.
+	 * @param row - Current row
+	 * @param column - Current column
+	 * @param depth - Current depth to prevent infinete loop
+	 * @param roadObstacles - Where the obstacles are placed.
+	 * @param garagesReached - If the garages are reached or not.
+	 */
 	private static void recursivePath(int row, int column, int depth, int[][] roadObstacles, int[] garagesReached) {
 		//	System.out.println("recursivePath");
 		depth++;
