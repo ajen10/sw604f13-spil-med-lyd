@@ -16,7 +16,9 @@ import dk.aau.cs.giraf.cars.R.id;
 import dk.aau.cs.giraf.cars.sound.RecorderThread;
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 
-
+/**
+ * Settings activity
+ */
 public class SettingsActivity extends Activity implements InputTestDialogListener, ListClickListener, OnCheckedChangeListener {
 	RecorderThread recorderThread = new RecorderThread();
 	RadioGroup carSpeed;
@@ -37,7 +39,9 @@ public class SettingsActivity extends Activity implements InputTestDialogListene
 		loadGameInfo();
 	}
 		
-	
+	/**
+	 * Loads game settings 
+	 */
 	public void loadGameInfo() {
 		findViewById(R.id.color1).setBackgroundColor(GameInfo.color1);
 		findViewById(R.id.color2).setBackgroundColor(GameInfo.color2);

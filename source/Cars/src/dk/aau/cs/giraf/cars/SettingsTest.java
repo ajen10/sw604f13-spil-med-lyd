@@ -10,7 +10,9 @@ import android.test.AndroidTestCase;
 
 import dk.aau.cs.giraf.cars.gamecode.GameInfo;
 import junit.framework.TestCase;
-
+/**
+ * Unit test
+ */
 public class SettingsTest extends AndroidTestCase {
 
 	protected void setUp() throws Exception {

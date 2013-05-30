@@ -11,7 +11,9 @@ import android.widget.Toast;
 import dk.aau.cs.giraf.oasis.lib.Helper;
 import dk.aau.cs.giraf.oasis.lib.models.Profile;
 
-
+/**
+ * Main activity
+ */
 public class StartupActivity extends Activity {
 	private long guardianId;
 	public static long childId;
@@ -73,12 +75,18 @@ public class StartupActivity extends Activity {
 		getMenuInflater().inflate(R.menu.startup, menu);
 		return true;
 	}
-
+	
+	/**
+	 * Method to start GameActivity
+	 */
 	public void showGameView(View view) {
 		Intent intent = new Intent(StartupActivity.this, GameActivity.class);
 		StartupActivity.this.startActivityForResult(intent, 0);	
 	}
 
+	/**
+	 * Method to start SettingsActivity
+	 */
 	public void showSettingsView(View view) {
 		Intent intent = new Intent(StartupActivity.this, SettingsActivity.class);
 		intent.putExtra("currentGuardianID", guardianId);
@@ -86,6 +94,9 @@ public class StartupActivity extends Activity {
 		StartupActivity.this.startActivityForResult(intent, 0);
 	}
 
+	/**
+	 * Method to start HelpActivity
+	 */
 	public void showHelpView(View view) {
 		Intent intent = new Intent(StartupActivity.this, HelpActivity.class);
 		StartupActivity.this.startActivityForResult(intent, 0);

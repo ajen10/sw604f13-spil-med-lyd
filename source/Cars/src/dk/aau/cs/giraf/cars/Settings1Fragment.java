@@ -13,7 +13,9 @@ import dk.aau.cs.giraf.oasis.lib.models.Profile;
 import dk.aau.cs.giraf.oasis.lib.models.Setting;
 import dk.aau.cs.giraf.oasis.lib.controllers.AppsHelper;
 
-
+/**
+ * List fragment load and show profiles associated with the logged in profile
+ */
 public class Settings1Fragment extends ListFragment {
 	private ProfileAdapter adapter;
 	private Profile guardian;
@@ -68,6 +70,9 @@ public class Settings1Fragment extends ListFragment {
 		setListAdapter(adapter);
 	}
 	
+	/**
+	 * Get settings associated with the profile ID
+	 */
 	public String getSettingsById(long Id) {
 		long appId;
 		Setting<String, String, String> tmp;
